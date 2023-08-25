@@ -7,7 +7,7 @@ import ButtonBlue from "components/shared/forms/buttonBlue";
 import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import {isMobile} from "src/utils/isMobile";
 import {ApiMethod} from "src/api/APIMethod";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import RadioButtons from "components/shared/forms/radioButtons";
 import {getAuth} from "src/store/localStorage";
 import {WindowsManagerOpen} from "src/actions/WindowsManagerAction/WindowsManagerAction";
@@ -85,6 +85,7 @@ const Info = (props: {data: ProductType}) => {
     const [button, setButton] = useState<any>(null);
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
+    const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
 
     const openAuth = () => {
         WindowsManagerOpen(WINDOW_AUTHORIZATION)(dispatch);
@@ -114,8 +115,9 @@ const Info = (props: {data: ProductType}) => {
     return (
         <InfoStyle>
             { isMobile() ? '' : <Header>{props.data.title}</Header>}
-
-            <Price>{props.data.price ? (auth.isAuthorized ? '' : 'от ') + showMoneySum(props.data.price) + ' РУБ' : null}</Price>
+            {hidePrice ?  null :
+                <Price>{props.data.price ? (auth.isAuthorized ? '' : 'от ') + showMoneySum(props.data.price) + ' РУБ' : null}</Price>
+            }
             <Description>
                 {
                     props.data.description

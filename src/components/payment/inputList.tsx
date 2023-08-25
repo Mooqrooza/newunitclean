@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState } from 'react';
 import {
     InputAddress,
     InputFIO,
@@ -14,9 +14,10 @@ import {icons} from "src/utils/icons";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateCart} from "src/reducers/CartReducer/CartReducer.types";
 import {GetCart} from "src/actions/CartAction/CartAction";
-import {URLs} from "src/utils/constants";
+import {URLs, DELIVERY} from "src/utils/constants";
 import {WindowsManagerOpen} from "src/actions/WindowsManagerAction/WindowsManagerAction";
 import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsManagerAction.types";
+import {setPickupAddress} from "src/actions/DeliveryAction/DeliveryAction";
 import {getAuth} from "src/store/localStorage";
 
 const InputListStyle = styled.div`
@@ -133,27 +134,37 @@ const SuccessPromo = (props: {text: string; func: () => void}) => {
 }
 
 const InputList = () => {
+    const pickupAddress = DELIVERY.PICKUP_ADDRESS || [];
+    const dispatch = useDispatch();
+    const stableDispatch = useCallback(dispatch, []);
+
     const form:any = {};
 
     const auth = getAuth();
-    let setFio, setPhone, setAddress, setReceivingType, setPaymentType, setDetail, setMessage = null;
+    let setFio, setPhone, setAddress, setPaymentType, setDetail, setMessage = null;
+    
     [form.full_name, setFio] = useState<any>(null);
     [form.phone_number, setPhone] = useState<any>(null);
     [form.address, setAddress] = useState<any>(null);
-    [form.receiving_type, setReceivingType] = useState<any>(null);
     [form.payment_type, setPaymentType] = useState<any>(null);
     [form.detail, setDetail] = useState<any>(null);
     [form.message, setMessage] = useState<any>(null);
-
+    
+    const [receivingType, setReceivingType] = useState<any>(true);
+    const changeReceivingType = (dt: { value:string }) => {
+        setReceivingType(dt.value);
+        form.receiving_type = dt;
+    }
+    const selectPickupAddress = (dt: { value:string }) => {
+        setPickupAddress(dt.value)(dispatch);
+        form.address = dt.value;  
+    }
     const [promo, setPromo] = useState<any>(null);
     const [successPromo, setSuccessPromo] = useState('');
     const [button, setButton] = useState<any>(null);
 
     const Cart = useTypedSelector((store) => store.Cart);
     const {cart, isFetching, error} = Cart as IStateCart;
-
-    const dispatch = useDispatch();
-    const stableDispatch = useCallback(dispatch, []);
 
     useEffect(() => {
         stableDispatch(GetCart());
@@ -214,19 +225,24 @@ const InputList = () => {
             })
     }
 
-    const toCart = () => {
-        window.open(URLs.CART, '_self');
-    }
+    const toCart = () => { window.open(URLs.CART, '_self'); }
 
     return (
         <InputListStyle className={(auth.isAuthorized ? '' : 'unauthed ') + (cart.product.length ? '' : 'emptyCart')}>
             <InputFIO placeholder={'Укажите ваше ФИО'} setObj={setFio}></InputFIO>
             <InputPhoneNumber placeholder={'Укажите ваш номер телефона'} setObj={setPhone}></InputPhoneNumber>
-            <Select defaultOption={{value: '', text: 'Выберите способ доставки'}} setObj={setReceivingType} options={[
+            <Select defaultOption={{value: '', text: 'Выберите способ доставки'}} setObj={changeReceivingType} options={[
                 {value: 'САМОВЫВОЗ', text: 'Самовывоз'},
                 {value: 'ДОСТАВКА', text: 'Доставка'}
             ]}></Select>
-            <InputAddress placeholder={'Укажите адрес доставки'} setObj={setAddress}></InputAddress>
+            {
+                receivingType === 'САМОВЫВОЗ' ? 
+                    <Select defaultOption={{value: '', text: 'Выберите адрес самовывза'}} setObj={selectPickupAddress} 
+                        options={ pickupAddress.map((vl) => ({ value: vl.TITLE,  text: vl.ADDRESS })) }
+                    ></Select>
+                    :
+                    <InputAddress placeholder={'Укажите адрес доставки'} setObj={setAddress}></InputAddress>
+            }
             <Select defaultOption={{value: '', text: 'Выберите способ оплаты'}} setObj={setPaymentType} options={[
                 {value: 'КАРТОЙ', text: 'Картой'},
                 {value: 'НАЛИЧНЫМИ', text: 'Наличными'}

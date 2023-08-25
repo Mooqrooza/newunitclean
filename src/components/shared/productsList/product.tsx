@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {ProductType} from "src/utils/types";
 import {BASE_URL, URLs} from "src/utils/constants";
 import {ApiMethod} from "src/api/APIMethod";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateFavourites} from "src/reducers/FavouritesReducer/FavouritesReducer.types";
 import {GetCart} from "src/actions/CartAction/CartAction";
@@ -257,7 +257,8 @@ const Star = (props: {children: string}) => {
 }
 
 export const Product = (props: {data: ProductType; noStar?: boolean, current_size?: boolean}) => {
-
+    const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
+    
     return (
         <ProductStyle href={URLs.PRODUCT.replace(':id', '' + props.data.id)}>
             {
@@ -270,7 +271,7 @@ export const Product = (props: {data: ProductType; noStar?: boolean, current_siz
             <Info>
                 <Title>{props.data.title}</Title>
                 <Description>{props.data.description}</Description>
-                {
+                {hidePrice ? null : 
                     (props.data.order_size_price && props.current_size) ?
                         <Price>{showMoneySum(props.data.order_size_price *
                             (props.data.amount_of_product ? props.data.amount_of_product : 1))} РУБ</Price>

@@ -1,5 +1,26 @@
 import React from "react";
 
+export const CONTACT_MAP = (props: { height?: string; width?: string, embCode?: string }) => {
+    const defEmbCode ='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.6375263591535!2d37.58030441563861!3d55.78216699719469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a1f98b0b993%3A0x900e8d5adda26f8a!2zMy3RjyDQr9C80YHQutC-0LPQviDQn9C-0LvRjyDRg9C7LiwgMiDQutC-0YDQv9GD0YEgMjYsINCc0L7RgdC60LLQsCwgMTI1MDQw!5e0!3m2!1sru!2sru!4v1665586254245!5m2!1sru!2sru'
+    return(
+        <iframe
+            src={props.embCode}
+            height={props.height} width={props.width} style={{border:0}} allowFullScreen={true} loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade">
+        </iframe>
+    );
+}
+
+export const getMapEmbed = (props: { height?: string; width?: string, embCode?: string }) => {
+    return(
+        <iframe
+            src={props.embCode || ''}
+            height={props.height} width={props.width} style={{border:0}} allowFullScreen={true} loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade">
+        </iframe>
+    );
+}
+
 export const URLs = {
     ROOT: '/',
     CATALOG: '/catalog',
@@ -23,6 +44,44 @@ export const INFO = {
     ADDRESS: 'ул. 3-я Ямского поля, д.2, корп. 26'
 }
 
+export const DELIVERY = {
+    DEFAULT_ADDRESS: [
+        {
+            TITLE: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            ADDRESS: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            PHONE_NUMBER: '+ 7 (916) 880 52 81',
+            EMAIL: 'invest@pmk-team.ru',
+            EMB_CODE: ''
+        }
+    ],
+    PICKUP_ADDRESS: [
+        {
+            TITLE: 'г.Люберцы, ул. 65 лет Победы, д.2',
+            ADDRESS: 'г.Люберцы, ул. 65 лет Победы, д.2',
+            PHONE_NUMBER: '+ 7 (925) 613 81 67',
+            EMAIL: 'invest@pmk-team.ru',
+            EMB_CODE: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.1467084544392!2d37.882837813093985!3d55.68643707294743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ab6229cfe4595%3A0xa1d93d19afd5163!2z0YPQuy4gNjUg0LvQtdGCINCf0L7QsdC10LTRiywgMywg0J_QvtC00L7Qu9GM0YHQuiwg0JzQvtGB0LrQvtCy0YHQutCw0Y8g0L7QsdC7LiwgMTQwMDA5!5e0!3m2!1sru!2sru!4v1692873562910!5m2!1sru!2sru'
+        },
+        {
+            TITLE: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            ADDRESS: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            PHONE_NUMBER: '+ 7 (916) 880 52 81',
+            EMAIL: 'invest@pmk-team.ru',
+            EMB_CODE: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2264.2569306731275!2d37.526256413081796!3d55.42331247285123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aa9814fc3c9a7%3A0xa96ecb5a4921d85f!2sCDEK!5e0!3m2!1sru!2sru!4v1692998815590!5m2!1sru!2sru"'
+        }
+    ],
+    DELIVERY_ADDRESS: [
+        {
+            TITLE: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            ADDRESS: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            PHONE_NUMBER: '+ 7 (916) 880 52 81',
+            EMAIL: 'invest@pmk-team.ru',
+            EMB_CODE: ''
+        }
+    ],
+}
+
+
 export const LINKS = {
     whatsapp: '',
     youtube: '',
@@ -35,18 +94,3 @@ export const LINKS = {
 
 //export const BASE_URL = 'http://84.23.55.240:5050';
 export const BASE_URL = 'http://141.8.193.185:5050';
-
-export const CONTACT_MAP = (props: {height?: string; width?: string}) => {
-    return(
-        /*<iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7127.6563509762045!2d37.61879521129864!3d55.757272203531606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a4a4f3077%3A0xa7583549db7aeb5e!2z0J_Qu9C-0YnQsNC00Ywg0KDQtdCy0L7Qu9GO0YbQuNC4!5e0!3m2!1sru!2sru!4v1651319102034!5m2!1sru!2sru"
-            height={props.height} width={props.width} style={{border:0}} allowFullScreen={true} loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade">
-        </iframe>*/
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.6375263591535!2d37.58030441563861!3d55.78216699719469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a1f98b0b993%3A0x900e8d5adda26f8a!2zMy3RjyDQr9C80YHQutC-0LPQviDQn9C-0LvRjyDRg9C7LiwgMiDQutC-0YDQv9GD0YEgMjYsINCc0L7RgdC60LLQsCwgMTI1MDQw!5e0!3m2!1sru!2sru!4v1665586254245!5m2!1sru!2sru"
-            height={props.height} width={props.width} style={{border:0}} allowFullScreen={true} loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade">
-        </iframe>
-    );
-}

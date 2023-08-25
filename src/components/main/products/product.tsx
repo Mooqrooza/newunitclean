@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {ProductType} from "src/utils/types";
 import styled from "styled-components";
 import ButtonBlue from "components/shared/forms/buttonBlue";
@@ -85,15 +86,14 @@ const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
 `;
 
 const Product = (props: {data: ProductType}) => {
+    const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
+
     return (
         <ProductStyle href={URLs.PRODUCT.replace(':id', '' + props.data.id)}>
             <Info>
                 <Title>{props.data.title}</Title>
-                {
-                    props.data.price ?
-                        <Price>Цены от <span>{showMoneySum(props.data.price) + ' руб.'}</span></Price>
-                        :
-                        null
+                {hidePrice ?  null :
+                    props.data.price ? <Price>Цены от <span>{showMoneySum(props.data.price) + ' руб.'}</span></Price> : null
                 }
                 <ButtonBlue styled={ButtonStyle}>ПОСМОТРЕТЬ КАТАЛОГ</ButtonBlue>
             </Info>

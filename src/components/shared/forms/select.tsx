@@ -25,7 +25,14 @@ interface SelectState {
 export class Select extends Component<SelectProps, SelectState> {
     constructor(props: SelectProps) {
         super(props);
-        this.state = {value: props.defaultOption?.value, error: false, errorAnimation: false, active: false, obj: this, errorText: ''};
+        this.state = {
+            value: props.defaultOption?.value, 
+            error: false, 
+            errorAnimation: false, 
+            active: false, 
+            obj: this, 
+            errorText: ''
+        };
         if (this.props.setObj) {
             this.props.setObj(this.state);
         }
@@ -43,7 +50,7 @@ export class Select extends Component<SelectProps, SelectState> {
         }
         return true;
     }
-
+    
     checkError = () => {
         let val = this.check(this.state.value);
         this.setState({error: val});
@@ -57,7 +64,7 @@ export class Select extends Component<SelectProps, SelectState> {
     }
 
     onInput = (event?: any) => {
-        this.setState({value: event.target.value});
+        this.setState({ value: event.target.value });
     }
 
     onFocus = (active: boolean) => {

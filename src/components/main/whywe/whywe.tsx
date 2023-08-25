@@ -6,8 +6,7 @@ import {icons} from "src/utils/icons";
 
 const Reasons:reason[] = [
     {icon: icons.reasons.security, text: 'Высокое качество продукции за разумную цену.'},
-    {icon: icons.reasons.wallet, icon_clicked: icons.reasons.wallet_clicked, clickable: true,
-        text: 'Оперативность и гибкая система оплаты, возможность протестировать продукт.'},
+    {icon: icons.reasons.wallet, text: 'Оперативность и гибкая система оплаты, возможность протестировать продукт.'},
     {icon: icons.reasons.chat, text: 'Индивидуальный подход к каждому клиенту. '},
     {icon: icons.reasons.settings, text: 'Возможна разработка продукта по запросу клиента.'}
 ];

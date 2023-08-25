@@ -110,3 +110,7 @@ export interface ApiMethodType {
     data?: any;
     auth?: boolean;
 }
+
+export interface Settings {
+    hide_price?: boolean;
+}

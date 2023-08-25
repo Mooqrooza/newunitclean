@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 
-const InfoRowStyle = styled.div`
-  text-align: left;
-`;
-
 const Title = styled.span`
   font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
@@ -18,13 +14,13 @@ const Value = styled.span`
   user-select: text;
 `;
 
-const InfoRow = (props: {title: string; value: string}) => {
+const InfoRow = (props: {title: string; value: string, style?:object, onClick?: (dt:any) => void}) => {
     return (
-        <InfoRowStyle>
+        <div onClick={props.onClick} style={{textAlign: 'left', ...props.style}}>
             <Title>{props.title}:</Title>
             <br></br>
             <Value>{props.value}</Value>
-        </InfoRowStyle>
+        </div>
     );
 };
 

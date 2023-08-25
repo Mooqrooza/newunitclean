@@ -17,6 +17,8 @@ import {MainPageReducer} from "src/reducers/MainPageReducer/MainPageReducer";
 import {CompanyPreviousOrdersReducer} from "src/reducers/CompanyPreviousOrdersReducer/CompanyPreviousOrdersReducer";
 import {MobileMenuReducer} from "src/reducers/MobileMenuReducer/MobileMenuReducer";
 import {PriceListReducer} from "src/reducers/PriceListReducer/PriceListReducer";
+import {SettingsReducer} from "src/reducers/SettingsReducer/SettingsReducer";
+import {DeliveryReducer} from "src/reducers/DeliveryReducer/DeliveryReducer";
 
 const appReducer = combineReducers({
   Auth: AuthReducer,
@@ -36,16 +38,12 @@ const appReducer = combineReducers({
   MainPage: MainPageReducer,
   CompanyPreviousOrders: CompanyPreviousOrdersReducer,
   MobileMenu: MobileMenuReducer,
-  PriceList: PriceListReducer
+  PriceList: PriceListReducer,
+  Settings: SettingsReducer,
+  Delivery: DeliveryReducer
 })
 
 export const rootReducer = (state: any, action: any) => {
-  /*if (action.type === GET_LOGOUT_AUTH_SUCCESS) {
-    state = undefined
-  }*/
-
-  console.log(action);
-
   return appReducer(state, action)
 }
 
