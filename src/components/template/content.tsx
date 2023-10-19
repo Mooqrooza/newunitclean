@@ -3,17 +3,9 @@ import styled from "styled-components";
 import Windows from "components/shared/windows";
 
 const ContentStyle = styled.div`
-  padding: ${({ theme }) => theme.paddings.contentPadding};
-  
-  section {
-     margin: ${({ theme }) => theme.margins.sectionMargin}
-  } 
+  padding: 30px ${({ theme }) => theme.values.contentMargin}px;
   .mobile & {
-    padding: ${({ theme }) => theme.paddings.contentPaddingMobile}
-
-    section {
-      margin: ${({ theme }) => theme.margins.sectionMarginMobile}
-   } 
+    padding: 0 ${({ theme }) => theme.values.contentMobileMargin}px;
   }
 `;
 const Content = (props: {children: any}) => {

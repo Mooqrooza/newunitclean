@@ -20,13 +20,13 @@ const OrderInfo = styled.div`
 const OrderNum = styled.div`
   font-size: ${({ theme }) => theme.font.size[28]};
   font-weight: ${({ theme }) => theme.font.weight[900]};
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.font.color.gray};
   text-align: left;
   margin-bottom: 4px;
 `;
 
 const OrderInfoRowStyle = styled.div`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
   display: grid;
   grid-gap: 8px; gap: 8px;
   grid-auto-flow: column;

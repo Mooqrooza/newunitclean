@@ -13,7 +13,7 @@ const TabButtonStyle = styled.div`
   border-bottom: 2px solid #BA172C00;
   font-size: ${({ theme }) => theme.font.size[12]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.font.color.gray};
   transition: color 0.3s, border 0.3s;
 
   display: grid;
@@ -22,7 +22,7 @@ const TabButtonStyle = styled.div`
   
   &.selected {
     border-bottom: 2px solid;
-    color: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.font.color.red};
   }
 `
 

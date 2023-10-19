@@ -23,7 +23,7 @@ const ReviewsContainer = styled.div`
 const ReviewsHeader = styled.div`
   font-size: ${({ theme }) => theme.font.size[20]};
   font-weight: ${({ theme }) => theme.font.weight[800]};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
   margin-bottom: 60px;
 `;
 

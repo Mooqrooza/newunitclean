@@ -9,6 +9,7 @@ export const saveAuth = () => {
     localStorage.setItem('isAuthorized', data.isAuthorized ? '1' : '');
     localStorage.setItem('error', data.error ? data.error : '');
 }
+
 export const getAuth = () => {
     let access_token = localStorage.getItem('access_token');
     let refresh_token = localStorage.getItem('refresh_token');

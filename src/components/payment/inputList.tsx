@@ -20,7 +20,6 @@ import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsMana
 import {setPickupAddress} from "src/actions/DeliveryAction/DeliveryAction";
 import {getAuth} from "src/store/localStorage";
 
-
 const InputListStyle = styled.div`
   display: grid;
   grid-gap: 20px; gap: 20px;
@@ -70,8 +69,8 @@ const ButtonSendError = styled(ButtonStyle)`
 
 const ButtonFrozenStyle = styled(ButtonStyle)`
   font-size: ${({ theme }) => theme.font.size[14]};
-  background: ${({ theme }) => theme.colors.light_gray};
-  border-color: ${({ theme }) => theme.colors.gray};
+  background: ${({ theme }) => theme.font.color.light_gray};
+  border-color: ${({ theme }) => theme.font.color.gray};
   display: none;
 
   .mobile & {

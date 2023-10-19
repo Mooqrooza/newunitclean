@@ -8,7 +8,7 @@ const PriceStyle = styled.div`
 
   font-weight: ${({ theme }) => theme.font.weight[800]};
   font-size: ${({ theme }) => theme.font.size[40]};
-  color: ${({ theme }) => theme.colors.red};
+  color: ${({ theme }) => theme.font.color.red};
   text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.35);
 
   position: relative;

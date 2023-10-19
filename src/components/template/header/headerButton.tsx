@@ -7,7 +7,7 @@ import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsMana
 import {useTypedSelector} from "src/store/configureStore";
 
 const HeaderButton = (props: {styled: StyledComponent<any, any>; href?: string; children: any; func?: () => void; auth?: boolean}) => {
-    const Auth = useTypedSelector((store) => store.Auth); 
+    const Auth = useTypedSelector((store) => store.Auth);
     const {isAuthorized} = Auth as IStateAuth;
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);

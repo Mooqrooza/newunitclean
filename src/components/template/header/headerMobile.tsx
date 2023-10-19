@@ -102,7 +102,7 @@ const MovingTabButton = styled.div`
 `;
 const MobileButtonStyle = styled.a`
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
 `;
 
 const HeaderContainerMobile = (props: { buttons: headerMenuButton[]}) => {

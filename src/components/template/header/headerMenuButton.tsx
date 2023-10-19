@@ -13,13 +13,13 @@ const HeaderMenuButtonStyle = styled.a`
   
   &, &:visited {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.font.color.black};
     font-size: ${({theme}) => theme.font.size[15]};
     font-weight: ${({theme}) => theme.font.weight[500]};
     text-transform: uppercase;
   }
   &:hover {
-    color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.font.color.orange};
   }
 `
 

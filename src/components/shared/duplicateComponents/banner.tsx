@@ -36,7 +36,7 @@ const Title = styled.div`
 const Text = styled.div`
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
   text-align: left;
 `;
 

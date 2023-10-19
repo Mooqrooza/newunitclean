@@ -16,12 +16,15 @@ const Price = styled.div`
     font-weight: ${({ theme }) => theme.font.weight[700]};
   }
 `;
+
 const ProductStyle = styled.a`
   display: block;
   text-decoration: none;
   width: 270px;
   height: 205px;
+
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+  
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -30,30 +33,39 @@ const ProductStyle = styled.a`
   &:hover {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 8.33%, rgba(0, 0, 0, 0.64) 100%);
     
-    & ${Price} { display: block; }
-    & ${DIV_BUTTON_BLUE_STYLE} { display: grid; }
+    & ${Price} {
+      display: block;
+    }
+
+    & ${DIV_BUTTON_BLUE_STYLE} {
+      display: grid;
+    }
   }
 `;
+
 const Info = styled.div`
   display: grid;
   align-content: end;
   height: calc(100% - 40px);
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.font.color.white};
   padding: 20px;
   grid-gap: 8px; gap: 8px;
   justify-items: start;
+
   position: absolute;
   z-index: 1;
   width: calc(100% - 40px);
 `;
+
 const Title = styled.div`
   font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[500]};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.font.color.white};
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 100%;
 `;
+
 const Image = styled.div<{src: string}>`
   background-image: url(${props => props.src});
   mix-blend-mode: multiply;
@@ -63,6 +75,7 @@ const Image = styled.div<{src: string}>`
   width: 100%;
   height: 100%;
 `;
+
 const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   height: 32px;
   font-size: ${({ theme }) => theme.font.size[16]};
@@ -71,8 +84,10 @@ const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   padding: 0;
   display: none;
 `;
+
 const Product = (props: {data: ProductType}) => {
     const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
+
     return (
         <ProductStyle href={URLs.PRODUCT.replace(':id', '' + props.data.id)}>
             <Info>

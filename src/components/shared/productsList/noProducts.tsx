@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Text = styled.div`
   font-size: ${({ theme }) => theme.font.size[20]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
-  color: ${({ theme }) => theme.colors.light_gray};
+  color: ${({ theme }) => theme.font.color.light_gray};
 `
 
 const EmptyBasket = (props: {children: string}) => {

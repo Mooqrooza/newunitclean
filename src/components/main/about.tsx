@@ -8,7 +8,7 @@ import mainImage from "src/images/car-illustration-1.png";
 const Text = styled.div`
   font-size: ${({ theme }) => theme.font.size[13]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
   text-align: left;
   user-select: text;
 `;
@@ -68,12 +68,12 @@ const Image = styled.img`
 const labelInfo = [
   {text: 'Автошампуни'},
   {text: 'Очистители'},
-  {text: 'Полироли'} 
+  {text: 'Полироли'}
 ]
 const About = () => {
 
     return (     
-        <section>
+        <div>
             <Text>
                 <p>
                     Компания "Инвест" – производитель автохимии, автокосметики и средств для клининга. Представлена на российском рынке более пяти лет. Производит продукцию как под собственным брендом UNIT CLEAN, так и под другими торговыми марками по заказу клиентов. Поставляет продукцию в разные регионы России, а также в некоторые страны СНГ.
@@ -97,7 +97,7 @@ const About = () => {
                     - поддерживать неизменно высокое качество продукции.
                 </Point>
             </Text>
-        </section>
+        </div>
     );
 };
 

@@ -9,7 +9,7 @@ const InfoRowStyle = styled.div`
 const Title = styled.div`
   font-size: ${({ theme }) => theme.font.size[20]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
   
   .mobile & {
     font-size: ${({ theme }) => theme.font.size[18]};
@@ -20,7 +20,7 @@ const Value = styled.div`
   margin-top: 20px;
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
 
   .mobile & {
     font-size: ${({ theme }) => theme.font.size[14]};

@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import {TypedUseSelectorHook, useSelector} from "react-redux";
 import {saveAuth} from "src/store/localStorage";
 
-console.log(localStorage)
 export const store = createStore(rootReducer, applyMiddleware(thunk)) //logger) )
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
+
 store.subscribe(saveAuth);

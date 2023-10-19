@@ -20,7 +20,7 @@ const ReviewPhoto = styled.div<{src: string}>`
 `;
 
 const ReviewText = styled.div`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[700]};
   margin: 0 46px;

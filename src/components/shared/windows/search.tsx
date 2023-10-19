@@ -69,13 +69,13 @@ export const SearchNoResults = styled.div`
   border-radius: 10px;
   font-style: italic;
 
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
 `;
 
 export const SearchResultStyle = styled(SearchNoResults)`
   font-style: normal;
   transition: background-color 0.2s;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.font.color.black};
   &:hover {
     background: #e6e6e6;
   }

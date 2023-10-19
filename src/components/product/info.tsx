@@ -37,7 +37,7 @@ const Header = styled(H1)`
 const Price = styled.div`
   font-size: ${({ theme }) => theme.font.size[32]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.font.color.blue};
   padding: 12px 0;
   user-select: text;
 `;
@@ -71,8 +71,8 @@ const ButtonSendError = styled(ButtonStyle)`
 
 const ButtonFrozenStyle = styled(ButtonStyle)`
   font-size: ${({ theme }) => theme.font.size[14]};
-  background: ${({ theme }) => theme.colors.light_gray};
-  border-color: ${({ theme }) => theme.colors.gray};
+  background: ${({ theme }) => theme.font.color.light_gray};
+  border-color: ${({ theme }) => theme.font.color.gray};
   
   .mobile & {
     white-space: normal;
