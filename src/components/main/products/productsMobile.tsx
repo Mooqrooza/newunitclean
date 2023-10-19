@@ -13,7 +13,7 @@ const ProductsStyle = styled.div`
 const Title = styled.div`
   font-size: ${({ theme }) => theme.font.size[12]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.gray};
+  color: ${({ theme }) => theme.colors.gray};
   padding: 35px 0 14px 0;
 `;
 

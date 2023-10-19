@@ -69,8 +69,8 @@ const ButtonSendError = styled(ButtonStyle)`
 
 const ButtonFrozenStyle = styled(ButtonStyle)`
   font-size: ${({ theme }) => theme.font.size[14]};
-  background: ${({ theme }) => theme.font.color.light_gray};
-  border-color: ${({ theme }) => theme.font.color.gray};
+  background: ${({ theme }) => theme.colors.light_gray};
+  border-color: ${({ theme }) => theme.colors.gray};
   display: none;
 
   .mobile & {

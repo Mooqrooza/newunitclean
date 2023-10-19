@@ -6,7 +6,7 @@ const Text = styled.div`
   margin-bottom: 100px;
   font-size: ${({ theme }) => theme.font.size[20]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
-  color: ${({ theme }) => theme.font.color.light_gray};
+  color: ${({ theme }) => theme.colors.light_gray};
 `
 
 const Background = styled.div`{

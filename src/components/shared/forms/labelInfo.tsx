@@ -45,8 +45,8 @@ export const LabelInfo = (props: Ilabelinfo ) => {
 export const LabelInfoGroup = (props:{ labels: Array<Ilabelinfo>, direction?: string, style?: any; }) => {
     return (
         <LabelGroup style={props.style || null}>
-            {props.labels.map((it) => {
-                return <LabelInfo text={it.text} icon={it.icon} func={it.func} />
+            {props.labels.map((it, idx) => {
+                return <LabelInfo text={it.text} icon={it.icon} func={it.func} key={idx} />
             })}
         </LabelGroup>
     )

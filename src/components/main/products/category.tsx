@@ -11,13 +11,13 @@ const CategoryStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   
   /*&:hover {
     background: none;
-    color: ${({ theme }) => theme.font.color.black};
+    color: ${({ theme }) => theme.colors.black};
   }*/
 
   &.unselected {
     background: none;
     border: 1px solid #0000;
-    color: ${({ theme }) => theme.font.color.black};
+    color: ${({ theme }) => theme.colors.black};
   }
   
   &.selected {

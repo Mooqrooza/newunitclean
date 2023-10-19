@@ -1,51 +1,34 @@
 import React from 'react';
 import styled from "styled-components";
 import reason from "components/main/whywe/reason";
-import {WindowsManagerClear, WindowsManagerOpen} from "src/actions/WindowsManagerAction/WindowsManagerAction";
-import {WINDOW_TESTING} from "src/actions/WindowsManagerAction/WindowsManagerAction.types";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateWindows} from "src/reducers/WindowsManagerReducer/WindowsManagerReducer.types";
 
 const ReasonStyle = styled.div`
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex; 
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 1;
+  min-width: 250px;
+  padding: 30px 40px 40px 40px;
+  border-radius: 60px;
   box-sizing: border-box;
-  border-radius: 10px;
-  padding: 20px;
-  grid-template-rows: 60% 40%;*/
-  justify-items: center;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 1px 3px 3px rgba(0,0,0,0.5);
-  position: relative; 
-  .mobile & { width: 270px; }
+  background: ${({ theme }) => theme.colors.grayB};
 `;
-
+const Image = styled.img`
+  height: 84px;
+  width: 84px;
+  margin: 0 0 20px 0;
+`;
 const Text = styled.div`
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
-  text-align: left;
-  font-size: calc((100vw - 920px)/(${window.screen.width} - 920) * (16 - 9) + 9px);
-  @media (max-width : 920px) {
-    & { font-size: 9px; }
-  }
-  @media (min-width : ${window.screen.width}px) {
-    & { font-size: ${({ theme }) => theme.font.size[16]}; }
-  }
-  .mobile & {
-    font-size: ${({ theme }) => theme.font.size[16]};
-  }
+   display: inline-block;
+   text-align: left;
+   font-size: ${({ theme }) => theme.font.size[20]};
+   font-weight: ${({ theme }) => theme.font.weight[500]};
+   color: ${({ theme }) => theme.colors.black};
 `;
-const Image = styled.div<{src: string|undefined}>`
-  background-image: url(${props => props.src});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  aspect-ratio: 1;
-`;
-
 export interface reason {
     icon: string;
     text: string;
@@ -57,13 +40,9 @@ const Reason = (props: {reason: reason}) => {
     const WindowsManager = useTypedSelector((store) => store.WindowsManager);
     const {window} = WindowsManager as IStateWindows;
     const dispatch = useDispatch();
-    const click = () => {
-        if (window == WINDOW_TESTING) { WindowsManagerClear()(dispatch); }
-        else { WindowsManagerOpen(WINDOW_TESTING)(dispatch); }
-    }
     return (
-        <ReasonStyle onClick={props.reason.clickable ? click : undefined}>
-            <Image src={(props.reason.clickable && window == WINDOW_TESTING) ? props.reason.icon_clicked : props.reason.icon}/>
+        <ReasonStyle>
+            <Image src={props.reason.icon}/>
             <Text>{props.reason.text}</Text>
         </ReasonStyle>
     );

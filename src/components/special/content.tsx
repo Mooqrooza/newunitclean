@@ -4,7 +4,7 @@ import styled from "styled-components";
 const ContentStyle = styled.div`
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[700]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
   
   margin: 40px 0;
 `;

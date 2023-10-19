@@ -8,7 +8,7 @@ import EmptyBasket from "components/shared/productsList/empty";
 const Title = styled.h2`
   font-size: ${({ theme }) => theme.font.size[28]};
   font-weight: ${({ theme }) => theme.font.weight[900]};
-  color: ${({ theme }) => theme.font.color.gray};
+  color: ${({ theme }) => theme.colors.gray};
   text-align: center;
   margin: 0px;
   

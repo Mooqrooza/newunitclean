@@ -1,67 +1,32 @@
 import React from 'react';
 import Reason, {reason} from "./reason";
 import styled from "styled-components";
-import {H3} from "components/shared/fonts/specialFonts";
+import {SectionLabel} from "components/shared/fonts/specialFonts";
 import {icons} from "src/utils/icons";
 
 const Reasons:reason[] = [
-    {icon: icons.reasons.security, text: 'Высокое качество продукции за разумную цену.'},
-    {icon: icons.reasons.wallet, text: 'Оперативность и гибкая система оплаты, возможность протестировать продукт.'},
-    {icon: icons.reasons.chat, text: 'Индивидуальный подход к каждому клиенту. '},
-    {icon: icons.reasons.settings, text: 'Возможна разработка продукта по запросу клиента.'}
+    {icon: icons.whyWeIco1, text: 'Высокое качество продукции за разумную цену.'},
+    {icon: icons.whyWeIco2, text: 'Оперативность и гибкая система оплаты, возможность протестировать продукт.'},
+    {icon: icons.whyWeIco3, text: 'Индивидуальный подход к каждому клиенту. '},
+    {icon: icons.whyWeIco4, text: 'Возможна разработка продукта по запросу клиента.'}
 ];
 
-const WhyWeStyle = styled.div`
-  clear: both;
-  margin-top: 180px;
-  
-  .mobile &{
-    margin-top: 0px;
-  }
+const Main = styled.section`
+  margin-top: 180px; 
+  .mobile &{ margin-top: 0px;}
 `;
-
-const WhyWeContainer = styled.div`  
-  .mobile & {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: left;
-    overflow-x: scroll;
-    margin: -30px -${({ theme }) => theme.values.contentMobileMargin}px;
-    margin-bottom: 0;
-    padding: 30px ${({ theme }) => theme.values.contentMobileMargin}px;
-    //grid-auto-columns: 270px;
-  }
+const ReasonsContainer = styled.div`  
+    display: flex; 
+    column-gap: 30px;
 `;
-
-const WhyWeReasons = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: center;
-  grid-gap: 30px; gap: 30px;
-  grid-auto-columns: 1fr;
-  position: relative;
-
-  &:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 0px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    filter: drop-shadow(0px 4px 1px rgb(0, 0, 0, 1));
-    top: 43%;
-  }
-`;
-
 const WhyWe = () => {
     return (
-        <WhyWeStyle>
-            <H3>Почему выбирают нас?</H3>
-            <WhyWeContainer>
-                <WhyWeReasons>
-                    { Reasons.map((reason, i) => <Reason key={i} reason={reason}></Reason>) }
-                </WhyWeReasons>
-            </WhyWeContainer>
-        </WhyWeStyle>
+        <Main>
+            <SectionLabel>Почему выбирают нас?</SectionLabel>
+            <ReasonsContainer>
+                { Reasons.map((it, idx) => <Reason key={idx} reason={it}></Reason>) }
+            </ReasonsContainer>
+        </Main>
     );
 };
 

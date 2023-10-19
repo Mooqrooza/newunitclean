@@ -12,7 +12,7 @@ const SELECT_STYLE = styled.select<{css?: any}>`
   font-style: normal;
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
   padding: 0 20px;
   width: 100%;
   //width: calc(100% - 40px);

@@ -4,7 +4,7 @@ import styled, {StyledComponent} from "styled-components";
 
 export const DefaultInputTextStyle = styled.div``;
 export const ErrorMessage = styled.div`
-  color: ${({ theme }) => theme.font.color.red};
+  color: ${({ theme }) => theme.colors.red};
   padding-top: 4px;
   text-align: left;
 `;

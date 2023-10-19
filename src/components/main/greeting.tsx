@@ -3,29 +3,15 @@ import {H1Main} from "components/shared/fonts/specialFonts";
 import { LabelInfoGroup } from "components/shared/forms/labelInfo";
 import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import styled from "styled-components";
-import mainImage from "src/images/car-illustration-1.png";
+import greetingImage from "src/images/greeting-image-1.png";
 
-const Text = styled.div`
-  font-size: ${({ theme }) => theme.font.size[13]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
-  text-align: left;
-  user-select: text;
-`;
-const Point = styled.p`
-  text-indent: 4em;
-  margin: 4px 0;
-`;
-const Main = styled.div`
+const Main = styled.section`
    position: relative;
    width: 100%;
    height: 600px;
    border-radius: 80px;
    background: ${({ theme }) => theme.gradients.softBlueGradient};
-  
-   .mobile & {
-
-   }
+   .mobile & {}
 `;
 const TextContainer = styled.div`
   position: absolute;
@@ -73,7 +59,7 @@ const labelInfo = [
 const Greetings = () => {
     return (
       <Main>
-          <ImageContainer><Image src={mainImage} /></ImageContainer>
+          <ImageContainer><Image src={greetingImage} /></ImageContainer>
           <TextContainer>
               <Maintext>Хороший<br/>короткий<br/>текст</Maintext>
               <LabelInfoGroup labels={labelInfo}/>

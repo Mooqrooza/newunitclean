@@ -52,7 +52,7 @@ const Title = styled.div`
   justify-self: start;
   font-size: ${({ theme }) => theme.font.size[22]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
   margin-left: 28px;
   white-space: nowrap;
   
@@ -69,7 +69,7 @@ const Title = styled.div`
 const Value = styled.div`
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
 
   .mobile & {
     font-size: ${({ theme }) => theme.font.size[14]};
@@ -113,7 +113,7 @@ const EditValue = styled.input`
   font-family: 'Montserrat';
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
 
   .mobile & {
     font-size: ${({ theme }) => theme.font.size[14]};

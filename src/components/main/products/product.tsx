@@ -47,7 +47,7 @@ const Info = styled.div`
   display: grid;
   align-content: end;
   height: calc(100% - 40px);
-  color: ${({ theme }) => theme.font.color.white};
+  color: ${({ theme }) => theme.colors.white};
   padding: 20px;
   grid-gap: 8px; gap: 8px;
   justify-items: start;
@@ -60,7 +60,7 @@ const Info = styled.div`
 const Title = styled.div`
   font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[500]};
-  color: ${({ theme }) => theme.font.color.white};
+  color: ${({ theme }) => theme.colors.white};
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 100%;
