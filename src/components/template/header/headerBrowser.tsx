@@ -1,192 +1,94 @@
 import React, {useCallback, useEffect, useState} from "react";
-
 import styled, {css} from "styled-components";
 import * as constants from "src/utils/constants";
-import logo from "src/logo/croppedlogo.png";
-import HeaderTopButton from "components/template/header/topButton";
-import HeaderBottomMenuButton from "components/template/header/bottomButton";
-import {headerMenuBottomButton, headerMenuTopButton} from "src/utils/types";
+import HeaderMenuButton from "src/components/template/header/headerMenuButton";
+import HeaderFeedbackButton from "components/template/header/headerFeedbackButton";
+import { headerMenuButton } from "src/utils/types";
 import {showFeedback} from "components/template/header/headerFuncs";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateWindows} from "src/reducers/WindowsManagerReducer/WindowsManagerReducer.types";
 import {WINDOW_SEARCH} from "src/actions/WindowsManagerAction/WindowsManagerAction.types";
-import {InputText} from "components/shared/forms/inputText";
-import ButtonBlue from "components/shared/forms/buttonBlue";
-import {GetSearch} from "src/actions/SearchAction/SearchAction";
-import {IStateSearch} from "src/reducers/SearchReducer/SearchReducer.types";
-import {useDispatch} from "react-redux";
 import {URLs} from "src/utils/constants";
-import {
-    ButtonSearchStyle,
-    HeaderSearchStyle, SearchButtons,
-    SearchContainer, SearchInputTextContainerStyle,
-    SearchInputTextStyle, SearchNoResults, SearchResult, SearchResults
-} from "components/shared/windows/search";
+import {icons} from "src/utils/icons";
 
-const HeaderContainerStyle = styled.div`
-  background: #ADB8C4;
-  height: 92px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
-  
+const HeaderContainerStyle = styled.div` 
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  background: white;
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.04); 
   &.search {
     z-index: 2;
     position: relative;
   }
 `;
-
-const HeaderTop = styled.div`
-  background: #000000BD;
-  display: grid;
-  grid-template-columns: 45% 5% auto auto auto auto auto auto 10%;
-  grid-template-rows: 28px;
+const HeaderContainerInnerStyle = styled.div`
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 1410px;
+    height: 100%;
+`
+const HeaderButtonsContainer = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: end;
 `;
-
-const HeaderTopText = styled.div`
-  display: grid;
-  align-items: center;
-  font-size: ${({ theme }) => theme.font.size[13]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-`;
-
-const HeaderBottomStyle = styled.div`
-  display: grid;
-  background: #ADB8C4;
-  grid-template-rows: 64px;
-  color: #000;
-  grid-template-columns: 26% 40% auto;
-  height: 64px;
-`;
-
 const LogoStyle = styled.div`
-  height: 100%;
-  justify-self: end;
+  width: 160px;
+  height: 30px;
   cursor: pointer;
-  
   & img {
     height: 100%;
   }
 `;
-
 const Logo = () => {
-    const home = () => {
-        window.open(URLs.ROOT, '_self');
-    }
-
+    const home = () => { window.open(URLs.ROOT, '_self'); }
     return (<LogoStyle onClick={home}>
-        <img src={logo} />
+        <img src={icons.header.logo} />
     </LogoStyle>)
 }
-
-const PhoneNumber = styled.div`
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  flex-wrap: wrap;
-  grid-gap: 24px; gap: 24px;
-`;
-
-const PhoneNumberText = styled.div`
-  user-select: text;
-  font-size: ${({ theme }) => theme.font.size[13]};
-  font-weight: ${({ theme }) => theme.font.weight[800]};
-`;
-
-const PhoneNumberButton = styled.div`
-  font-size: ${({ theme }) => theme.font.size[13]};
-  font-weight: ${({ theme }) => theme.font.weight[700]};
-  
-  border: 2px solid #000;
-  border-radius: 10px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  padding: 0px 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  background: #ADB8C4;
-  transition: box-shadow 0.5s;
-  
-  &:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  }
-`;
-
-const HeaderBottomMenu = styled.div`
+const LineStyle = styled.div`
+    width: 1px;
+    height: 64px;
+    margin: 0 18px 0 6px;
+    background: black;
+    opacity: 0.1;
+`
+const PhoneFeedbackStyled = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-tems: center;
     justify-content: center;
+`
+const PhoneNumberText = styled.div`
+    user-select: text;
+    margin: 10px 0 0 0;
+    font-size: ${({ theme }) => theme.font.size[15]};
+    font-weight: ${({ theme }) => theme.font.weight[500]};
+    color: ${({ theme }) => theme.colors.black}
 `;
-
-const HeaderBottom = (props: {bottomButtons: headerMenuBottomButton[]}) => {
-    return (<HeaderBottomStyle>
-        <Logo />
-        <PhoneNumber>
-            <PhoneNumberText>{constants.INFO.PHONE_NUMBER}</PhoneNumberText>
-            <PhoneNumberButton onClick={showFeedback}>Заказать звонок</PhoneNumberButton>
-        </PhoneNumber>
-        <HeaderBottomMenu>
-            {
-                props.bottomButtons.map((button, i) => <HeaderBottomMenuButton key={i} data={button}/>)
-            }
-        </HeaderBottomMenu>
-    </HeaderBottomStyle>)
+const PphoneFeedback =  (props: {}) => {
+    return (<PhoneFeedbackStyled>
+        <HeaderFeedbackButton data={{ func: showFeedback }}></HeaderFeedbackButton>
+        <PhoneNumberText>{constants.INFO.PHONE_NUMBER}</PhoneNumberText>
+    </PhoneFeedbackStyled>)
 }
-
-const HeaderBottomSearch = () => {
-    const Search = useTypedSelector((store) => store.Search);
-    const {results} = Search as IStateSearch;
-    const [searchInput, setSearchInput] = useState<any>(null);
-    const dispatch = useDispatch();
-    const stableDispatch = useCallback(dispatch, []);
-
-    useEffect(() => {
-        if (searchInput) {
-            stableDispatch(GetSearch(searchInput.value));
-        }
-    }, [searchInput])
-
-    const search = () => {
-        window.open(URLs.SEARCH_WITH_PARAM.replace(':search', searchInput.value), '_self');
-    }
-
-    return (<HeaderSearchStyle>
-        <Logo />
-        <SearchContainer>
-            <InputText styled={SearchInputTextStyle}
-                       styledContainer={SearchInputTextContainerStyle}
-                       placeholder={'Поиск по сайту'} setObj={setSearchInput}></InputText>
-            <SearchResults>
-                {results.length
-                    ? results.slice(0, 10).map((result) =>
-                        <SearchResult product={result} key={result.id}></SearchResult>)
-                    : <SearchNoResults>Товары не найдены</SearchNoResults> }
-            </SearchResults>
-        </SearchContainer>
-        <SearchButtons>
-            <ButtonBlue styled={ButtonSearchStyle} func={search}>Найти</ButtonBlue>
-        </SearchButtons>
-    </HeaderSearchStyle>)
-}
-
-export const HeaderContainer = (props: {topButtons: headerMenuTopButton[]; bottomButtons: headerMenuBottomButton[]}) => {
+const HeaderContainer = (props: { buttons: headerMenuButton[] }) => {
     const WindowsManager = useTypedSelector((store) => store.WindowsManager);
     const {window} = WindowsManager as IStateWindows;
-
     return (
         <HeaderContainerStyle className={window == WINDOW_SEARCH ? 'search' : ''}>
-            <HeaderTop>
-                <HeaderTopText>{constants.INFO.TITLE}</HeaderTopText>
-                <div></div>
-                {
-                    props.topButtons.map((button, i) => <HeaderTopButton data={button} key={i} />)
-                }
-            </HeaderTop>
-
-            {window == WINDOW_SEARCH
-                ? <HeaderBottomSearch/>
-                : <HeaderBottom bottomButtons={props.bottomButtons}></HeaderBottom>
-            }
-
+            <HeaderContainerInnerStyle>
+                <Logo></Logo>
+                <HeaderButtonsContainer>
+                    { props.buttons.map((button, i) => <HeaderMenuButton data={button} key={i} />) }
+                </HeaderButtonsContainer>
+                <LineStyle></LineStyle>
+                <PphoneFeedback></PphoneFeedback>
+            </HeaderContainerInnerStyle>
         </HeaderContainerStyle>
     );
 }
+
+export default HeaderContainer;

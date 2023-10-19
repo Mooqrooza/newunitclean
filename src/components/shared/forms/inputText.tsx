@@ -3,13 +3,11 @@ import INPUT_TEXT from "./primitives/INPUT_TEXT";
 import styled, {StyledComponent} from "styled-components";
 
 export const DefaultInputTextStyle = styled.div``;
-
 export const ErrorMessage = styled.div`
   color: ${({ theme }) => theme.font.color.red};
   padding-top: 4px;
   text-align: left;
 `;
-
 interface InputProps {
     styled?: StyledComponent<any, any>;
     placeholder?: string;
@@ -17,7 +15,6 @@ interface InputProps {
     setObj?: (obj: any) => void;
     styledContainer?: StyledComponent<any, any>;
 };
-
 export interface InputState {
     value: string;
     error: boolean;
@@ -26,11 +23,8 @@ export interface InputState {
     active: boolean;
     obj: any;
 };
-
 export class InputText extends Component<InputProps, InputState> {
-
-    defaultStyled = DefaultInputTextStyle; //styled.div``;
-
+    defaultStyled = DefaultInputTextStyle;
     constructor(props: InputProps) {
         super(props);
         this.state = {value: '', error: false, errorAnimation: false, active: false, obj: this, errorText: ''};
@@ -38,246 +32,141 @@ export class InputText extends Component<InputProps, InputState> {
             this.props.setObj(this.state);
         }
     }
-
     componentDidUpdate(prevProps: Readonly<InputProps>, prevState: Readonly<InputState>, snapshot?: any) {
-        if (this.props.setObj) {
-            this.props.setObj(this.state);
-        }
+        if (this.props.setObj) { this.props.setObj(this.state); }
     }
-
-    check = (value: string) => {
-        return false;
-    }
-
+    check = (value: string) => false;
     checkError = () => {
         let val = this.check(this.state.value);
         this.setState({error: val});
         if (val) {
             this.setState({errorAnimation: true});
-            setTimeout(() => {
-                this.setState({errorAnimation: false});
-            }, 500);
+            setTimeout(() => { this.setState({errorAnimation: false}); }, 500);
         }
         return val
     }
-
     setError = (errorText?: string) => {
         this.setState({error: true, errorText: errorText ? errorText : this.state.errorText});
     }
-
     onInput = (event?: any) => {
         this.setState({value: event.target.value});
     }
-
     onFocus = (active: boolean) => {
         this.setState({active: active});
-        if (active) {
-            this.setState({error: false});
-        }
-        else {
-            this.checkError();
-        }
+        if (active) { this.setState({error: false}); }
+        else { this.checkError(); }
     }
-
-    getType = () => {
-        return 'text'
-    }
-
-    clear = () => {
-        this.setState({value: ''})
-    }
-
+    getType = () => { return 'text' }
+    clear = () => { this.setState({value: ''})}
     render() {
-
         const Styled = this.props.styledContainer ? this.props.styledContainer : this.defaultStyled;
-
         return (
             <Styled>
-                <INPUT_TEXT inputState={this.state}
-                            inputProps={this.props}
-                            onFocus={this.onFocus}
-                            onInput={this.onInput}
-                            type={this.getType()} />
-                {
-                    this.state.error ?
-                        <ErrorMessage>{this.state.errorText}</ErrorMessage>
-                        : null
-                }
+                <INPUT_TEXT 
+                    inputState={this.state}
+                    inputProps={this.props}
+                    onFocus={this.onFocus}
+                    onInput={this.onInput}
+                    type={this.getType()} 
+                />
+                {/* this.state.error ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null */} 
             </Styled>
         );
     }
 }
-
 export class InputPhoneNumber extends InputText {
     check = (value: string) => {
         if (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(value) && value.length <= 11) {
             return false
         }
-        else {
-            return true
-        }
+        else { return true; }
     }
 }
-
 export class InputEMail extends InputText {
     check = (value: string) => {
         if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
             return false
         }
-        else {
-            return true
-        }
+        else { return true; }
     }
 }
-
 export class InputCompany extends InputText {
     check = (value: string) => {
-        if (/^.+$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^.+$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class InputUR_INN extends InputText {
     check = (value: string) => {
-        if (/^[0-9]{10}$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^[0-9]{10}$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class InputFIZ_OR_UR_INN extends InputText {
     check = (value: string) => {
-        if (/^[0-9]{10}$/.test(value) || /^[0-9]{12}$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^[0-9]{10}$/.test(value) || /^[0-9]{12}$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class InputAddress extends InputText {
     check = (value: string) => {
-        if (/^.+$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^.+$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class InputUR_KPP extends InputText {
     check = (value: string) => {
-        if (/^[0-9]{9}$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^[0-9]{9}$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class InputPromoCode extends InputText {
     check = (value: string) => {
-        if (/^[0-9A-z]*$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^[0-9A-z]*$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class InputLogin extends InputText {
     check = (value: string) => {
-        if (/^.+$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^.+$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class InputPassword extends InputText {
     check = (value: string) => {
-        if (/^.+$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^.+$/.test(value)) { return false; }
+        else { return true; }
     }
-
-    getType = () => {
-        return 'password'
-    }
+    getType = () => { return 'password'; }
 }
-
 export class InputDate extends InputText {
     check = (value: string) => {
-        if (/^.+$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^.+$/.test(value)) { return false; }
+        else { return true; }
     }
-
     getType = () => {
-        if (this.state.value || this.state.active) {
-            return 'date'
-        }
-        else {
-            return 'text'
-        }
+        if (this.state.value || this.state.active) { return 'date'; }
+        else { return 'text'; }
     }
 }
-
 export class InputFIO extends InputText {
     check = (value: string) => {
-        if (/^[А-я`'\s\.Ёё-]+$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^[А-я`'\s\.Ёё-]+$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
-
 export class InputLoginOrEMail extends InputText {
     check = (value: string) => {
-        if (/^.+$/.test(value)) {
-            return false
-        }
-        else {
-            return true
-        }
+        if (/^.+$/.test(value)) { return false; }
+        else { return true; }
     }
 }
-
 export class OutputDetail extends InputText {
-    check = (value: string) => {
-        return false
-    }
-
+    check = (value: string) => { return false; }
     render() {
         return (
             <DefaultInputTextStyle>
-                {
-                    this.state.error ?
-                        <ErrorMessage>{this.state.errorText}</ErrorMessage>
-                        : null
-                }
+                { this.state.error ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null }
             </DefaultInputTextStyle>
         );
     }

@@ -2,6 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import Suggestion from "components/main/suggestion";
 import WhyWe from "components/main/whywe/whywe";
 import Content from "components/template/content";
+import Greetings from "components/main/greetings";
 import About from "components/main/about";
 import Products from "components/main/products";
 import {useTypedSelector} from "src/store/configureStore";
@@ -21,12 +22,11 @@ const Main = () => {
 
     return (
         <Content>
-            { products[0]
-                ? <Suggestion title='Успей купить!' product={products[0]} background={'#AB2B324D'}></Suggestion>
-                : null }
-            <About></About>
-            <WhyWe></WhyWe>
-            <Products></Products>
+            { products[0] ? <Suggestion title='Успей купить!' product={products[0]} background={'#AB2B324D'}></Suggestion> : null }
+            <Greetings/>
+            {/*<About/>*/}
+            <WhyWe/>
+            <Products/>
             <div></div>
         </Content>
     );

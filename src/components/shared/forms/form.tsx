@@ -7,22 +7,24 @@ import {WindowsManagerClear} from "src/actions/WindowsManagerAction/WindowsManag
 
 const FormStyle = styled.form`
   position: relative;
-  background: #FFFFFF;
-  box-shadow: 0px 9px 18px 7px rgba(0, 0, 0, 0.17);
-  border-radius: 10px;
-  margin: 0 135px;
-  padding: 40px 0;
-  min-width: 490px;
-  
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  min-width: 580px;
+  max-width: 680px;
+  border-radius: 40px;
+  box-sizing: border-box;
+  max-height: 98%;
+  background: ${({ theme }) => theme.colors.white };
+  box-shadow: ${({ theme }) => theme.shadows.shadow };
+
   .background & {
-    padding: 0 0 16px 0;
     overflow-x: auto;
   }
-  
   .mobile & {
-    min-width: 0px;
-    margin: 0px;
-    padding-top: 20px;
+    min-height: 100%;
+    max-width: 100%;
+    border-radius: 0;
   }
 `;
 
@@ -36,21 +38,19 @@ const Form = (props: {children: any; closeButton?: boolean}) => {
 
 export const FormCloseStyle = styled.div`
   position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 52px;
-  height: 52px;
-  cursor: pointer;
-  display: grid;
-  align-content: center;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  
-  & img {
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  &:hover img {
-    transform: rotate(100grad);
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  cursor: pointer;
+  background: ${({ theme }) => theme.colors.whiteBlueA };
+
+  .mobile & {
+    position: fixed;
   }
 `;
 
@@ -60,33 +60,32 @@ const FormClose = () => {
 
     return (
         <FormCloseStyle onClick={() => stableDispatch(WindowsManagerClear())}>
-            <img src={icons.close} />
+            <img src={ icons.header.closeA } />
         </FormCloseStyle>
     );
 }
 
 
 const FormContainerStyle = styled.div<{css: any}>`
-  display: grid;
+  display: flex;
   justify-content: center;
-  grid-template-columns: 1fr;
-  ${props => props.css};
+  align-items: center;
   
+  ${props => props.css};
   &.background {
     position: fixed;
-    width: calc(100% - ${Main.values.contentMargin * 2}px);
+    width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     z-index: 2;
-    padding: 0 ${Main.values.contentMargin}px;
     align-content: center;
     background: #00000080;
     
     .mobile &.background {
-      z-index: 3;
-      width: calc(100% - ${Main.values.contentMobileMargin * 2}px);
-      padding: 0 ${Main.values.contentMobileMargin}px;
+      width: 100%;
+      overflow-y: auto;
+      z-index: 4;
     }
   }
 `
@@ -103,21 +102,27 @@ export const FormContainer = (props: {children: any; css?: any; background?: boo
 };
 
 export const FormList = styled.div`
-  display: grid;
-  grid-gap: 15px; gap: 15px;
-  margin: 0 220px;
-  justify-content: center;
-  grid-template-columns: 1fr;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  min-height: 100px;
+  border-radius: 40px;
+
+  & div {
+    margin: 10px 0;
+  }
   & input {
     min-width: 370px;
   }
-  
   .mobile & {
     margin: 16px;
-
     & input {
       min-width: 0px;
     }
   }
+`;
+
+export const FormListContainer = styled.div`
+  overflow-y: auto;
 `;

@@ -4,7 +4,7 @@ import {icons} from "src/utils/icons";
 import styled from "styled-components";
 import {isMobile} from "src/utils/isMobile";
 import ButtonBlue from "components/shared/forms/buttonBlue";
-import {DIV_BUTTON_WHITE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
+import {DIV_BUTTON_SOFT_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import {getReviews} from "api/getReviews";
 
 const ReviewsStyle = styled.div`
@@ -55,7 +55,7 @@ const ReviewPointSelected = styled(ReviewPoint)`
   background: #717171;
 `
 
-const ReviewsMoreButton = styled(DIV_BUTTON_WHITE_STYLE)`
+const ReviewsMoreButton = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[700]};
   height: 35px;

@@ -31,11 +31,6 @@ export const Fonts = {
     MB: 'textMB',
     LB: 'textLB'
 };
-
-/*const T = styled.span<{ weight: string; size: string; color: string }>`
-    font-weight: ${props => props.weight ? '' : ''};
-`;*/
-
 export const Text = (props: {children: any, style?: string[]}) => {
     return (
         <span className={props.style ? props.style.map((style) => styles[style]).join(' ') : ''}>{props.children}</span>

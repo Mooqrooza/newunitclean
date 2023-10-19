@@ -1,7 +1,7 @@
 import React from 'react';
 import Reason, {reason} from "./reason";
 import styled from "styled-components";
-import {H2Main} from "components/shared/fonts/specialFonts";
+import {H3} from "components/shared/fonts/specialFonts";
 import {icons} from "src/utils/icons";
 
 const Reasons:reason[] = [
@@ -55,7 +55,7 @@ const WhyWeReasons = styled.div`
 const WhyWe = () => {
     return (
         <WhyWeStyle>
-            <H2Main>Почему выбирают нас?</H2Main>
+            <H3>Почему выбирают нас?</H3>
             <WhyWeContainer>
                 <WhyWeReasons>
                     { Reasons.map((reason, i) => <Reason key={i} reason={reason}></Reason>) }

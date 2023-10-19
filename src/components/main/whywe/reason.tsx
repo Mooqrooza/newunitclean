@@ -12,20 +12,14 @@ const ReasonStyle = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   border-radius: 10px;
-  //filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, 0.5));
   padding: 20px;
-  /*display: grid;
   grid-template-rows: 60% 40%;*/
   justify-items: center;
   cursor: pointer;
   overflow: hidden;
   box-shadow: 1px 3px 3px rgba(0,0,0,0.5);
-  position: relative;
-  
-  .mobile & {
-    width: 270px;
-    //height: 280px;
-  }
+  position: relative; 
+  .mobile & { width: 270px; }
 `;
 
 const Text = styled.div`
@@ -33,36 +27,22 @@ const Text = styled.div`
   color: ${({ theme }) => theme.font.color.black};
   text-align: left;
   font-size: calc((100vw - 920px)/(${window.screen.width} - 920) * (16 - 9) + 9px);
-
   @media (max-width : 920px) {
-    & {
-      font-size: 9px;
-    }
+    & { font-size: 9px; }
   }
-
   @media (min-width : ${window.screen.width}px) {
-    & {
-      font-size: ${({ theme }) => theme.font.size[16]};
-    }
+    & { font-size: ${({ theme }) => theme.font.size[16]}; }
   }
-  
   .mobile & {
     font-size: ${({ theme }) => theme.font.size[16]};
   }
 `;
-
-/*const Image = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-`;*/
-
 const Image = styled.div<{src: string|undefined}>`
   background-image: url(${props => props.src});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  //height: 100%;
   aspect-ratio: 1;
 `;
 
@@ -77,16 +57,10 @@ const Reason = (props: {reason: reason}) => {
     const WindowsManager = useTypedSelector((store) => store.WindowsManager);
     const {window} = WindowsManager as IStateWindows;
     const dispatch = useDispatch();
-
     const click = () => {
-        if (window == WINDOW_TESTING) {
-            WindowsManagerClear()(dispatch);
-        }
-        else {
-            WindowsManagerOpen(WINDOW_TESTING)(dispatch);
-        }
+        if (window == WINDOW_TESTING) { WindowsManagerClear()(dispatch); }
+        else { WindowsManagerOpen(WINDOW_TESTING)(dispatch); }
     }
-
     return (
         <ReasonStyle onClick={props.reason.clickable ? click : undefined}>
             <Image src={(props.reason.clickable && window == WINDOW_TESTING) ? props.reason.icon_clicked : props.reason.icon}/>

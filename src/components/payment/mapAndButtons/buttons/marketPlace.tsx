@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {DIV_BUTTON_WHITE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
+import {DIV_BUTTON_SOFT_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import ButtonBlue from "components/shared/forms/buttonBlue";
 import {LINKS} from "src/utils/constants";
 
@@ -10,7 +10,7 @@ const MarketPlaceStyle = styled.div`
   }
 `;
 
-const ButtonStyle = styled(DIV_BUTTON_WHITE_STYLE)`
+const ButtonStyle = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   height: 47px;
   font-size: ${({ theme }) => theme.font.size[14]};
   font-weight: ${({ theme }) => theme.font.weight[400]};

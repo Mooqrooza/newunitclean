@@ -11,7 +11,7 @@ import {icons} from "src/utils/icons";
 import {EmployeeInfo} from "components/lk/employeeInfo";
 import {URLs} from "src/utils/constants";
 import ButtonBlue from "components/shared/forms/buttonBlue";
-import {DIV_BUTTON_WHITE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
+import {DIV_BUTTON_SOFT_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import {GetCompany} from "src/actions/CompanyAction/CompanyAction";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateCompany} from "src/reducers/CompanyReducer/CompanyReducer.types";
@@ -50,7 +50,7 @@ const LkButtons = styled.div`
   }
 `;
 
-const ToCompanyButton = styled(DIV_BUTTON_WHITE_STYLE)`
+const ToCompanyButton = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   width: min-content;
   
   .mobile & {

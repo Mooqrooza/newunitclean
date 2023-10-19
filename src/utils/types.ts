@@ -12,6 +12,14 @@ export interface selectOption {
     text: string;
 }
 
+export interface headerMenuButton {
+    href?: string;
+    text?: string;
+    icon?: string;
+    func?: () => void;
+    auth?: boolean
+}
+
 export interface headerMenuTopButton {
     href?: string;
     text: string;

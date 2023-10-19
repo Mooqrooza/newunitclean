@@ -4,7 +4,7 @@ import Content from "components/template/content";
 import {CompanyInfo} from "components/lk/companyInfo";
 import styled from "styled-components";
 import ButtonBlue from "components/shared/forms/buttonBlue";
-import {DIV_BUTTON_WHITE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
+import {DIV_BUTTON_SOFT_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import CompanyPreviousOrders from "components/lk/companyPreviousOrders";
 import {URLs} from "src/utils/constants";
 import {isMobile} from "src/utils/isMobile";
@@ -15,7 +15,7 @@ const CompanyButtons = styled.div`
   justify-content: right;
 `;
 
-const ToLkButton = styled(DIV_BUTTON_WHITE_STYLE)`
+const ToLkButton = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   width: min-content;
 
   .mobile & {

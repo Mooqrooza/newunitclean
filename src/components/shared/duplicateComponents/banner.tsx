@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import styled from "styled-components";
-import {HEADER_STYLE} from "components/shared/fonts/specialFonts";
+import {DefaultHStyle} from "components/shared/fonts/specialFonts";
 import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import ButtonBlue from "components/shared/forms/buttonBlue";
 import {useTypedSelector} from "src/store/configureStore";
@@ -28,7 +28,7 @@ const Info = styled.div`
 `;
 
 const Title = styled.div`
-  ${HEADER_STYLE};
+  ${DefaultHStyle};
   font-size: ${({ theme }) => theme.font.size[32]};
   padding: 0;
 `;

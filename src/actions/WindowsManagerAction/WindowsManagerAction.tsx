@@ -2,21 +2,8 @@ import {CLEAR_WINDOWS, SET_WINDOW} from "src/actions/WindowsManagerAction/Window
 import {Dispatch} from "redux";
 
 export const WindowsManagerOpen = (prop: string, url?: string) => (dispatch: Dispatch) => {
-    dispatch({
-        type: SET_WINDOW,
-        payload: {
-            window: prop,
-            url: url
-        }
-    })
-    /*return ({
-        type: SET_WINDOW,
-        payload: prop
-    })*/
+    dispatch({ type: SET_WINDOW, payload: { window: prop, url: url } });
 }
-
 export const WindowsManagerClear = () => (dispatch: Dispatch) => {
-    dispatch({
-        type: CLEAR_WINDOWS
-    })
+    dispatch({ type: CLEAR_WINDOWS });
 }

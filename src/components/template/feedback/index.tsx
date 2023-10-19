@@ -2,7 +2,6 @@ import React from 'react';
 import Reviews from "./reviews";
 import styled from "styled-components";
 import OrderCall from "components/template/feedback/orderCall";
-import {FeedbackBackground} from "components/template/backgrounds/feedbackBackground";
 import {isMobile} from "src/utils/isMobile";
 
 const FeedbackContainer = styled.div`
@@ -31,7 +30,6 @@ const ReviewsHeader = styled.div`
 const Feedback = () => {
     return (
         <FeedbackContainer id={"feedback"}>
-            <FeedbackBackground></FeedbackBackground>
             {isMobile() ?
                 <div>
                     <ReviewsHeader>Отзывы</ReviewsHeader>

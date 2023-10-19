@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styled from "styled-components";
-import {H2Main} from "components/shared/fonts/specialFonts";
+import {H3} from "components/shared/fonts/specialFonts";
 import Category from "components/main/products/category";
 import Product from "components/main/products/product";
 import {useTypedSelector} from "src/store/configureStore";
@@ -22,7 +22,7 @@ const Categories = styled.div`
   padding: 16px;
 `;
 
-const Header = styled(H2Main)`
+const Header = styled(H3)`
   text-align: left;
   margin-left: 20px;
   

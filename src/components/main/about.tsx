@@ -1,19 +1,9 @@
 import React from 'react';
-import {H2Main} from "components/shared/fonts/specialFonts";
+import {H1Main} from "components/shared/fonts/specialFonts";
+import { LabelInfoGroup } from "components/shared/forms/labelInfo";
+import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import styled from "styled-components";
-import main_image from "src/images/main_image_new.jpg";
-
-const Header = styled(H2Main)`
-  text-align: left;
-  padding-top: 0;
-  margin-left: 20px;
-  
-  .mobile & {
-    text-align: center;
-    padding: 74px 50px 17px 50px;
-    margin: 0;
-  }
-`;
+import mainImage from "src/images/car-illustration-1.png";
 
 const Text = styled.div`
   font-size: ${({ theme }) => theme.font.size[13]};
@@ -22,31 +12,69 @@ const Text = styled.div`
   text-align: left;
   user-select: text;
 `;
-
-const Image = styled.img`
-  width: 60%;
-  margin: 0 20px 20px 20px;
-  float: right;
+const Point = styled.p`
+  text-indent: 4em;
+  margin: 4px 0;
+`;
+const Main = styled.div`
+   position: relative;
+   width: 100%;
+   height: 600px;
+   border-radius: 80px;
+   background: ${({ theme }) => theme.gradients.softBlueGradient};
   
+   .mobile & {
+
+   }
+`;
+const TextContainer = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  padding: 0 0 0 5%;
+`;
+const Maintext = styled(H1Main)`
+  margin: 0 0 20px 0;
+`;
+const Button = styled(DIV_BUTTON_BLUE_STYLE)` margin: 40px 0 0 0; min-width: 220px;`;
+const ImageContainer = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 80px;
+  overflow: hidden;
+`;
+const Image = styled.img`
+  position: absolute;
+  top: 0;
+  margin: -10% 0 0 0;
+  right: -10%;
+  width: 70%;
+
   .mobile & {
     width: 100%;
     margin: 0 0 30px 0;
     float: none;
   }
 `;
-
-const Point = styled.p`
-  text-indent: 4em;
-  margin: 4px 0;
-`;
-
+const labelInfo = [
+  {text: 'Автошампуни'},
+  {text: 'Очистители'},
+  {text: 'Полироли'}
+]
 const About = () => {
 
-    return (
+    return (     
         <div>
-            <Header>О нас</Header>
             <Text>
-                <Image src={main_image} />
                 <p>
                     Компания "Инвест" – производитель автохимии, автокосметики и средств для клининга. Представлена на российском рынке более пяти лет. Производит продукцию как под собственным брендом UNIT CLEAN, так и под другими торговыми марками по заказу клиентов. Поставляет продукцию в разные регионы России, а также в некоторые страны СНГ.
                 </p>

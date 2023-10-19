@@ -16,16 +16,9 @@ import MobileSearch from "components/template/header/mobileSearch";
 const Windows = () => {
     const WindowsManager = useTypedSelector((store) => store.WindowsManager);
     const {window} = WindowsManager as IStateWindows;
-
-    if (window == WINDOW_AUTHORIZATION) {
-        return <Authorization></Authorization>;
-    }
-    else if (window == WINDOW_REGISTRATION) {
-        return <Registration></Registration>;
-    }
-    else if (window == WINDOW_TESTING) {
-        return <Testing></Testing>;
-    }
+    if (window == WINDOW_AUTHORIZATION) { return <Authorization></Authorization>; }
+    else if (window == WINDOW_REGISTRATION) { return <Registration></Registration>; }
+    else if (window == WINDOW_TESTING) { return <Testing></Testing>; }
     else if (window == WINDOW_SEARCH) {
         if (isMobile()) {
             return <div>
@@ -35,9 +28,7 @@ const Windows = () => {
         }
         return <EmptyBackground></EmptyBackground>
     }
-    else {
-        return <div></div>
-    }
+    else { return <div></div> }
 };
 
 export default Windows;

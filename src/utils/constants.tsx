@@ -47,8 +47,8 @@ export const INFO = {
 export const DELIVERY = {
     DEFAULT_ADDRESS: [
         {
-            TITLE: 'г.Подольск, ул. Клемента Готвальда, д.6в',
-            ADDRESS: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            TITLE: 'г. Подольск, ул. Клемента Готвальда, д. 6в',
+            ADDRESS: 'г. Подольск, ул. Клемента Готвальда, д. 6в',
             PHONE_NUMBER: '+ 7 (916) 880 52 81',
             EMAIL: 'invest@pmk-team.ru',
             EMB_CODE: ''
@@ -56,18 +56,18 @@ export const DELIVERY = {
     ],
     PICKUP_ADDRESS: [
         {
-            TITLE: 'г.Люберцы, ул. 65 лет Победы, д.2',
-            ADDRESS: 'г.Люберцы, ул. 65 лет Победы, д.2',
+            TITLE: 'г. Люберцы, ул. 65 лет Победы, 1лит2Д', 
+            ADDRESS: 'г. Люберцы, ул. 65 лет Победы, 1лит2Д',
             PHONE_NUMBER: '+ 7 (925) 613 81 67',
             EMAIL: 'invest@pmk-team.ru',
-            EMB_CODE: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.1467084544392!2d37.882837813093985!3d55.68643707294743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ab6229cfe4595%3A0xa1d93d19afd5163!2z0YPQuy4gNjUg0LvQtdGCINCf0L7QsdC10LTRiywgMywg0J_QvtC00L7Qu9GM0YHQuiwg0JzQvtGB0LrQvtCy0YHQutCw0Y8g0L7QsdC7LiwgMTQwMDA5!5e0!3m2!1sru!2sru!4v1692873562910!5m2!1sru!2sru'
+            EMB_CODE: 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1124.573783232659!2d37.8844807391142!3d55.68642215528531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z0LMuINCb0Y7QsdC10YDRhtGLLCDRg9C7LiA2NSDQu9C10YIg0J_QvtCx0LXQtNGLLCAx0LvQuNGCMtCU!5e0!3m2!1sen!2sru!4v1693254503633!5m2!1sen!2sru'
         },
         {
-            TITLE: 'г.Подольск, ул. Клемента Готвальда, д.6в',
-            ADDRESS: 'г.Подольск, ул. Клемента Готвальда, д.6в',
+            TITLE: 'г. Подольск, ул. Клемента Готвальда, д. 6в',
+            ADDRESS: 'г. Подольск, ул. Клемента Готвальда, д. 6в',
             PHONE_NUMBER: '+ 7 (916) 880 52 81',
             EMAIL: 'invest@pmk-team.ru',
-            EMB_CODE: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2264.2569306731275!2d37.526256413081796!3d55.42331247285123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aa9814fc3c9a7%3A0xa96ecb5a4921d85f!2sCDEK!5e0!3m2!1sru!2sru!4v1692998815590!5m2!1sru!2sru"'
+            EMB_CODE: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2264.2569306731275!2d37.526256413081796!3d55.42331247285123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aa9814fc3c9a7%3A0xa96ecb5a4921d85f!2sCDEK!5e0!3m2!1sru!2sru!4v1692998815590!5m2!1sru!2sru'
         }
     ],
     DELIVERY_ADDRESS: [
@@ -92,5 +92,4 @@ export const LINKS = {
     ya_market: 'https://market.yandex.ru/catalog--avto/54418/list?srnum=20&was_redir=1&rt=9&rs=eJwzEg1grGLh2HeIdRYjV2heZolCck5qYh4ASxcHDA,,&text=Unit clean&hid=90402&local-offers-first=0'
 }
 
-//export const BASE_URL = 'http://84.23.55.240:5050';
 export const BASE_URL = 'http://141.8.193.185:5050';

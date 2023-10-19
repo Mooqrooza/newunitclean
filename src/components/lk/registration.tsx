@@ -17,33 +17,19 @@ import {URLs} from "src/utils/constants";
 
 const RegistrationStyle = css`
   margin-top: 210px;
-  
-  .mobile & {
-    margin-top: 12px;
-  }
+  .mobile & { margin-top: 12px; }
 `;
-
 const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
-  font-size: ${({ theme }) => theme.font.size[20]};
-  font-weight: ${({ theme }) => theme.font.weight[600]};
-  margin-top: 25px;
-  
-  .mobile & {
-    font-size: ${({ theme }) => theme.font.size[14]};
-  }
+    width: 220px;
 `;
-
 const ButtonSendSuccess = styled(ButtonStyle)`
-  box-shadow: 0px 0px 0px 4px rgba(0, 255, 0, 0.2);
+width: 220px;
 `;
-
 const ButtonSendError = styled(ButtonStyle)`
-  box-shadow: 0px 0px 0px 4px rgba(255, 0, 0, 0.2);
+width: 220px;
 `;
-
 const Registration = () => {
     const form:any = {};
-
     let setTitle, setInn, setKpp, setUrAddress, setRealAddress, setPhone, setDetail = null;
     [form.title, setTitle] = useState<any>(null);
     [form.inn, setInn] = useState<any>(null);
@@ -53,9 +39,6 @@ const Registration = () => {
     [form.real_address, setRealAddress] = useState<any>(null);
     [form.detail, setDetail] = useState<any>(null);
     const [button, setButton] = useState<any>(null);
-
-    const dispatch = useDispatch();
-
     const reg = () => {
         if (Object.values(form).map(value => !value || (value as InputState).obj.checkError()).some(error => error)) {
             button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});

@@ -1,3 +1,29 @@
+const colors = {
+    white: 'white',
+    black: '#1E1E1E',
+    gray: '#8D8D8D',
+    grayA: '#DBDBDB',
+    grayB: '#F8F8F8',
+    grayC: '#F2F2F2',
+    blue: '#164BA7',
+    blueA: '#2F63BC',
+    blueB: '#568BE7',
+    blueC: 'A1C0F4',
+    whiteBlue: '#D2E3FF',
+    whiteBlueA: '#EDF3F9',
+    whiteBlueB: '#E3E9F3',
+    whiteBlueC: '#F2F6F9',
+    whiteBlueD: '#f6f9fb',
+    orange: '#E46E28',
+    orangeA: '#F07E3B',
+    whiteOrange: '#F9E5D9',
+    red: '#CB4747',
+    whiteRed: '#FDEBEE',
+    whiteRedA: '#FFF5F7',
+    orangeTransparent: (opacity: number) => `rgba(228,110,40,${opacity})`,
+    whiteTransparent: (opacity: number) => `rgba(255,255,255,${opacity})`,
+    redTransparent: (opacity: number) => `rgba(203,71,71,${opacity})`
+}
 
 export const Main = {
     font: {
@@ -20,9 +46,9 @@ export const Main = {
             40: '40px',
             48: '48px',
             50: '50px',
+            80: '80px',
             100: '100px'
         },
-
         weight: {
             300: 300,
             400: 400,
@@ -32,28 +58,28 @@ export const Main = {
             800: 800,
             900: 900,
         },
-
-        color: {
-            white: 'white',
-            black: 'black',
-            gray: '#717171',
+        color: { 
+            ...colors,
             light_gray: '#9C9C9C',
-            red: '#BA172C',
-            blue: '#2196F3',
             green: '#36873E',
-
             mobileTopTab: '#ADB8C4',
             mobileMovingTab: '#ADB8C4F5',
         }
     },
-
+    colors: { ...colors },
+    gradients: {
+        softBlueGradient: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));'
+    },
     backgrounds: {
+        gradient: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));',
         promotion: {
             discount: '#2196F3',
             title: '#BA172C'
         }
     },
-
+    shadows: {
+       shadow: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)'
+    },
     values: {
         contentMargin: 150,
         contentMobileMargin: 16

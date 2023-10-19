@@ -1,44 +1,38 @@
 import React from 'react';
 import styled from "styled-components";
 
-export const DIV_BUTTON_BLUE_STYLE = styled.div<{css?: any; cssMobile?: any}>`
-  display: grid;
-  box-sizing: border-box;
-  height: 60px;
-  background: #2196F3;
-  border: 2px solid #2196F3;
-  border-radius: 10px;
-  color: ${({ theme }) => theme.font.color.white};
+const defaultButtonStyle = `  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  min-width: 140px;
+  min-height: 44px;
+  border-radius: 22px;
   padding: 0px 20px;
-  cursor: pointer;
-  align-content: center;
+  box-sizing: border-box;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-  ${props => props.css}
-  transition: filter 0.2s;
-  
-  .mobile & {
-    ${props => props.cssMobile}
-  }
-  
-  &:hover {
-    filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
-  }
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+`;
+export const DIV_BUTTON_BLUE_STYLE = styled.div<{css?: any; cssMobile?: any}>`
+  ${defaultButtonStyle}
+  font-size: ${ ({ theme }) => theme.font.size[15] };
+  font-weight: ${ ({ theme }) => theme.font.weight[500] };
+  color: ${ ({ theme }) => theme.font.color.white };
+  background: ${ ({ theme }) => theme.colors.blue };
+  ${props => props.css}  
+  .mobile & { ${props => props.cssMobile} }
 `;
 
-export const DIV_BUTTON_WHITE_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any; cssMobile?: any}>`
-  background: #FFFFFF;
-  color: ${({ theme }) => theme.font.color.black};
-  transition: background-color,color 0.3s,0.3s;
+export const DIV_BUTTON_SOFT_BLUE_STYLE = styled.div<{css?: any; cssMobile?: any}>`
+  ${defaultButtonStyle}
+  font-size: ${ ({ theme }) => theme.font.size[15] };
+  font-weight: ${ ({ theme }) => theme.font.weight[500] };
+  background: ${ ({ theme }) => theme.colors.whiteBlueA };
+  color: ${ ({ theme }) => theme.colors.blue };
   ${props => props.css}
-  
-  &:hover {
-    background: #2196F3;
-    color: ${({ theme }) => theme.font.color.white};
-  }
-
-  .mobile & {
-    ${props => props.cssMobile}
-  }
+  .mobile & { ${props => props.cssMobile} }
 `;

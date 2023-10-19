@@ -14,7 +14,6 @@ import add from "../icons/add.svg";
 
 import basket from "../icons/basket.png";
 
-import menu from "../icons/menu.svg";
 import larrowblack from "../icons/left_arrow_black.svg";
 import rarrowblack from "../icons/right_arrow_black.svg";
 
@@ -61,7 +60,26 @@ import avatar1 from "../icons/reviews_avatars/ppJ6wOIa_Wc.jpg";
 import avatar2 from "../icons/reviews_avatars/BEJjc6MiR14.jpg";
 import avatar3 from "../icons/reviews_avatars/ToixYvmt8xE.jpg";
 
+
+import headerLogo from "../icons/header/logo-1.svg"
+import headerPhone from "../icons/header/phone-1.svg"
+import headerMenu from "../icons/header/menu-1.svg";
+import headerBag from "../icons/header/bag-1.svg";
+import headerClose from "../icons/header/close-1.svg";
+import headerClose2 from "../icons/header/close-2.svg";
+
+import shine from "../icons/shine-1.svg";
+
 export const icons = {
+    header: {
+        logo: headerLogo,
+        phone: headerPhone,
+        bag: headerBag,
+        menu: headerMenu,
+        close: headerClose,
+        closeA: headerClose2
+    },
+    shine: shine,
     lk: lk,
     cart: cart,
     search: search,
@@ -75,7 +93,6 @@ export const icons = {
     not_favourite: not_favourite,
     favourite: favourite,
     basket: basket,
-    menu: menu,
     larrowblack: larrowblack,
     rarrowblack: rarrowblack,
     promotion: {
