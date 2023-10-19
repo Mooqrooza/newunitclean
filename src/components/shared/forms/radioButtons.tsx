@@ -17,7 +17,7 @@ const ButtonUnSelected = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   width: min-content;
 
   &:hover {
-    color: ${({ theme }) => theme.font.color.black};
+    color: ${({ theme }) => theme.colors.black};
     background: #2196F361;
   }
 `;

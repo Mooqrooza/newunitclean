@@ -5,18 +5,7 @@ import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTT
 import styled from "styled-components";
 import mainImage from "src/images/car-illustration-1.png";
 
-const Text = styled.div`
-  font-size: ${({ theme }) => theme.font.size[13]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
-  text-align: left;
-  user-select: text;
-`;
-const Point = styled.p`
-  text-indent: 4em;
-  margin: 4px 0;
-`;
-const Main = styled.div`
+const Main = styled.section`
    position: relative;
    width: 100%;
    height: 600px;

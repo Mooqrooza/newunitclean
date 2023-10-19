@@ -3,7 +3,7 @@ import {
   GET_AUTH_REQUEST,
   GET_AUTH_SUCCESS, GET_FAIL, GET_LOGOUT_AUTH,
   LoginUserAction
-} from "../../actions/AuthAction/AuthAction.types";
+} from "src/actions/AuthAction/AuthAction.types";
 import {getAuth} from "src/store/localStorage";
 
 const initialStateAuth = {
@@ -13,7 +13,6 @@ const initialStateAuth = {
   isAuthorized: false,
   error: null,
 };
-
 
 export function AuthReducer(state: IStateAuth = getAuth(), action: LoginUserAction) {
   switch (action.type) {

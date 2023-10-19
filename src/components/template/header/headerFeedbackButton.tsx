@@ -25,7 +25,7 @@ const HeaderFeedbackButtonStyle = styled.div`
 const TextStyled = styled.div`
   padding: 0 0 0 14px;
 `
-const HeaderFeedbackButton = (props: { data: headerMenuButton }) => {
+const HeaderFeedbackButton = (props: { data: headerMenuButton }) => { 
     return (
         <HeaderButton styled={HeaderFeedbackButtonStyle} href={props.data.href} func={props.data.func} auth={props.data.auth}>
             <TextStyled>Заказать звонок</TextStyled>

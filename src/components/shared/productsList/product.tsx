@@ -74,7 +74,7 @@ const Info = styled.div`
 const Title = styled.div`
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[700]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
   text-align: left;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -95,7 +95,7 @@ const Description = styled.div`
   line-height: 26px;
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -114,7 +114,7 @@ const Price = styled.div`
   justify-content: right;
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[700]};
-  color: ${({ theme }) => theme.font.color.blue};
+  color: ${({ theme }) => theme.colors.blue};
   
   .mobile .withButtons & {
     justify-content: start;
@@ -158,7 +158,7 @@ const Button = styled.div`
 
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[700]};
-  color: ${({ theme }) => theme.font.color.blue};
+  color: ${({ theme }) => theme.colors.blue};
 
   &:hover {
     opacity: 1;
@@ -243,7 +243,7 @@ const StarStyle = styled.div`
 
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[800]};
-  color: ${({ theme }) => theme.font.color.white};
+  color: ${({ theme }) => theme.colors.white};
 
   display: grid;
   align-content: center;

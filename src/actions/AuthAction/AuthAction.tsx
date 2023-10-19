@@ -10,27 +10,20 @@ import {
 import {BASE_URL, URLs} from "src/utils/constants";
 import {getAuth} from "src/store/localStorage";
 import {routes} from "src/utils/routes";
-
-
-//включаем защиту токенами от csrf атак
+/* Включаем защиту токенами от csrf атак */
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
 const config = {
   headers: {
-    //'Content-Type': 'application/x-www-form-urlencoded',
+    /* 'Content-Type': 'application/x-www-form-urlencoded', */
     Accept: 'application/json'
   }
 }
-
-
 export const LoginUser = (data: { username: string, password: string }) => (dispatch:Dispatch) =>
     new Promise((resolve, reject) => {
-        dispatch({
-            type: GET_AUTH_REQUEST
-        })
-
+        dispatch({ type: GET_AUTH_REQUEST })
         axios.post(BASE_URL + '/api/token/', data, config)
             .then(response => {
                 if (response.status === 200) {

@@ -70,6 +70,11 @@ import headerClose2 from "../icons/header/close-2.svg";
 
 import shine from "../icons/shine-1.svg";
 
+import whyWeIco1 from '../icons/whywe-ico-1.svg'
+import whyWeIco2 from '../icons/whywe-ico-2.svg'
+import whyWeIco3 from '../icons/whywe-ico-3.svg'
+import whyWeIco4 from '../icons/whywe-ico-4.svg'
+
 export const icons = {
     header: {
         logo: headerLogo,
@@ -79,7 +84,13 @@ export const icons = {
         close: headerClose,
         closeA: headerClose2
     },
+
     shine: shine,
+    whyWeIco1: whyWeIco1,
+    whyWeIco2: whyWeIco2,
+    whyWeIco3: whyWeIco3,
+    whyWeIco4: whyWeIco4,
+
     lk: lk,
     cart: cart,
     search: search,

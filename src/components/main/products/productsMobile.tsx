@@ -6,29 +6,19 @@ import {IStateProductList} from "src/reducers/ProductListReducer/ProductListRedu
 import {useDispatch} from "react-redux";
 import {GetProductList} from "src/actions/ProductListAction/ProductListAction";
 
-const ProductsStyle = styled.div`
-  padding-bottom: 80px;
-`;
-
+const ProductsStyle = styled.div` padding-bottom: 80px;`;
 const Title = styled.div`
   font-size: ${({ theme }) => theme.font.size[12]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.gray};
+  color: ${({ theme }) => theme.colors.gray};
   padding: 35px 0 14px 0;
 `;
-
 const ProductsMobile = () => {
-
     const state = useTypedSelector((store) => store);
     const productListState = state.ProductList as IStateProductList;
-
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
-    useEffect(() => {
-        stableDispatch(GetProductList());
-    }, []);
-
+    useEffect(() => { stableDispatch(GetProductList()); }, []);
     return (
         <ProductsStyle>
             <Title>Все товары</Title>

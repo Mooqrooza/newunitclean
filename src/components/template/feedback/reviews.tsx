@@ -61,7 +61,7 @@ const ReviewsMoreButton = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   height: 35px;
   width: 50%;
   justify-self: center;
-  color: ${({ theme }) => theme.font.color.blue};
+  color: ${({ theme }) => theme.colors.blue};
   
   .mobile & {
     align-self: center;

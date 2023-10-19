@@ -47,7 +47,7 @@ const Close = styled.div`
 const Header = styled.div`
   font-size: ${({ theme }) => theme.font.size[24]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.color.black};
+  color: ${({ theme }) => theme.colors.black};
   padding-bottom: 16px;
   text-align: left;
   border-bottom: 2px solid #D13631;
@@ -72,7 +72,7 @@ const RowHeader = styled.div`
 
 const RowHeaderRed = styled.span`
   margin-left: 2px;
-  color: ${({ theme }) => theme.font.color.red};
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 const ButtonSend = styled(DIV_BUTTON_BLUE_STYLE)`

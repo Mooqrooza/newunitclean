@@ -1,5 +1,5 @@
 import {combineReducers } from 'redux'
-import {AuthReducer} from "./AuthReducer/AuthReducer";
+import {AuthReducer} from "src/reducers/AuthReducer/AuthReducer";
 import {WindowsManagerReducer} from "src/reducers/WindowsManagerReducer/WindowsManagerReducer";
 import {TabsMenuReducer} from "src/reducers/TabsMenuReducer/TabsMenuReducer";
 import {CartReducer} from "src/reducers/CartReducer/CartReducer";

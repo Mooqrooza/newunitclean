@@ -21,7 +21,7 @@ export const DIV_BUTTON_BLUE_STYLE = styled.div<{css?: any; cssMobile?: any}>`
   ${defaultButtonStyle}
   font-size: ${ ({ theme }) => theme.font.size[15] };
   font-weight: ${ ({ theme }) => theme.font.weight[500] };
-  color: ${ ({ theme }) => theme.font.color.white };
+  color: ${ ({ theme }) => theme.colors.white };
   background: ${ ({ theme }) => theme.colors.blue };
   ${props => props.css}  
   .mobile & { ${props => props.cssMobile} }
