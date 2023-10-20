@@ -9,7 +9,6 @@ export const showFeedback = () => {
         titleElement.scrollIntoView({behavior: 'smooth'});
     }
 }
-
 export const openSearch = () => {
     WindowsManagerOpen(WINDOW_SEARCH)(store.dispatch);
     CloseMobileMenu()(store.dispatch);

@@ -13,23 +13,31 @@ const Content = styled.section`
 `;
 const TextContainer = styled.div`
   flex: 1;
+  min-width: 300px;
   text-align: left;
   font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
   color: ${({ theme }) => theme.colors.black};
+  .mobile & {}
 `;
 const Text = styled.p`
   text-indent: 1em;
+  .mobile & {}
 `
 const Point = styled.p`
   text-indent: 1em;
   margin: 0;
+  .mobile & {}
 `;
 const Image = styled.div`
   width: 40%;
   border-radius: 50px;
   background: center no-repeat url("${aboutImage}");
   background-size: cover;
+  @media (max-width: 1300px) {
+     display: none;
+  }
+  .mobile & {}
 `;
 const About = () => {
 

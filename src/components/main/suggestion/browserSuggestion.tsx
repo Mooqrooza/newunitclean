@@ -20,6 +20,7 @@ const SuggestionStyle = styled.div`
       grid-template-columns: none;
     }
   }
+  .mobile & {}
 `;
 
 const Exposition = styled.div`
@@ -27,6 +28,7 @@ const Exposition = styled.div`
   display: grid;
   justify-content: end;
   width: min-content;
+  .mobile & {}
 `;
 
 const ExpositionEllipse1 = styled.svg<{background?: string}>`
@@ -34,11 +36,13 @@ const ExpositionEllipse1 = styled.svg<{background?: string}>`
   position: absolute;
   right: 20px;
   top: 0px;
+  .mobile & {}
 `;
 
 const ExpositionEllipse2 = styled.svg<{background?: string}>`
   fill: ${props => props.background};
   margin: 50px 70px 0 0;
+  .mobile & {}
 `;
 
 const Image = styled.img`
@@ -49,6 +53,7 @@ const Image = styled.img`
   max-height: 100%;
   bottom: -32px;
   right: 56px;
+  .mobile & {}
 `;
 
 const Title = styled.h1`
@@ -57,6 +62,7 @@ const Title = styled.h1`
   text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
   font-size: ${({ theme }) => theme.font.size[100]};
   font-weight: ${({ theme }) => theme.font.weight[900]};
+  .mobile & {}
 `;
 
 const Discount = styled.div`
@@ -74,6 +80,7 @@ const Discount = styled.div`
     display: grid;
     align-content: center;
   }
+  .mobile & {}
 `;
 
 const ButtonsStyle = styled(DIV_BUTTON_BLUE_STYLE)`
@@ -82,14 +89,13 @@ const ButtonsStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
   width: min-content;
   padding: 0 26px;
+  .mobile & {}
 `;
 
 const BrowserSuggestion = (props: SuggestionType) => {
-
     const openProduct = () => {
         window.open(URLs.PRODUCT.replace(':id', '' + props.product.id), '_self');
     }
-
     return (
         <SuggestionStyle>
             <div>

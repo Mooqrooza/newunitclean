@@ -7,44 +7,36 @@ interface ButtonBlueProps {
     styled?: StyledComponent<any, any>;
     func?: () => void;
     setObj?: (obj: any) => void;
-    className?: string
+    className?: string,
+    icon?: any
 };
-
 interface ButtonBlueState {
     currentStyle: StyledComponent<any, any>;
     currentChildren: any;
     timeOut: number
 };
-
 export class ButtonBlue extends Component<ButtonBlueProps, ButtonBlueState> {
     defaultStyle:any = DIV_BUTTON_BLUE_STYLE;
     defaultChildren:any = '';
-
     constructor(props: ButtonBlueProps) {
         super(props);
         this.defaultChildren = this.props.children;
         if (this.props.styled) {
             this.defaultStyle = this.props.styled
         }
-
         this.state = {
             currentStyle: this.defaultStyle,
             currentChildren: this.defaultChildren,
             timeOut: 0
         }
-
-        if (this.props.setObj) {
-            this.props.setObj(this);
-        }
+        if (this.props.setObj) { this.props.setObj(this); }
     }
-
     switchTimeOut = (func: () => void, timeOut: number | undefined) => {
         clearTimeout(this.state.timeOut);
         if (timeOut) {
             this.setState({timeOut: setTimeout(func, timeOut)});
         }
     }
-
     Animate = (props: {Styled?: StyledComponent<any, any>, Children?: any, timeOut?: number}) => {
         this.setState({
             currentStyle: props.Styled ? props.Styled : this.state.currentStyle,
@@ -57,10 +49,9 @@ export class ButtonBlue extends Component<ButtonBlueProps, ButtonBlueState> {
             });
         }, props.timeOut);
     }
-
     render() {
         return (
-            <this.state.currentStyle className={this.props.className} onClick={ this.props.func }>
+            <this.state.currentStyle icon={this.props.icon} className={this.props.className} onClick={ this.props.func }>
                 { this.state.currentChildren }
             </this.state.currentStyle>
         );

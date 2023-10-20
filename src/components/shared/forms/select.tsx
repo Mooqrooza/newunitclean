@@ -12,7 +12,6 @@ interface SelectProps {
     defaultOption?: selectOption;
     options: selectOption[];
 };
-
 interface SelectState {
     value: string | undefined;
     error: boolean;
@@ -21,7 +20,6 @@ interface SelectState {
     errorAnimation: boolean;
     obj: any;
 };
-
 export class Select extends Component<SelectProps, SelectState> {
     constructor(props: SelectProps) {
         super(props);
@@ -33,24 +31,15 @@ export class Select extends Component<SelectProps, SelectState> {
             obj: this, 
             errorText: ''
         };
-        if (this.props.setObj) {
-            this.props.setObj(this.state);
-        }
+        if (this.props.setObj) { this.props.setObj(this.state); }
     }
-
     componentDidUpdate(prevProps: Readonly<SelectProps>, prevState: Readonly<SelectState>, snapshot?: any) {
-        if (this.props.setObj) {
-            this.props.setObj(this.state);
-        }
+        if (this.props.setObj) { this.props.setObj(this.state); }
     }
-
     check = (value: string | undefined) => {
-        if (value) {
-            return false;
-        }
+        if (value) { return false; }
         return true;
-    }
-    
+    } 
     checkError = () => {
         let val = this.check(this.state.value);
         this.setState({error: val});
@@ -62,41 +51,26 @@ export class Select extends Component<SelectProps, SelectState> {
         }
         return val
     }
-
-    onInput = (event?: any) => {
-        this.setState({ value: event.target.value });
-    }
-
+    onInput = (event?: any) => {  this.setState({ value: event.target.value }); }
     onFocus = (active: boolean) => {
         this.setState({active: active});
-        if (active) {
-            this.setState({error: false});
-        }
-        else {
-            this.checkError();
-        }
+        if (active) { this.setState({error: false}); }
+        else { this.checkError(); }
     }
-
-    clear = () => {
-        this.setState({value: ''})
-    }
-
+    clear = () => { this.setState({value: ''}) }
     setError = (errorText?: string) => {
         this.setState({error: true, errorText: errorText ? errorText : this.state.errorText});
     }
-
     render() {
         return (
             <DefaultSelectStyle>
-                <SELECT selectState={this.state}
-                        selectProps={this.props}
-                        onFocus={this.onFocus}
-                        onInput={this.onInput} />
-                {
-                    this.state.error ?
-                        <ErrorMessage>{this.state.errorText}</ErrorMessage>
-                        : null
-                }
+                <SELECT 
+                    selectState={this.state}
+                    selectProps={this.props}
+                    onFocus={this.onFocus}
+                    onInput={this.onInput} 
+                />
+                { this.state.error ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null }
             </DefaultSelectStyle>
         );
     }

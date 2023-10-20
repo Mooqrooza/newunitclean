@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import reason from "components/main/whywe/reason";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateWindows} from "src/reducers/WindowsManagerReducer/WindowsManagerReducer.types";
@@ -12,15 +11,22 @@ const ReasonStyle = styled.div`
   align-items: center;
   flex-shrink: 1;
   min-width: 250px;
+  max-width: 330px;
   padding: 30px 40px 40px 40px;
   border-radius: 60px;
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.grayB};
+  &:hover {}
+  @media (max-width: 580px) {
+    max-width: 100%;
+  }
+  .mobile & {}
 `;
 const Image = styled.img`
   height: 84px;
   width: 84px;
   margin: 0 0 20px 0;
+  .mobile & {}
 `;
 const Text = styled.div`
    display: inline-block;
@@ -28,15 +34,15 @@ const Text = styled.div`
    font-size: ${({ theme }) => theme.font.size[20]};
    font-weight: ${({ theme }) => theme.font.weight[500]};
    color: ${({ theme }) => theme.colors.black};
+   .mobile & {}
 `;
-export interface reason {
+export interface IReason {
     icon: string;
     text: string;
     clickable?: boolean;
     icon_clicked?: string
 };
-
-const Reason = (props: {reason: reason}) => {
+export const Reason = (props: { reason: IReason}) => {
     const WindowsManager = useTypedSelector((store) => store.WindowsManager);
     const {window} = WindowsManager as IStateWindows;
     const dispatch = useDispatch();
@@ -47,5 +53,3 @@ const Reason = (props: {reason: reason}) => {
         </ReasonStyle>
     );
 };
-
-export default Reason;

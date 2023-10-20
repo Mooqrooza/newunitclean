@@ -21,8 +21,8 @@ const HeaderMenuButtonStyle = styled.a`
   &:hover {
     color: ${({ theme }) => theme.colors.orange};
   }
-`
-
+  .mobile & {}
+`;
 const HeaderMenuButton = (props: { data: headerMenuButton }) => {
     return (
         <HeaderButton styled={HeaderMenuButtonStyle} href={props.data.href} func={props.data.func} auth={props.data.auth}>

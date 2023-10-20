@@ -18,17 +18,20 @@ const HeaderTab = styled.div`
   height: 80px;
   padding: 0 20px;
   background: ${({ theme }) => theme.colors.white};
+  .mobile & {}
 `;
 const HeaderTabButton = styled.div`
   display: flex;
   align-items: center;
   z-index: 3;
+  .mobile & {}
 `;
 const HeaderTabCloseButton = styled.div`
   display: flex;
   align-items: center;
   margin: 6px 0 0 calc(100% - 24px);
   z-index: 3;
+  .mobile & {}
 `;
 const LogoStyle = styled.div`
   display: flex;
@@ -38,6 +41,7 @@ const LogoStyle = styled.div`
     position: relative;
     height: 24px;
   }
+  .mobile & {}
 `;
 const Logo = () => {
     const home = () => { window.open(URLs.ROOT, '_self');}
@@ -46,18 +50,20 @@ const Logo = () => {
     </LogoStyle>)
 }
 const VLineStyle = styled.div`
-    width: 1px;
-    height: 44px;
-    margin: 0 15px;
-    background: black;
-    opacity: 0.1;
-`
+  width: 1px;
+  height: 44px;
+  margin: 0 15px;
+  background: black;
+  opacity: 0.1;
+  .mobile & {}
+`;
 const HLineStyle = styled.div`
-    width: 100%;
-    height: 1px;
-    background: black;
-    opacity: 0.1;
-`
+  width: 100%;
+  height: 1px;
+  background: black;
+  opacity: 0.1;
+  .mobile & {}
+`;
 const MovingTab = styled.div`
   position: fixed;
   display: flex;
@@ -75,36 +81,40 @@ const MovingTab = styled.div`
   box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.1);
   z-index: 4;
   &.opened { right: 0; }
+  .mobile & {}
 `;
 const MovingTabMenu = styled.div`
-    position: relative;
-    display: inline-block;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    & div{ 
-        text-align: left;
-        margin: 25px 0; 
-        padding: 0;
-    }
+  position: relative;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  & div{ 
+    text-align: left;
+    margin: 25px 0; 
+    padding: 0;
+  }
+  .mobile & {}
 `;
 const PhoneNumberText = styled.div`
-    user-select: text;
-    margin: 10px 0 0 0;
-    font-size: ${({ theme }) => theme.font.size[18]};
-    font-weight: ${({ theme }) => theme.font.weight[400]};
-    color: ${({ theme }) => theme.colors.black}
+  user-select: text;
+  margin: 10px 0 0 0;
+  font-size: ${({ theme }) => theme.font.size[18]};
+  font-weight: ${({ theme }) => theme.font.weight[400]};
+  color: ${({ theme }) => theme.colors.black}
+  .mobile & {}
 `;
 const MovingTabButton = styled.div`
   padding-left: 16px;
   font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
+  .mobile & {}
 `;
 const MobileButtonStyle = styled.a`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.black};
+  .mobile & {}
 `;
-
 const HeaderContainerMobile = (props: { buttons: headerMenuButton[]}) => {
     const MobileMenu = useTypedSelector((store) => store.MobileMenu);
     const {opened} = MobileMenu as IStateMobileMenu;

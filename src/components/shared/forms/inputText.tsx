@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import INPUT_TEXT from "./primitives/INPUT_TEXT";
 import styled, {StyledComponent} from "styled-components";
 
-export const DefaultInputTextStyle = styled.div``;
+export const DefaultInputTextStyle = styled.div`
+  .mobile & {}
+`;
 export const ErrorMessage = styled.div`
   color: ${({ theme }) => theme.colors.red};
   padding-top: 4px;
   text-align: left;
+  .mobile & {}
 `;
 interface InputProps {
     styled?: StyledComponent<any, any>;
@@ -69,7 +72,6 @@ export class InputText extends Component<InputProps, InputState> {
                     onInput={this.onInput}
                     type={this.getType()} 
                 />
-                {/* this.state.error ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null */} 
             </Styled>
         );
     }

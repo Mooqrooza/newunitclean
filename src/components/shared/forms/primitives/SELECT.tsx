@@ -15,7 +15,6 @@ const SELECT_STYLE = styled.select<{css?: any}>`
   color: ${({ theme }) => theme.colors.black};
   padding: 0 20px;
   width: 100%;
-  //width: calc(100% - 40px);
   box-sizing: border-box;
   ${props => props.css};
     
@@ -38,53 +37,36 @@ const SELECT_STYLE = styled.select<{css?: any}>`
   .mobile & {
     font-size: ${({ theme }) => theme.font.size[14]};
   }
-`
-
-/*const OPTGROUP = styled.optgroup`
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-`;*/
-
+`;
 interface SELECT_STATE {
     value: string | undefined;
     error: boolean;
     active: boolean;
     errorAnimation: boolean;
 }
-
 interface SELECT_PROPS {
     css?: any;
     defaultOption?: selectOption;
     options: selectOption[];
 }
-
 const SELECT = (props: {selectProps: SELECT_PROPS; selectState: SELECT_STATE; onFocus: (active: boolean) => void; onInput: () => void}) => {
-
-    function focus() {
-        props.onFocus(true);
-    }
-    function blur() {
-        props.onFocus(false);
-    }
-
+    function focus() { props.onFocus(true); }
+    function blur() { props.onFocus(false); }
     return (
-        <SELECT_STYLE value={props.selectState.value}
-                      onFocus={focus}
-                      onBlur={blur}
-                      css={props.selectProps.css}
-                      onChange={props.onInput}
-                      className={[
-                          (props.selectState.error ? 'error' : ''),
-                          (props.selectState.errorAnimation ? 'errorAnimation' : ''),
-                          (props.selectState.active ? 'active' : '')
-                      ].join(' ')}>
+        <SELECT_STYLE 
+            value={props.selectState.value}
+            onFocus={focus}
+            onBlur={blur}
+            css={props.selectProps.css}
+            onChange={props.onInput}
+            className={[
+                (props.selectState.error ? 'error' : ''),
+                (props.selectState.errorAnimation ? 'errorAnimation' : ''),
+                (props.selectState.active ? 'active' : '')
+            ].join(' ')}
+         >
             <option value={props.selectProps.defaultOption?.value}>{props.selectProps.defaultOption?.text}</option>
-            {
-                props.selectProps.options.map((option, i) =>
-                    <option key={i} value={option.value} className={'option'}>{option.text}</option>)
-            }
+            { props.selectProps.options.map((option, i) => <option key={i} value={option.value} className={'option'}>{option.text}</option>) }
         </SELECT_STYLE>
     );
 };

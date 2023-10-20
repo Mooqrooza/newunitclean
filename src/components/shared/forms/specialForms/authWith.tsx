@@ -3,21 +3,20 @@ import {icons} from "src/utils/icons";
 import styled from "styled-components";
 
 const AuthWithStyle = styled.div``;
-
 const AuthWithText = styled.div`
   font-size: ${({ theme }) => theme.font.size[12]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
   color: #00000080;
   margin: 30px 0 18px 0;
+  .mobile & {}
 `;
-
 const Links = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-gap: 32px; gap: 32px;
   justify-content: center;
+  .mobile & {}
 `;
-
 const AuthWith = () => {
     return (
         <AuthWithStyle>

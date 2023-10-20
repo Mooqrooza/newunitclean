@@ -15,16 +15,14 @@ const Title = styled.div`
   font-weight: ${({ theme }) => theme.font.weight[400]};
   color: ${({ theme }) => theme.colors.gray};
   padding: 35px 0 14px 0;
+  .mobile & {}
 `;
 
 const ProductsMobile = () => {
-
     const state = useTypedSelector((store) => store);
     const productListState = state.ProductList as IStateProductList;
-
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
     useEffect(() => {
         stableDispatch(GetProductList());
     }, []);

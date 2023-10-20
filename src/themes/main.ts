@@ -77,7 +77,7 @@ export const Main = {
     },
     shadows: {
        shadow: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)',
-       shadowA: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)',
+       shadowA: '0px 4px 18px 0px rgba(0, 0, 0, 0.16)',
        shadowB: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)'
     },
     margins: {
@@ -89,8 +89,8 @@ export const Main = {
         sectionLabelMarginMobile: '0 0 60px 0',
     },
     paddings: {
-        contentPadding: '40px 100px 0 100px',
-        contentPaddingMobile: '0 30px',
+        contentPadding: '40px 60px 0 60px',
+        contentPaddingMobile: '20px 30px 0 30px',
     },
     values: {
         contentMargin: 150,

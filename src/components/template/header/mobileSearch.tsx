@@ -25,29 +25,23 @@ const SearchTabStyle = styled.div`
   left: 0;
   top: 0;
   grid-gap: 4px; gap: 4px;
+  .mobile & {}
 `;
-
 const SearchContainer = styled.div`
-  
+  .mobile & {}
 `;
-
 const MobileSearch = () => {
     const Search = useTypedSelector((store) => store.Search);
     const {results} = Search as IStateSearch;
     const [searchInput, setSearchInput] = useState<any>(null);
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
     useEffect(() => {
-        if (searchInput) {
-            stableDispatch(GetSearch(searchInput.value));
-        }
+        if (searchInput) { stableDispatch(GetSearch(searchInput.value)); }
     }, [searchInput])
-
     const search = () => {
         window.open(URLs.SEARCH_WITH_PARAM.replace(':search', searchInput.value), '_self');
     }
-
     return (<SearchTabStyle>
         <SearchContainer>
             <InputText styled={SearchInputTextStyle}

@@ -53,19 +53,15 @@ export const FormCloseStyle = styled.div`
     position: fixed;
   }
 `;
-
 const FormClose = () => {
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
     return (
         <FormCloseStyle onClick={() => stableDispatch(WindowsManagerClear())}>
             <img src={ icons.header.closeA } />
         </FormCloseStyle>
     );
 }
-
-
 const FormContainerStyle = styled.div<{css: any}>`
   display: flex;
   justify-content: center;
@@ -88,6 +84,7 @@ const FormContainerStyle = styled.div<{css: any}>`
       z-index: 4;
     }
   }
+  .mobile & {}
 `
 
 export const FormContainer = (props: {children: any; css?: any; background?: boolean}) => {

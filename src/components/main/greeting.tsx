@@ -11,6 +11,14 @@ const Main = styled.section`
    height: 600px;
    border-radius: 80px;
    background: ${({ theme }) => theme.gradients.softBlueGradient};
+   @media (max-width: 1200px) {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       height: auto;
+       padding: 40px;
+       box-sizing: border-box;
+    }
    .mobile & {}
 `;
 const TextContainer = styled.div`
@@ -19,12 +27,29 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  width: 50%;
   height: 100%;
+  max-width: 50%;
   padding: 0 0 0 5%;
+
+  @media (max-width: 1200px) {
+      position: relative;
+      align-items: center;
+      padding: 0;
+      max-width: 100%;
+      width: auto;
+  }
 `;
 const Maintext = styled(H1Main)`
   margin: 0 0 20px 0;
+  @media (max-width: 1200px) {
+    margin: 400px 0 20px 0;
+    font-size: ${({ theme }) => theme.font.size[62]};
+  }
+  @media (max-width: 480px) {
+    margin: 300px 0 20px 0;
+    width: 100%;
+    font-size: ${({ theme }) => theme.font.size[50]};
+  }
 `;
 const Button = styled(DIV_BUTTON_BLUE_STYLE)` margin: 40px 0 0 0; min-width: 220px;`;
 const ImageContainer = styled.div`
@@ -37,20 +62,28 @@ const ImageContainer = styled.div`
   height: 100%;
   border-radius: 80px;
   overflow: hidden;
+  @media (max-width: 1200px) {
+      justify-content: center;
+  }
+  .mobile & {}
 `;
 const Image = styled.img`
   position: absolute;
-  top: 0;
-  margin: -10% 0 0 0;
+  margin: -29% 0 0 0;
   right: -10%;
   width: 70%;
-
-  .mobile & {
-    width: 100%;
-    margin: 0 0 30px 0;
-    float: none;
+  top: 52%;
+  @media (max-width: 1200px) {
+      width: 100%;
+      top: -20%;
+      margin: 0;
+      position: relative;
+      right: -6%;
   }
+  .mobile & {}
 `;
+const labelStyle = `
+`
 const labelInfo = [
   {text: 'Автошампуни'},
   {text: 'Очистители'},
@@ -61,7 +94,7 @@ const Greetings = () => {
       <Main>
           <ImageContainer><Image src={greetingImage} /></ImageContainer>
           <TextContainer>
-              <Maintext>Хороший<br/>короткий<br/>текст</Maintext>
+              <Maintext>Хороший короткий текст</Maintext>
               <LabelInfoGroup labels={labelInfo}/>
               <Button>Каталог</Button>
           </TextContainer>

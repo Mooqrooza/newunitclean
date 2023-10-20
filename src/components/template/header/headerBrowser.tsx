@@ -21,26 +21,28 @@ const HeaderContainerStyle = styled.div`
     z-index: 2;
     position: relative;
   }
+  .mobile & {}
 `;
 const HeaderContainerInnerStyle = styled.div`
-    display: flex;
-    align-items: center;
-    flex: 1;
-    max-width: 1410px;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 1410px;
+  height: 100%;
+  .mobile & {}
 `
 const HeaderButtonsContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: end;
+  .mobile & {}
 `;
 const LogoStyle = styled.div`
   width: 160px;
   height: 30px;
   cursor: pointer;
-  & img {
-    height: 100%;
-  }
+  & img { height: 100%; }
+  .mobile & {}
 `;
 const Logo = () => {
     const home = () => { window.open(URLs.ROOT, '_self'); }
@@ -49,24 +51,27 @@ const Logo = () => {
     </LogoStyle>)
 }
 const LineStyle = styled.div`
-    width: 1px;
-    height: 64px;
-    margin: 0 18px 0 6px;
-    background: black;
-    opacity: 0.1;
+  width: 1px;
+  height: 64px;
+  margin: 0 18px 0 6px;
+  background: black;
+  opacity: 0.1;
+  .mobile & {}
 `
 const PhoneFeedbackStyled = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-tems: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-tems: center;
+  justify-content: center;
+  .mobile & {}
 `
 const PhoneNumberText = styled.div`
-    user-select: text;
-    margin: 10px 0 0 0;
-    font-size: ${({ theme }) => theme.font.size[15]};
-    font-weight: ${({ theme }) => theme.font.weight[500]};
-    color: ${({ theme }) => theme.colors.black}
+  user-select: text;
+  margin: 10px 0 0 0;
+  font-size: ${({ theme }) => theme.font.size[15]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  color: ${({ theme }) => theme.colors.black}
+  .mobile & {}
 `;
 const PphoneFeedback =  (props: {}) => {
     return (<PhoneFeedbackStyled>

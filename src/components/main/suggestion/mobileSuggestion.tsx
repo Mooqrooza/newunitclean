@@ -6,18 +6,17 @@ import {BASE_URL} from "src/utils/constants";
 const SuggestionStyle = styled.div`
   position: relative;
 `;
-
 const Image = styled.img`
   width: 100%;
+  .mobile & {}
 `;
-
 const Title = styled.h1`
   text-align: left;
   text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
   font-size: ${({ theme }) => theme.font.size[50]};
   font-weight: ${({ theme }) => theme.font.weight[900]};
+  .mobile & {}
 `;
-
 const Header = styled.div`
   background: rgba(199, 216, 234, 0.7);
   border-radius: 10px 0px 0px 10px;
@@ -31,13 +30,13 @@ const Header = styled.div`
   bottom: 24%;
   right: 0px;
   width: calc(100% - 40px);
+  .mobile & {}
 `;
-
 const HeaderNoImage = styled(Header)`
   background: rgba(199, 216, 234);
   bottom: -60px;
+  .mobile & {}
 `;
-
 const MobileSuggestion = (props: SuggestionType) => {
     return (
         <SuggestionStyle>

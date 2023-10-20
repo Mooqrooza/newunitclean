@@ -14,11 +14,8 @@ const InputCodeStyle = styled.div`
     margin: 0;
   }
 `;
-
 const InputCode = (props: {children: any}) => {
-    return (
-        <InputCodeStyle>{props.children}</InputCodeStyle>
-    );
+    return (<InputCodeStyle>{props.children}</InputCodeStyle>);
 };
 
 export default InputCode;

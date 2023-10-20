@@ -49,7 +49,7 @@ export class InputTextField extends Component<InputFieldProps, InputFieldState> 
                     inputFieldState={this.state}
                     inputFieldProps={this.props}
                     onFocus={this.onFocus}
-                onInput={this.onInput} 
+                    onInput={this.onInput}
                 />
                 { this.state.error ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null }
             </DefaultInputTextFieldStyle>

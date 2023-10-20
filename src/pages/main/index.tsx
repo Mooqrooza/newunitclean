@@ -5,6 +5,8 @@ import Content from "components/template/content";
 import Greeting from "src/components/main/greeting";
 import About from "components/main/about";
 import Products from "components/main/products";
+import Feedback from "components/main/feedback";
+import Reviews from "components/main/reviews";
 import {useTypedSelector} from "src/store/configureStore";
 import {useDispatch} from "react-redux";
 import {IStateMainPage} from "src/reducers/MainPageReducer/MainPageReducer.types";
@@ -15,19 +17,16 @@ const Main = () => {
     const {products, isFetching, error} = MainPage as IStateMainPage;
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
-    useEffect(() => {
-        stableDispatch(GetMainPage());
-    }, []);
-
+    useEffect(() => { stableDispatch(GetMainPage()); }, []);
     return (
         <Content>
             {/* products[0] ? <Suggestion title='Успей купить!' product={products[0]} background={'#AB2B324D'}></Suggestion> : null */}
-            <Greeting/>
-            <WhyWe/>
-            <About/>
-            <Products/>
-            <div></div>
+            <Greeting />
+            <WhyWe />
+            <About />
+            <Products />
+            <Reviews/>
+            <Feedback/>
         </Content>
     );
 };

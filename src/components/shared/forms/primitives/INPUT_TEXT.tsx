@@ -3,10 +3,17 @@ import styled, {keyframes} from "styled-components";
 
 export const errorAnimation = keyframes`
   0% {
-    box-shadow: 0px 0px 0px 4px rgba(255, 0, 0, 0.2);
+    opacity: 0; 
+    transform: scale(0)
   }
+  70% { 
+    opacity: 1; 
+    transform: scale(1.05); 
+  }
+  90% { transform: scale(0.8); }
   100% {
-    box-shadow: 0px 0px 0px 4px rgba(255, 0, 0, 0.2);
+    opacity: 1;
+    transform: scale(1)
   }
 `;
 const INPUT_TEXT_CONTAINER = styled.div`
@@ -14,10 +21,10 @@ const INPUT_TEXT_CONTAINER = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
+  .mobile & {}
 `
-
 export const INPUT_TEXT_STYLE = styled.input`
-  width: calc(100% - 40px);
+  width: 100%;
   height: 52px;
   padding: 0 20px;
   margin: 0;
@@ -31,24 +38,25 @@ export const INPUT_TEXT_STYLE = styled.input`
   background: ${ ({theme}) => theme.colors.white };
 
   &.active {
-    background: ${ ({theme}) => theme.colors.whiteBlueD };
+    /* background: ${ ({theme}) => theme.colors.whiteBlueD }; */
   } 
   &.error {
     background: ${ ({theme}) => theme.colors.whiteRedA };
+    transition: background 0.5s 0s linear;
   }
-  .mobile & {
-    font-size: ${({ theme }) => theme.font.size[16]};
-  }
+  .mobile & {}
 `
 const INPUT_ERROR_MARKER_STYLED = styled.div`
   position: absolute;
-  top: -2px;
-  left: 2px;
+  top: 6px;
+  left: 3px;
   width: 6px;
   height: 6px;
   border-radius: 3px;
   outline: 5px solid ${ ({theme}) => theme.colors.redTransparent(0.12) };
   background: ${ ({theme}) => theme.colors.red };
+  animation: ${errorAnimation} 0.3s 1 linear;
+  .mobile & {} 
 `
 interface INPUT_TEXT_STATE {
     value: string;
@@ -62,16 +70,9 @@ interface INPUT_TEXT_PROPS {
     name?: string;
 }
 const INPUT_TEXT = (props: {inputState: INPUT_TEXT_STATE; inputProps: INPUT_TEXT_PROPS; onFocus: (active: boolean) => void; onInput: (event: any) => void; type: string}) => {
-
-    function focus() {
-        props.onFocus(true);
-    }
-    function blur() {
-        props.onFocus(false);
-    }
-
+    function focus() { props.onFocus(true); }
+    function blur() { props.onFocus(false); }
     const Styled = props.inputProps.styled ? props.inputProps.styled : INPUT_TEXT_STYLE;
-
     return (
         <INPUT_TEXT_CONTAINER className={props.inputState.error ? 'error' : ''}>
             <Styled 

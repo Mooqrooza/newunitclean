@@ -73,6 +73,7 @@ import whyWeIco1 from '../icons/whywe-ico-1.svg'
 import whyWeIco2 from '../icons/whywe-ico-2.svg'
 import whyWeIco3 from '../icons/whywe-ico-3.svg'
 import whyWeIco4 from '../icons/whywe-ico-4.svg'
+import rightIco1 from '../icons/right-ico-1.svg'
 
 export const icons = {
     header: {
@@ -89,6 +90,7 @@ export const icons = {
     whyWeIco2: whyWeIco2,
     whyWeIco3: whyWeIco3,
     whyWeIco4: whyWeIco4,
+    rightIco1: rightIco1,
     
     lk: lk,
     cart: cart,
