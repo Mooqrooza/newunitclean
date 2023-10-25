@@ -11,286 +11,166 @@ import {GetCart} from "src/actions/CartAction/CartAction";
 import {GetFavourites} from "src/actions/FavouritesAction/FavouritesAction";
 import {showMoneySum} from "src/utils/functions";
 
-const ButtonsContainer = styled.div`
+const Main = styled.div`
   position: relative;
-`;
-
-const ProductStyle = styled.a`
-  position: relative;
-  height: 350px;
-  width: 270px;
-  background: white;
-  box-shadow: 0px 9px 18px 7px rgba(0, 0, 0, 0.17);
-  border-radius: 10px;
-  display: grid;
-  grid-template-rows: 50% 50%;
-  margin-bottom: 0px;
-  cursor: pointer;
-  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  width: 330px;
+  min-height: 280px;
   text-decoration: none;
-  
-  &:hover {
-    box-shadow: 0px 9px 18px 7px rgba(0, 0, 0, 0.3);
-  }
-  
-  .mobile .withButtons & {
-    width: auto;
-    height: 176px;
-    grid-template-rows: 100%;
-    grid-template-columns: 50% 50%;
-    margin-bottom: 0;
-  }
-  
-  /*.withButtons & {
-    margin-bottom: 90px;
-  }*/
-`
-
+  text-align: left;
+  &:hover {}
+  .mobile .show-buttons & {}
+`;
+const ImageContainer = styled.a`
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 237px;
+   padding: 30px;
+   border-radius: 30px;
+   box-sizing: border-box;
+   transition: box-shadow 0.25s ease-in-out;
+   background: ${({ theme }) => theme.colors.grayB};
+   &:hover{
+     box-shadow: ${({theme}) => theme.shadows.shadowA};
+   }
+   .mobile {}
+`;
 const Image = styled.div<{src: string}>`
-  margin: 26px 12px 0 12px;
-  position: relative;
-  //background-color: rgba(196, 196, 196, 0.23);
+  width: 100%; 
+  height: 100%;
   background-image: url(${props => props.src});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-
-  .mobile .withButtons & {
-    margin: 14px;
-  }
-`
-
-const Info = styled.div`
-  display: grid;
-  grid-template-rows: 24% 44% 32%;
-  padding: 0 26px;
-  
-  .mobile .withButtons & {
-    grid-template-rows: 30% 38% 32%;
-    padding: 0 10px 0 0;
-  }
+  .mobile {}
 `;
-
-const Title = styled.div`
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[700]};
+const Tools = styled.div`
+   display: flex;
+   width: 100%;
+   height: 34px;
+   gap: 10px;
+   border-radius: 17px;
+   background: ${({ theme }) => theme.gradients.grayB} ;
+`;
+const Favourite = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  background: ${({ theme }) => theme.colors.grayB};
+  cursor: pointer;
+  .mobile & {}
+`;
+const AddRemoveButtonContainer =  styled.div`
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 34px;
+  border-radius: 17px;
+  background: ${({ theme }) => theme.colors.grayB};
+  .mobile & {}
+`;
+const CountText = styled.div`
+   display: flex;
+   flex: 1;
+   justify-content: center;
+   align-items: center;
+   font-size: ${({ theme }) => theme.font.size[18]};
+   font-weight: ${({ theme }) => theme.font.weight[500]};
+   color: ${({ theme }) => theme.colors.blue};
+   .mobile & {}
+`;
+const AddRemoveButton = styled.div`
+  width: 50px;
+  height: 34px; 
+  background-color: ${({ theme }) => theme.colors.blue};
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  .mobile & {}
+`;
+const AddButton = styled(AddRemoveButton)`
+  background-image: url(${icons.plusIco});
+  border-radius: 0 17px 17px 0;
+`;
+const RemoveButton = styled(AddRemoveButton)`
+  background-image: url(${icons.closeDeleteIco});
+  border-radius: 17px 0 0 17px;
+`;
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .mobile .show-buttons & {}
+`;
+const Title = styled.a`
+  font-size: ${({ theme }) => theme.font.size[20]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
   color: ${({ theme }) => theme.colors.black};
+  text-decoration: none;
   text-align: left;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  align-self: center;
-
   overflow: hidden;
   text-overflow: ellipsis;
-
-  .mobile .withButtons & {
-    font-size: ${({ theme }) => theme.font.size[14]};
-  }
-`
-
+  .mobile .show-buttons & {}
+`;
 const Description = styled.div`
-  text-align: left;
-  line-height: 26px;
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.colors.black};
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  position: relative;
+  height: 60px;
+  font-size: ${({ theme }) => theme.font.size[14]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  color: ${({ theme }) => theme.colors.gray};
+  text-overflow: ellipsis;
   overflow: hidden;
-  
-  .mobile .withButtons & {
-    align-self: center;
-    font-size: ${({ theme }) => theme.font.size[12]};
-    line-height: normal;
-  }
-`
 
+  ::after {
+     content: "";
+     position: absolute;
+     width: 100%;
+     height: 50px;
+     left: 0;
+     bottom: 0;
+     background: ${({ theme }) => theme.gradients.whiteGradient};
+  }
+  .mobile .show-buttons & {}
+`;
 const Price = styled.div`
-  display: grid;
-  align-content: center;
-  justify-content: right;
+  display: flex;
+  align-items: center;
+  justify-content: left;
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[700]};
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.black};
   
-  .mobile .withButtons & {
+  .mobile .show-buttons & {
     justify-content: start;
   }
-`
-
-const Buttons = styled.div`
-  display: grid;
-  justify-content: space-between;
-  grid-auto-flow: column;
-  align-content: center;
-  height: 90px;
-  //margin: 0 26px;
-  
-  .mobile & {
-    height: auto;
-    margin: 20px 0;
-    //margin: 20px 26px 0 26px;
-    /*margin: 0;
-    height: 100%;
-    position: absolute;
-    grid-auto-flow: row;
-    right: 0;
-    top: 0;
-    align-content: space-between;
-    justify-items: end;*/
-  }
-`
-
-const Button = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: white;
-  box-shadow: 0px 9px 18px 7px rgba(0, 0, 0, 0.17);
-  cursor: pointer;
-  display: grid;
-  align-content: center;
-  justify-content: center;
-  opacity: 0.7;
-
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[700]};
-  color: ${({ theme }) => theme.colors.blue};
-
-  &:hover {
-    opacity: 1;
-  }
-  
-  /*.mobile .withButtons & {
-    background: none;
-    box-shadow: none;
-  }*/
-`
-
-const ButtonDelete = styled(Button)`
-  border-radius: 20px 0 0 20px;
-  box-shadow: none;
-`
-
-const ButtonAdd = styled(Button)`
-  border-radius: 0 20px 20px 0;
-  box-shadow: none;
-`
-
-const ButtonFavourite = styled(Button)``;
-
-const ButtonInfoStyle = styled(Button)`
-  width: auto;
-  padding: 0 20px;
-  opacity: 1;
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
-  grid-gap: 10px; gap: 10px;
-  
-  .mobile & {
-    /*grid-auto-flow: row;
-    padding: 0;*/
-  }
 `;
-
-const Size = styled.div`
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
-const ButtonsAddDelete = styled.div`
-  display: flex;
-  border-radius: 20px;
-  box-shadow: 0px 9px 18px 7px rgba(0,0,0,0.17);
-`;
-
-const ButtonInfo = (props: {size?: string; count?: number}) => {
-    if (props.size || props.count) {
-        return <ButtonInfoStyle>
-            {props.size ?
-                <Size>
-                    {props.size}
-                </Size>
-                : null
-            }
-            {
-                props.size && props.count ?
-                    <div>•</div>
-                    : null
-            }
-            {props.count ?
-                <div>{props.count} шт.</div>
-                : null
-            }
-        </ButtonInfoStyle>
-    }
-    else {
-        return <></>;
-    }
-}
-
-const StarStyle = styled.div`
-  background-image: url(${icons.star});
+const StarImg = styled.div` 
   position: absolute;
-  width: 86px;
-  height: 86px;
+  top: 20px;
+  left: 20px;
+  width: 24px;
+  height: 24px;
+  background: url(${icons.heartIco2}) center no-repeat;
   z-index: 1;
-
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[800]};
-  color: ${({ theme }) => theme.colors.white};
-
-  display: grid;
-  align-content: center;
-  transform: rotate(-33deg);
 `;
-
-const Star = (props: {children: string}) => {
-    return <StarStyle>
-        {props.children}
-    </StarStyle>
+const FavouriteButton = (props: {onClick?: any, imageUrl?: string}) => {
+   return <Favourite onClick={props.onClick}><img src={props.imageUrl || ''} /></Favourite>;
+} 
+const Star = (props: {children: string}) => { 
+    return <StarImg>{props.children}</StarImg> 
 }
-
-export const Product = (props: {data: ProductType; noStar?: boolean, current_size?: boolean}) => {
-    const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
-    
-    return (
-        <ProductStyle href={URLs.PRODUCT.replace(':id', '' + props.data.id)}>
-            {
-                props.data.discount && !props.noStar ?
-                    <Star>{props.data.discount}</Star>
-                    :
-                    null
-            }
-            <Image src={props.data.image && props.data.image.length ? BASE_URL + props.data.image[0] : ''} />
-            <Info>
-                <Title>{props.data.title}</Title>
-                <Description>{props.data.description}</Description>
-                {hidePrice ? null : 
-                    (props.data.order_size_price && props.current_size) ?
-                        <Price>{showMoneySum(props.data.order_size_price *
-                            (props.data.amount_of_product ? props.data.amount_of_product : 1))} РУБ</Price>
-                        : props.data.price ?
-                            <Price>от {showMoneySum(props.data.price *
-                                (props.data.amount_of_product ? props.data.amount_of_product : 1))} РУБ</Price>
-                            : null
-                }
-            </Info>
-        </ProductStyle>
-    );
-}
-
-export const ProductWithButtons = (props: {data: ProductType; onlyFavourite?: boolean, current_size?: boolean}) => {
-
+export const ProductTools = (props: {data: ProductType; onlyFavourite?: boolean, current_size?: boolean}) => {
     const Favourites = useTypedSelector((store) => store.Favourites);
     const {products} = Favourites as IStateFavourites;
     const dispatch = useDispatch();
-
     const DeleteFromCart = () => {
         ApiMethod({
             func: 'patch',
@@ -301,12 +181,8 @@ export const ProductWithButtons = (props: {data: ProductType; onlyFavourite?: bo
             },
             url: '/product/api/v2/order/add_product/',
             auth: true
-        })
-            .then(success => {
-                GetCart()(dispatch);
-            });
+        }).then(success => { GetCart()(dispatch); });
     }
-
     const AddToCart = () => {
         ApiMethod({
             func: 'patch',
@@ -316,16 +192,11 @@ export const ProductWithButtons = (props: {data: ProductType; onlyFavourite?: bo
             },
             url: '/product/api/v2/order/add_product/',
             auth: true
-        })
-            .then(success => {
-                GetCart()(dispatch);
-            });
+        }).then(success => { GetCart()(dispatch); });
     }
-
     const IsFavourite = () => {
-        return Boolean(products.find(product => product.id == props.data.id))
+        return !!products.find(product => product.id == props.data.id);
     }
-
     const MarkAsFavourite = () => {
         if (IsFavourite()) {
             ApiMethod({
@@ -343,28 +214,45 @@ export const ProductWithButtons = (props: {data: ProductType; onlyFavourite?: bo
             }).then(success => GetFavourites()(dispatch))
         }
     }
-
-    return (
-        <ButtonsContainer>
-            <Product data={props.data} current_size={props.current_size}></Product>
-            <Buttons>
-                <ButtonFavourite onClick={MarkAsFavourite}>
-                    <img src={IsFavourite() ? icons.favourite : icons.not_favourite}/>
-                </ButtonFavourite>
-                <ButtonInfo size={props.data.product_order_size} count={props.data.amount_of_product} />
-                {
-                    props.data.product_order_size ?
-                    <ButtonsAddDelete>
-                        <ButtonDelete onClick={DeleteFromCart}>
-                            <img src={icons.delete}/>
-                        </ButtonDelete>
-                        <ButtonAdd onClick={AddToCart}>
-                            <img src={icons.add}/>
-                        </ButtonAdd>
-                    </ButtonsAddDelete>
-                        :null
-                }
-            </Buttons>
-        </ButtonsContainer>
+    const size = props.data.product_order_size;
+    const count = props.data.amount_of_product;
+    const countAndSizeInfo = size ? (count ? (size+' x '+count) : size) : count ? (count+' шт.') : '';
+    const imagePath = IsFavourite() ? icons.heartIco2 : icons.heartIco1;
+    return (props.data.product_order_size ?  
+        <Tools>
+            <FavouriteButton onClick={MarkAsFavourite} imageUrl={imagePath} />
+            <AddRemoveButtonContainer>
+                <CountText>{countAndSizeInfo}</CountText>
+                <RemoveButton onClick={DeleteFromCart}></RemoveButton>
+                <AddButton onClick={AddToCart}></AddButton>
+            </AddRemoveButtonContainer>
+        </Tools> : null
     );
+}
+const ProductContent = (props: {data: ProductType; noStar?: boolean, onlyFavourite?: boolean, current_size?: boolean, tools: boolean}) => {
+  const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
+  const productPath = URLs.PRODUCT.replace(':id', '' + props.data.id);
+  const imagePath = props.data.image && props.data.image.length ? (BASE_URL + props.data.image[0]) : '';
+  return (
+      <Main >
+          { (props.data.discount && !props.noStar) ? <Star>{props.data.discount}</Star> : null }
+          <ImageContainer href={productPath} ><Image src={imagePath} /></ImageContainer>
+          { props.tools ? <ProductTools data={props.data} onlyFavourite={props.onlyFavourite} current_size={props.current_size} /> : null }
+          <Info>
+              <Title href={productPath}>{props.data.title}</Title>
+              <Description>{props.data.description}</Description>
+              {hidePrice ? null : (props.data.order_size_price && props.current_size) ?
+                  <Price>{showMoneySum(props.data.order_size_price *(props.data.amount_of_product ? props.data.amount_of_product : 1))} ₽</Price>
+                  : props.data.price ?
+                  <Price>от {showMoneySum(props.data.price * (props.data.amount_of_product ? props.data.amount_of_product : 1))} ₽</Price> : null
+              }
+          </Info>
+      </Main>
+  );
+}
+export const ProductWithButtons = (props: {data: ProductType; onlyFavourite?: boolean, current_size?: boolean}) => {
+    return <ProductContent data={props.data} onlyFavourite={props.onlyFavourite} current_size={props.current_size || false} tools={true} />
+}
+export const Product = (props: {data: ProductType; noStar?: boolean, current_size?: boolean, tools?: any}) => {
+  return <ProductContent data={props.data} current_size={props.current_size || false} tools={false} />
 }

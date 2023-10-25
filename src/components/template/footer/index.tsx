@@ -1,158 +1,164 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as constants from "src/utils/constants";
-import logo from "src/logo/logo.png";
 import styled from "styled-components";
-import {isMobile} from "src/utils/isMobile";
-import BottomSearch from "components/template/footer/bottomSearch";
+import {InputText} from "components/shared/forms/inputText";
+import {URLs} from "src/utils/constants";
+import logoImage from "src/images/logo-grayscale-1.svg";
 
-const FooterStyle = styled.div`
-  background: #1C446EAB;
-  height: 316px;
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr 1fr;
-  
-  .mobile & {
-    height: auto;
-    grid-auto-flow: row;
-    grid-template-columns: auto;
-    background: #3C5773;
-    padding: 16px;
-  }
+const Main = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 100px 30px; 
+  box-view: border-box;
+  background: ${({ theme }) => theme.colors.whiteGrayBlue};
+  .mobile & {}
 `;
-
-const Info = styled.div`
-  text-align: left;
-  display: grid;
+const Content = styled.div`
+  position: relative;
+  display: flex;
+  align-items: start;
   justify-content: center;
-  align-content: start;
-  grid-gap: 20px; gap: 20px;
-  font-size: ${({ theme }) => theme.font.size[12]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.white};
-  
-  .mobile & {
-    justify-content: start;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1410px;
+  height: 100%;
+  margin: 0 auto;
+  @media (max-width: 1460px) {
+      gap: 60px;
   }
 `;
-
-const Logo = styled.div`{
-  & img {
-    height: 80px;
-    margin-top: 20px;
-  }
-  
-  .mobile & img {
-    height: auto;
-    width: 30%;
-  }
-}`;
-
-const HighText = styled.div`
-  font-size: 16px;
-`;
-
-const Navigation = styled.div`
+const ContentColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-contet: start;
+  width: 25%;
+  min-width: 300px;
+  height: 100%;
   text-align: left;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  grid-gap: 20px; gap: 20px;
-  
-  .mobile & {
-    margin-top: 40px;
-    margin-bottom: 60px;
-    justify-content: stretch;
+  box-view: border-box;
+  @media (max-width: 1460px) {
+     padding: 0 10%;
   }
+  @media (max-width: 1140px) {
+    padding: 0;
+  }
+  .mobile & {}
 `;
-
-const NavigationList = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-auto-flow: column;
-  grid-gap: 16px 32px; gap: 16px 32px;
-  font-size: ${({ theme }) => theme.font.size[12]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.font.white};
-`;
-
 const Title = styled.div`
-  .mobile & {
-    font-size: ${({ theme }) => theme.font.size[18]};
-  }
+  margin: 0 0 30px 0;
+  color: ${({ theme }) => theme.colors.blue};
+  font-size: ${({ theme }) => theme.font.size[20]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  text-transform: uppercase;
 `;
-
-const NavigationHeader = styled.div`
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[700]};
-  
-  .mobile & {
-    justify-self: center;
+const Company = styled(ContentColumn)`
+  gap: 10px;
+  color: ${({ theme }) => theme.colors.blue};
+  font-size: ${({ theme }) => theme.font.size[13]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  @media (max-width: 1460px) {
+    order: 4;
   }
+  div {
+    width: 100%;
+    max-width: 220px;
+  }
+  .mobile & {}
 `;
-
-const Link = styled.a`
-  color: #fff;
+const Logo = styled.div`
+  width: 160px;
+  height: 30px;
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  background: url("${logoImage}") no-repeat left;
+  background-size: 160px 30px;
+  .mobile & {}
+`;
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background: ${({ theme }) => theme.colors.blue};
+  .mobile & {}
+`;
+const Menu = styled(ContentColumn)`
+  .mobile & {}
+`;
+const TextItem = styled.div`
+  margin: 0 0 10px 0;
+  color: ${({ theme }) => theme.colors.blackA};
+  font-size: ${({ theme }) => theme.font.size[17]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
   text-decoration: none;
-  &:visited {
-    color: #fff;
-    text-decoration: none;
-  }
-  &:hover {
-    text-decoration: underline;
-  }
+   .mobile & {}
 `;
-
+const LinkItem = styled.a`
+  margin: 0 0 10px 0;
+  color: ${({ theme }) => theme.colors.blackA};
+  font-size: ${({ theme }) => theme.font.size[17]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  text-decoration: none;
+   .mobile & {}
+`;
+const Contacts = styled(ContentColumn)`
+  color: ${({ theme }) => theme.colors.blackA};
+  font-size: ${({ theme }) => theme.font.size[17]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  text-decoration: none;
+  .mobile & {}
+`;
+const Search = styled(ContentColumn)`
+   order: 3;
+  .mobile & {}
+`;
+const SearchFormWrapper = styled.div`
+`;
+const SearchForm = () => {
+  const [searchInput, setSearchInput] = useState<any>(null);
+  const search = (event: any) => {
+      event.preventDefault();
+      window.open(URLs.SEARCH_WITH_PARAM.replace(':search', searchInput.value), '_self');
+  }
+  return (
+      <SearchFormWrapper>
+          <form onSubmit={search} >
+              <InputText placeholder='Поиск' setObj={setSearchInput}></InputText>
+          </form>
+      </SearchFormWrapper>
+  )
+}
 const Footer = () => {
     return (
-        isMobile() ?
-            <FooterStyle>
-                <Info>
-                    <Logo><img src={logo} /></Logo>
-                    <Title>{constants.INFO.TITLE}</Title>
-                    <BottomSearch />
-                    <HighText>{constants.INFO.PHONE_NUMBER}</HighText>
-                    <HighText>{constants.INFO.EMAIL}</HighText>
-                    <div>{constants.INFO.ADDRESS}</div>
-                </Info>
-                <Navigation>
-                    <NavigationHeader>Навигация</NavigationHeader>
-                    <NavigationList>
-                        <Link href={constants.URLs.ROOT}>Главная</Link>
-                        <Link href={constants.URLs.CATALOG}>Каталог</Link>
-                        <Link href={constants.URLs.PROMOTION}>Акции</Link>
-                        <Link href={constants.URLs.CONTACTS}>Контакты</Link>
-                        <Link href={constants.URLs.REVIEWS}>Отзывы</Link>
-                        <Link href={constants.URLs.CART}>Корзина</Link>
-                        <Link href={constants.URLs.PAYMENT}>Доставка и оплата</Link>
-                        <Link href={constants.URLs.LK}>Личный кабинет</Link>
-                    </NavigationList>
-                </Navigation>
-            </FooterStyle>
-            :
-            <FooterStyle>
-                <Info>
-                    <Logo><img src={logo} /></Logo>
-                    <div>{constants.INFO.TITLE}</div>
-                    <HighText>{constants.INFO.PHONE_NUMBER}</HighText>
-                    <HighText>{constants.INFO.EMAIL}</HighText>
-                    <div>{constants.INFO.ADDRESS}</div>
-                </Info>
-                <Navigation>
-                    <NavigationHeader>Навигация</NavigationHeader>
-                    <NavigationList>
-                        <Link href={constants.URLs.ROOT}>Главная</Link>
-                        <Link href={constants.URLs.CATALOG}>Каталог</Link>
-                        <Link href={constants.URLs.PROMOTION}>Акции</Link>
-                        <Link href={constants.URLs.CONTACTS}>Контакты</Link>
-                        <Link href={constants.URLs.REVIEWS}>Отзывы</Link>
-                        <Link href={constants.URLs.CART}>Корзина</Link>
-                        <Link href={constants.URLs.PAYMENT}>Доставка и оплата</Link>
-                        <Link href={constants.URLs.LK}>Личный кабинет</Link>
-                    </NavigationList>
-                </Navigation>
-                <BottomSearch />
-            </FooterStyle>
+            <Main>
+                <Content>
+                    <Company>
+                        <Logo onClick = {() => window.open(URLs.ROOT, '_self')} />
+                        {constants.INFO.TITLE}
+                        <Line />
+                        Все права защищены  © 2023
+                    </Company>
+                    <Menu>
+                        <Title>Навигация</Title>
+                        <LinkItem href={constants.URLs.ROOT}>Главная</LinkItem>
+                        <LinkItem href={constants.URLs.CATALOG}>Каталог</LinkItem>
+                        <LinkItem href={constants.URLs.PROMOTION}>Акции</LinkItem>
+                        <LinkItem href={constants.URLs.CONTACTS}>Контакты</LinkItem>
+                        <LinkItem href={constants.URLs.REVIEWS}>Отзывы</LinkItem>
+                        <LinkItem href={constants.URLs.CART}>Корзина</LinkItem>
+                        <LinkItem href={constants.URLs.PAYMENT}>Доставка и оплата</LinkItem>
+                        <LinkItem href={constants.URLs.LK}>Личный кабинет</LinkItem>
+                    </Menu>
+                    <Contacts>
+                        <Title>Контакты</Title>
+                        <TextItem>{constants.INFO.EMAIL}</TextItem>
+                        <TextItem>{constants.INFO.PHONE_NUMBER}</TextItem>
+                        <TextItem>{constants.INFO.ADDRESS}</TextItem>
+                    </Contacts>
+                    <Search>
+                        <Title>Поиск</Title>
+                        <SearchForm />
+                    </Search>
+                </Content>
+            </Main>
     );
 };
 

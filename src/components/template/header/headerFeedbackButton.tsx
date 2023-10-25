@@ -1,14 +1,14 @@
 import React, {useCallback} from 'react';
 import styled, {css} from "styled-components";
 import {headerMenuButton} from "src/utils/types";
-import HeaderButton from "components/template/header/headerButton";
+import HeaderButton from "src/components/template/header/headerButton";
 import {icons} from "src/utils/icons";
 
-const HeaderFeedbackButtonStyle = styled.div`
+const Main = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px;
+  min-width: 180px;
   height: 34px;
   background-image: url("${icons.header.phone}");
   background-repeat: no-repeat;
@@ -23,14 +23,14 @@ const HeaderFeedbackButtonStyle = styled.div`
   cursor: pointer; 
   .mobile & {}
 `;
-const TextStyled = styled.div`
+const Text = styled.div`
   padding: 0 0 0 14px;
   .mobile & {}
 `;
 const HeaderFeedbackButton = (props: { data: headerMenuButton }) => {
     return (
-        <HeaderButton styled={HeaderFeedbackButtonStyle} href={props.data.href} func={props.data.func} auth={props.data.auth}>
-            <TextStyled>Заказать звонок</TextStyled>
+        <HeaderButton styled={Main} href={props.data.href} func={props.data.func} auth={props.data.auth}>
+            <Text>Заказать звонок</Text>
         </HeaderButton>
     );
 };

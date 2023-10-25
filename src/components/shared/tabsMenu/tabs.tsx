@@ -1,48 +1,33 @@
 import React from 'react';
 import styled from "styled-components";
-import {Main} from "src/themes/main";
-import {isMobile} from "src/utils/isMobile";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateTabsMenu} from "src/reducers/TabsMenuReducer/TabsMenuReducer.types";
 
-const TabStyle = styled.div`
+const TabsMain = styled.div<{height?: string}>`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: ${props => props.height || 'auto'};
+`;
+const TabMain = styled.div`
   position: relative;
   transition: left 0.3s;
-  
-  &.hidden {
-    height: 0;
-    overflow: hidden;
-  }
-`
-
+  margin: 0 0 60px 0;
+  &.hidden { display: none; }
+  &.mobile{}
+`;
 const Tab = (props: {children: any, self: number}) => {
-
     const TabsMenu = useTypedSelector((store) => store.TabsMenu);
     const {pos} = TabsMenu as IStateTabsMenu;
-    const margin = isMobile() ? Main.values.contentMobileMargin : Main.values.contentMargin;
-
     return (
-        <TabStyle className={props.self == pos ? '' : 'hidden'} style={{ left: 'calc(-100% * ' + pos + ' + ' + margin + 'px * ' + (props.self - pos) + ')' }}>
+        <TabMain className={props.self == pos ? '' : 'hidden'} >
             {props.children}
-        </TabStyle>
+        </TabMain>
     )
 };
-
-
-
-const TabsStyle = styled.div<{height: string}>`
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  height: ${props => props.height};
-`;
-
 const Tabs = (props: {tabs: any[]}) => {
-
     return (
-        <TabsStyle height={'auto'}>
-            { props.tabs.map((tab, i) => <Tab key={i} self={i}>{tab}</Tab>) }
-        </TabsStyle>
+        <TabsMain>{ props.tabs.map((tab, i) => <Tab key={i} self={i}>{tab}</Tab>) }</TabsMain>
     );
 };
 

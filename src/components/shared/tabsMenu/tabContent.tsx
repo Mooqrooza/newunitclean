@@ -1,18 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
 
-const TabContentStyle = styled.div`
-  display: grid;
-  grid-gap: 56px; gap: 56px;
-  margin-bottom: 70px;
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `;
-
 const TabContent = (props: {children: any}) => {
-    return (
-        <TabContentStyle>
-            {props.children}
-        </TabContentStyle>
-    );
+    return (<Main>{props.children}</Main>);
 };
 
 export default TabContent;

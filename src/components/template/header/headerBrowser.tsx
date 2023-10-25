@@ -11,7 +11,7 @@ import {WINDOW_SEARCH} from "src/actions/WindowsManagerAction/WindowsManagerActi
 import {URLs} from "src/utils/constants";
 import {icons} from "src/utils/icons";
 
-const HeaderContainerStyle = styled.div` 
+const Main = styled.div` 
   display: flex;
   justify-content: center;
   height: 100px;
@@ -21,9 +21,13 @@ const HeaderContainerStyle = styled.div`
     z-index: 2;
     position: relative;
   }
+  @media (max-width: 1553px) {
+      padding: 0 60px;
+      box-view: border-box;
+  }
   .mobile & {}
 `;
-const HeaderContainerInnerStyle = styled.div`
+const Content = styled.div`
   display: flex;
   align-items: center;
   flex: 1;
@@ -31,7 +35,7 @@ const HeaderContainerInnerStyle = styled.div`
   height: 100%;
   .mobile & {}
 `
-const HeaderButtonsContainer = styled.div`
+const LinksContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: end;
@@ -49,50 +53,50 @@ const Logo = () => {
     return (<LogoStyle onClick={home}>
         <img src={icons.header.logo} />
     </LogoStyle>)
-}
-const LineStyle = styled.div`
+};
+const Line = styled.div`
   width: 1px;
   height: 64px;
   margin: 0 18px 0 6px;
   background: black;
   opacity: 0.1;
   .mobile & {}
-`
-const PhoneFeedbackStyled = styled.div`
+`;
+const PhoneFeedback = styled.div`
   display: flex;
   flex-direction: column;
   align-tems: center;
   justify-content: center;
   .mobile & {}
-`
+`;
 const PhoneNumberText = styled.div`
   user-select: text;
   margin: 10px 0 0 0;
   font-size: ${({ theme }) => theme.font.size[15]};
   font-weight: ${({ theme }) => theme.font.weight[500]};
-  color: ${({ theme }) => theme.colors.black}
+  color: ${({ theme }) => theme.colors.black};
   .mobile & {}
 `;
 const PphoneFeedback =  (props: {}) => {
-    return (<PhoneFeedbackStyled>
+    return (<PhoneFeedback>
         <HeaderFeedbackButton data={{ func: showFeedback }}></HeaderFeedbackButton>
         <PhoneNumberText>{constants.INFO.PHONE_NUMBER}</PhoneNumberText>
-    </PhoneFeedbackStyled>)
+    </PhoneFeedback>)
 }
 const HeaderContainer = (props: { buttons: headerMenuButton[] }) => {
     const WindowsManager = useTypedSelector((store) => store.WindowsManager);
-    const {window} = WindowsManager as IStateWindows;
+    const {window: Window} = WindowsManager as IStateWindows;
     return (
-        <HeaderContainerStyle className={window == WINDOW_SEARCH ? 'search' : ''}>
-            <HeaderContainerInnerStyle>
+        <Main className={Window == WINDOW_SEARCH ? 'search' : ''}>
+            <Content>
                 <Logo></Logo>
-                <HeaderButtonsContainer>
+                <LinksContainer>
                     { props.buttons.map((button, i) => <HeaderMenuButton data={button} key={i} />) }
-                </HeaderButtonsContainer>
-                <LineStyle></LineStyle>
+                </LinksContainer>
+                <Line></Line>
                 <PphoneFeedback></PphoneFeedback>
-            </HeaderContainerInnerStyle>
-        </HeaderContainerStyle>
+            </Content>
+        </Main>
     );
 }
 

@@ -6,7 +6,6 @@ interface Tab {
     title: string;
     content: any;
 }
-
 const TabsMenu:React.FC<{tabs: Tab[]}> = (props: {tabs: Tab[]}) => {
     return (
         <div>

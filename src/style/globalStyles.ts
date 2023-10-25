@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import {Main as Theme} from 'src/themes/main';
 
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@300;400;500;700;900&display=swap');
@@ -78,5 +79,8 @@ export default createGlobalStyle`
   }
   p {
     text-indent: 2em;
+  }
+  a:hover {
+    color: ${Theme.colors.orange};
   }
 `

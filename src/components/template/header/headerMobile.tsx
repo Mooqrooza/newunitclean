@@ -5,24 +5,28 @@ import styled from "styled-components";
 import {icons} from "src/utils/icons";
 import logo from "src/icons/header/logo-1.svg";
 import { headerMenuButton } from "src/utils/types";
-import HeaderButton from "components/template/header/headerButton";
+import HeaderFeedbackButton from "components/template/header/headerFeedbackButton";
+import {showFeedback} from "components/template/header/headerFuncs";
+import HeaderButton from "src/components/template/header/headerButton";
 import {CloseMobileMenu, SwitchMobileMenu} from "src/actions/MobileMenuAction/MobileMenuAction";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateMobileMenu} from "src/reducers/MobileMenuReducer/MobileMenuReducer.types";
 import {URLs} from "src/utils/constants";
 
-const HeaderTab = styled.div`
+const Main = styled.div`
   position: relative;
   display: flex;
   align-items: center;
   height: 80px;
   padding: 0 20px;
   background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.04); 
   .mobile & {}
 `;
 const HeaderTabButton = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
   z-index: 3;
   .mobile & {}
 `;
@@ -30,6 +34,7 @@ const HeaderTabCloseButton = styled.div`
   display: flex;
   align-items: center;
   margin: 6px 0 0 calc(100% - 24px);
+  cursor: pointer;
   z-index: 3;
   .mobile & {}
 `;
@@ -49,7 +54,7 @@ const Logo = () => {
         <img src={logo} />
     </LogoStyle>)
 }
-const VLineStyle = styled.div`
+const LineA = styled.div`
   width: 1px;
   height: 44px;
   margin: 0 15px;
@@ -57,7 +62,7 @@ const VLineStyle = styled.div`
   opacity: 0.1;
   .mobile & {}
 `;
-const HLineStyle = styled.div`
+const LineB = styled.div`
   width: 100%;
   height: 1px;
   background: black;
@@ -89,7 +94,8 @@ const MovingTabMenu = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  & div{ 
+  min-width: 180px;
+  & div:not(:last-child){ 
     text-align: left;
     margin: 25px 0; 
     padding: 0;
@@ -101,20 +107,29 @@ const PhoneNumberText = styled.div`
   margin: 10px 0 0 0;
   font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: ${({ theme }) => theme.colors.black}
+  color: ${({ theme }) => theme.colors.black};
   .mobile & {}
 `;
 const MovingTabButton = styled.div`
   padding-left: 16px;
   font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
+  cursor: pointer;
   .mobile & {}
 `;
-const MobileButtonStyle = styled.a`
+const LinkButton = styled.a`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.black};
+  cursor: pointer;
   .mobile & {}
 `;
+const Link = (props: {data: headerMenuButton}) => {
+  return (
+      <HeaderButton styled={LinkButton} href={props.data.href} func={props.data.func} auth={props.data.auth}>
+          {props.data.text}
+      </HeaderButton>
+  );
+}
 const HeaderContainerMobile = (props: { buttons: headerMenuButton[]}) => {
     const MobileMenu = useTypedSelector((store) => store.MobileMenu);
     const {opened} = MobileMenu as IStateMobileMenu;
@@ -142,33 +157,29 @@ const HeaderContainerMobile = (props: { buttons: headerMenuButton[]}) => {
         }
         touches = [];
     }
+    const onShowFeedback = () => {
+      SwitchMobileMenu()(dispatch);
+      showFeedback();
+    }
     return (
-        <HeaderTab>
+        <Main>
             <Logo />
             <HeaderTabButton>
                 <HeaderButton styled={styled.a``} href={constants.URLs.CART} auth={true} ><img src={icons.header.bag}/></HeaderButton>
             </HeaderTabButton>
-            <VLineStyle />
+            <LineA />
             <HeaderTabButton onClick={() => SwitchMobileMenu()(dispatch)}><img src={icons.header.menu}/></HeaderTabButton>
             <MovingTab className={ opened ? 'opened' : 'closed' } onTouchStart={touchStart} onTouchEnd={touchEnd} onTouchMove={touchMove}>
                 <HeaderTabCloseButton onClick={() => SwitchMobileMenu()(dispatch)}><img src={icons.header.close}/></HeaderTabCloseButton>
                 <MovingTabMenu>
-                    { props.buttons.map((button, i) => <MovingTabButton key={i}><MobileButton data={button} /></MovingTabButton>) }
-                    <HLineStyle />
+                    { props.buttons.map((button, i) => <MovingTabButton key={i}><Link data={button} /></MovingTabButton>) }
+                    <LineB />
                     <PhoneNumberText>{constants.INFO.PHONE_NUMBER}</PhoneNumberText>
+                    <HeaderFeedbackButton data={{ func: onShowFeedback }}></HeaderFeedbackButton>
                 </MovingTabMenu>
-                
             </MovingTab>
-        </HeaderTab>
+        </Main>
     );
 };
-
-const MobileButton = (props: {data: headerMenuButton}) => {
-    return (
-        <HeaderButton styled={MobileButtonStyle} href={props.data.href} func={props.data.func} auth={props.data.auth}>
-            {props.data.text}
-        </HeaderButton>
-    );
-}
 
 export default HeaderContainerMobile;

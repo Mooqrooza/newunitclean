@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import * as constants from "src/utils/constants";
 import HeaderContainer from "components/template/header/headerBrowser";
 import HeaderContainerMobile from "components/template/header/headerMobile";
-import {isMobile} from "src/utils/isMobile";
 import {icons} from "src/utils/icons";
 
 const buttons = [
@@ -14,9 +13,25 @@ const buttons = [
     {href: constants.URLs.CART, text: "Корзина", icon: icons.cart, auth: true}
 ]
 const Header = (props?: any) => {
+    const requireMinView = () => window.innerWidth < 1210;
+    const [minView, setMinView] = useState(requireMinView());
+    let resizeOfsetTmr:any = null;
+    const winResize = (e:any) => {
+        clearTimeout(resizeOfsetTmr);
+        resizeOfsetTmr = setTimeout(() => {
+            if (requireMinView()) {
+                if (!minView) { setMinView(true); }
+            } else {
+                if (minView) { setMinView(false); }
+            }
+        }, 100);
+    }  
+    useEffect(() => {
+        window.addEventListener('resize', winResize);
+    }, [minView]);
     return (
         <div>
-            { isMobile() ? 
+            { minView ? 
                 <HeaderContainerMobile buttons={buttons} ></HeaderContainerMobile>
                 : <HeaderContainer buttons={buttons}></HeaderContainer>
             }

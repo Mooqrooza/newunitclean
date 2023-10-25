@@ -16,14 +16,12 @@ const ImageContainer = styled.div`
   padding: 25px;
   box-sizing: border-box;
   border-radius 30px;
+  transition: all 0.25s ease-in-out;
   background: ${({theme}) => theme.colors.grayB};
   
   &:hover {
-    box-shadow: ${({theme}) => theme.shadows.shadowA};
-    transform: scale(1.01);
-    transition: all 0.25s ease-in-out;
+    box-shadow: ${({theme}) => theme.shadows.shadowA};   
   }
-
   @media (max-width: 690px) {}
   .mobile & {}
 `

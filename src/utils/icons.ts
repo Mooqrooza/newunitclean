@@ -74,6 +74,10 @@ import whyWeIco2 from '../icons/whywe-ico-2.svg'
 import whyWeIco3 from '../icons/whywe-ico-3.svg'
 import whyWeIco4 from '../icons/whywe-ico-4.svg'
 import rightIco1 from '../icons/right-ico-1.svg'
+import heartIco1 from '../icons/heart-ico-1.svg'
+import heartIco2 from '../icons/heart-ico-2.svg'
+import plusIco from '../icons/plus-ico-1.svg'
+import closeDeleteIco from '../icons/close-delete-ico-1.svg'
 
 export const icons = {
     header: {
@@ -82,7 +86,7 @@ export const icons = {
         bag: headerBag,
         menu: headerMenu,
         close: headerClose,
-        closeA: headerClose2
+        closeA: headerClose2, 
     },
 
     shine: shine,
@@ -91,7 +95,11 @@ export const icons = {
     whyWeIco3: whyWeIco3,
     whyWeIco4: whyWeIco4,
     rightIco1: rightIco1,
-    
+    heartIco1: heartIco1,
+    heartIco2: heartIco2,
+    plusIco: plusIco,
+    closeDeleteIco: closeDeleteIco,
+
     lk: lk,
     cart: cart,
     search: search,

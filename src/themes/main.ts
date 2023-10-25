@@ -8,6 +8,7 @@ export const Main = {
             15: '15px',
             16: '16px',
             18: '18px',
+            17: '17px',
             20: '20px',
             22: '22px',
             24: '24px',
@@ -41,6 +42,7 @@ export const Main = {
     colors: {
         white: 'white',
         black: '#1E1E1E',
+        blackA: '#5E5E5E',
         gray: '#8D8D8D',
         grayA: '#DBDBDB',
         grayB: '#F8F8F8',
@@ -49,11 +51,13 @@ export const Main = {
         blueA: '#2F63BC',
         blueB: '#568BE7',
         blueC: '#A1C0F4',
+        whiteGrayBlue: '#EFF0F2',
         whiteBlue: '#D2E3FF',
         whiteBlueA: '#EDF3F9',
         whiteBlueB: '#E3E9F3',
         whiteBlueC: '#F2F6F9',
         whiteBlueD: '#f6f9fb',
+        whiteBlueE: '#DBE4EC',
         orange: '#E46E28',
         orangeA: '#F07E3B',
         whiteOrange: '#F9E5D9',
@@ -73,7 +77,8 @@ export const Main = {
     },
     gradients: {
         softBlueGradient: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));',
-        softBlueGradientA: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));'
+        softBlueGradientA: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));',
+        whiteGradient: 'linear-gradient(0deg, #FFF 0%, rgba(255, 255, 255, 0.00) 50%);'
     },
     shadows: {
        shadow: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)',

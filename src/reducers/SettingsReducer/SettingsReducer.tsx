@@ -5,7 +5,7 @@ import {
 } from "src/actions/SettingsAction/SettingsAction.types";
 
 const initialStateSettings = {
-  hidePrice: true,
+  hidePrice: false,
 };
 
 

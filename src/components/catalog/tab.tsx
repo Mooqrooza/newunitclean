@@ -6,31 +6,34 @@ import styled from "styled-components";
 import EmptyBasket from "components/shared/productsList/empty";
 
 const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.size[28]};
-  font-weight: ${({ theme }) => theme.font.weight[900]};
-  color: ${({ theme }) => theme.colors.gray};
-  text-align: center;
-  margin: 0px;
-  
-  .mobile & {
-    text-align: left;
-  }
+  padding: 0;
+  margin: 0;
+  line-height: 1em;
+  text-align: left;
+  color: ${({ theme }) => theme.colors.black};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  font-size: ${({ theme }) => theme.font.size[32]}; 
+  .mobile & {}
 `;
-
+const TabContentContainer = styled.h2`
+  margin: 0 0 60px 0;
+`;
 const Tab = (props: {title: string; products: ProductType[]}) => {
-
     return (
-        props.products.length
-            ?
-            <TabContent>
-                <Title>{props.title}</Title>
-                <ProductsList products={props.products}></ProductsList>
-            </TabContent>
+        props.products.length ?
+            <TabContentContainer>
+                <TabContent>
+                    <Title>{props.title}</Title>
+                    <ProductsList products={props.products}></ProductsList>
+                </TabContent>
+            </TabContentContainer>
             :
-            <TabContent>
-                <Title>{props.title}</Title>
-                <EmptyBasket>Товаров в данной категории пока нет</EmptyBasket>
-            </TabContent>
+            <TabContentContainer>
+                <TabContent>
+                    <Title>{props.title}</Title>
+                    <EmptyBasket>Товаров в данной категории пока нет</EmptyBasket>
+                </TabContent>
+            </TabContentContainer>
     );
 };
 
