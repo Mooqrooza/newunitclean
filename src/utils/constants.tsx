@@ -11,11 +11,13 @@ export const CONTACT_MAP = (props: { height?: string; width?: string, embCode?: 
     );
 }
 
-export const getMapEmbed = (props: { height?: string; width?: string, embCode?: string }) => {
+export const getMapEmbed = (props: { minHeight?: string, height?: string; width?: string, embCode?: string }) => {
     return(
         <iframe
             src={props.embCode || ''}
-            height={props.height} width={props.width} style={{border:0}} allowFullScreen={true} loading="lazy"
+            height={props.height} width={props.width} 
+            style={{border:0, minHeight: props.minHeight || 'auto'}} 
+            allowFullScreen={true} loading="lazy"
             referrerPolicy="no-referrer-when-downgrade">
         </iframe>
     );

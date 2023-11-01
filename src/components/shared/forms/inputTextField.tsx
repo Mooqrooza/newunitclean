@@ -3,7 +3,14 @@ import INPUT_TEXT_FIELD from "./primitives/INPUT_TEXT_FIELD";
 import styled from "styled-components";
 import {ErrorMessage} from "components/shared/forms/inputText";
 
-export const DefaultInputTextFieldStyle = styled.div``;
+export const DefaultInputTextFieldStyle = styled.div`
+  display: flex;
+  align-items: start;
+  ustify-content: start;
+  gap: 10px;
+  min-width: 260px;
+  .mobile & {}
+`;
 interface InputFieldProps {
     placeholder?: string;
     setObj?: (obj: any) => void;
@@ -44,7 +51,7 @@ export class InputTextField extends Component<InputFieldProps, InputFieldState> 
     }
     render() {
         return (
-            <DefaultInputTextFieldStyle>
+            <DefaultInputTextFieldStyle className={'inputtext-field-wrapper'}>
                 <INPUT_TEXT_FIELD 
                     inputFieldState={this.state}
                     inputFieldProps={this.props}

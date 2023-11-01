@@ -48,7 +48,7 @@ export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any;
   font-weight: ${({ theme }) => theme.font.weight[400]};
   white-space: break-spaces;
   color: ${ ({ theme }) => theme.colors.white };
-  background: ${ ({ theme }) => theme.colors.grayA };
+  background: ${ ({ theme }) => theme.colors.grayB };
 
   &:hover {
     background: transparent;

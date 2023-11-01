@@ -6,31 +6,24 @@ import {useTypedSelector} from "src/store/configureStore";
 import {IStateProductList} from "src/reducers/ProductListReducer/ProductListReducer.types";
 import {useDispatch} from "react-redux";
 import {GetProductList} from "src/actions/ProductListAction/ProductListAction";
+import {SectionLabel} from "components/shared/fonts/specialFonts";
 
-const OtherProductsStyle = styled.div`
-  padding: 80px 0 0 0;
-  
-  .mobile & {
-    padding: 0 0 100px 0;
-  }
+const OtherProductsContainer = styled.div`
+  .mobile & {}
 `;
-
 const OtherProducts = (props: {self: number}) => {
     const state = useTypedSelector((store) => store);
     const productListState = state.ProductList as IStateProductList;
-
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
     useEffect(() => {
         stableDispatch(GetProductList());
     }, []);
-
     return (
-        <OtherProductsStyle>
-            <H2>Другие товары</H2>
+        <OtherProductsContainer>
+            <SectionLabel>Другие товары</SectionLabel>
             <ProductsList products={productListState.products.filter(product => product.id !== props.self).slice(0, 4)}></ProductsList>
-        </OtherProductsStyle>
+        </OtherProductsContainer>
     );
 };
 

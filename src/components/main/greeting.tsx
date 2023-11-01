@@ -82,8 +82,6 @@ const Image = styled.img`
   }
   .mobile & {}
 `;
-const labelStyle = `
-`
 const labelInfo = [
   {text: 'Автошампуни'},
   {text: 'Очистители'},

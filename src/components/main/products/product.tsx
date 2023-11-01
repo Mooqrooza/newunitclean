@@ -17,14 +17,14 @@ const ImageContainer = styled.div`
   box-sizing: border-box;
   border-radius 30px;
   transition: all 0.25s ease-in-out;
-  background: ${({theme}) => theme.colors.grayB};
+  background: ${({theme}) => theme.colors.grayC};
   
   &:hover {
     box-shadow: ${({theme}) => theme.shadows.shadowA};   
   }
   @media (max-width: 690px) {}
   .mobile & {}
-`
+`;
 const Image = styled.div<{src: string}>`
   display: block;
   margin: 0 auto;
@@ -55,7 +55,6 @@ const ProductStyle = styled.a`
     width: 100%;
   }
 `;
-
 const Info = styled.div`
   .mobile & {}
 `;
@@ -78,11 +77,8 @@ const Product = (props: {data: ProductType}) => {
             </ImageContainer>
             <Info>
                 <Title>{props.data.title}</Title>
-                {hidePrice ?  null :
-                    props.data.price ? <Price>Цены от <span>{showMoneySum(props.data.price) + ' руб.'}</span></Price> : null
-                }
+                { hidePrice ?  null : props.data.price ? <Price>Цены от <span>{showMoneySum(props.data.price) + ' ₽'}</span></Price> : null }
             </Info>
-            
         </ProductStyle>
     );
 };

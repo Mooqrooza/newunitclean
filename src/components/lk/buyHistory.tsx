@@ -8,13 +8,10 @@ import {useDispatch} from "react-redux";
 import {GetPreviousOrders} from "src/actions/PreviousOrdersAction/PreviousOrdersAction";
 import {ProductType} from "src/utils/types";
 import NoProducts from "components/shared/productsList/noProducts";
+import {SectionLabel} from 'components/shared/fonts/specialFonts';
 
-const BuyHistoryStyle = styled.div`
-  padding: 80px 0 200px 0;
-  
-  .mobile & {
-    padding-bottom: 100px;
-  }
+const BuyHistoryContainer = styled.section`
+  .mobile & {}
 `;
 
 const BuyHistory = () => {
@@ -22,24 +19,20 @@ const BuyHistory = () => {
     const {orders} = PreviousOrder as IStatePreviousOrders;
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
     let products:ProductType[] = [];
     orders.map(order => order.product.map(product => products.push(product)));
-
     useEffect(() => {
         stableDispatch(GetPreviousOrders());
     }, []);
-
     return (
-        <BuyHistoryStyle>
-            <H2>История покупок</H2>
-            {
-                products.length ?
-                    <ProductsList products={products}></ProductsList>
-                    :
-                    <NoProducts>Вы еще не совершали покупок</NoProducts>
+        <BuyHistoryContainer>
+            <SectionLabel>История покупок</SectionLabel>
+            { !products.length ?
+                  <ProductsList products={products}></ProductsList>
+                  :
+                  <NoProducts>Вы еще не совершали покупок</NoProducts>
             }
-        </BuyHistoryStyle>
+        </BuyHistoryContainer>
     );
 };
 

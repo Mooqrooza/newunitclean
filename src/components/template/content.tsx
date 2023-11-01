@@ -7,7 +7,7 @@ const Main = styled.div`
   margin: 0 auto;
   padding: ${({ theme }) => theme.paddings.contentPadding};
   section {
-    margin: ${({ theme }) => theme.margins.sectionMargin}
+    margin: ${({ theme }) => theme.margins.sectionMargin};
   } 
   @media (max-width: 800px) {
     justify-content: center;
@@ -23,9 +23,9 @@ const Main = styled.div`
     }
   }
 `;
-const Content = (props: {children: any}) => {
+const Content = (props: {children: any, className?: string}) => {
     return (
-        <Main>
+        <Main className={props.className || 'main-content'}>
             <Windows />
             {props.children}
         </Main>

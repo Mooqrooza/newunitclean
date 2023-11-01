@@ -16,7 +16,6 @@ export const HeaderSearchStyle = styled.div`
   grid-template-columns: 26% auto 18%;
   align-items: center;
 `;
-
 export const ButtonSearchStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   width: min-content;
   height: 42px;
@@ -26,12 +25,10 @@ export const ButtonSearchStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   font-size: ${({ theme }) => theme.font.size[15]};
   font-weight: ${({ theme }) => theme.font.weight[900]};
 `;
-
 export const SearchContainer = styled.div`
   padding: 0 30px 0 55px;
   position: relative;
 `;
-
 export const SearchInputTextContainerStyle = styled(DefaultInputTextStyle)`
   position: relative;
   
@@ -46,12 +43,10 @@ export const SearchInputTextContainerStyle = styled(DefaultInputTextStyle)`
     background-position: center;
   }
 `;
-
 export const SearchInputTextStyle = styled(INPUT_TEXT_STYLE)`
   height: 42px;
   padding-left: 50px;
 `;
-
 export const SearchResults = styled.div`
   background: #FFFFFF;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
@@ -62,7 +57,6 @@ export const SearchResults = styled.div`
   top: calc(100% + 20px);
   width: calc(100% - 79px);
 `;
-
 export const SearchNoResults = styled.div`
   padding: 12px;
   cursor: pointer;
@@ -71,7 +65,6 @@ export const SearchNoResults = styled.div`
 
   color: ${({ theme }) => theme.colors.black};
 `;
-
 export const SearchResultStyle = styled(SearchNoResults)`
   font-style: normal;
   transition: background-color 0.2s;
@@ -86,7 +79,6 @@ export const SearchResultStyle = styled(SearchNoResults)`
     text-overflow: ellipsis;
   }
 `;
-
 export const SearchButtons = styled.div`
   display: grid;
   grid-auto-flow: column;
@@ -94,7 +86,6 @@ export const SearchButtons = styled.div`
   justify-content: start;
   margin-left: 30px;
 `;
-
 export const SearchResult = (props: {product: ProductType}) => {
     const click = () => {
         window.open(URLs.PRODUCT.replace(':id', '' + props.product.id));

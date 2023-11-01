@@ -21,8 +21,9 @@ const INPUT_TEXT_CONTAINER = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
+  width: 100%;
   .mobile & {}
-`
+`;
 const INPUT_TEXT_FIELD_STYLE = styled.textarea`
   width: 100%;
   height: 100px;
@@ -35,9 +36,8 @@ const INPUT_TEXT_FIELD_STYLE = styled.textarea`
   color: ${ ({theme}) => theme.colors.black };
   font-size: ${ ({theme}) => theme.font.size[16] };
   font-weight: ${ ({theme}) => theme.font.weight[500] };
-  border: 1px solid ${ ({theme}) => theme.colors.grayA };
+  border: 1px solid ${ ({theme}) => theme.colors.grayB };
   background: ${ ({theme}) => theme.colors.white };
-
   &.active {
     /* background: ${ ({theme}) => theme.colors.whiteBlueD }; */
   } 
@@ -45,7 +45,7 @@ const INPUT_TEXT_FIELD_STYLE = styled.textarea`
     background: ${ ({theme}) => theme.colors.whiteRedA };
   }
   .mobile & {}
-`
+`;
 const INPUT_ERROR_MARKER_STYLED = styled.div`
   position: absolute;
   top: -2px;
@@ -57,7 +57,7 @@ const INPUT_ERROR_MARKER_STYLED = styled.div`
   background: ${ ({theme}) => theme.colors.red };
   animation: ${errorAnimation} 0.3s 1 linear;
   .mobile & {}
-`
+`;
 interface INPUT_TEXT_FIELD_STATE {
     value: string;
     error: boolean;

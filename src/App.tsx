@@ -21,7 +21,7 @@ const Page = (route:route, i:number) => {
 
 function App() {
   return (
-      <div className={ isMobile() ? 'mobile' : '' }>
+      <div id={'root-content'} className={ isMobile() ? 'mobile' : 'desctop' }>
           <ThemeProvider theme={Main}>
               <BrowserRouter>
                   <Routes>

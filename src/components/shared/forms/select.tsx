@@ -4,8 +4,13 @@ import {selectOption} from "src/utils/types";
 import styled from "styled-components";
 import {ErrorMessage} from "components/shared/forms/inputText";
 
-export const DefaultSelectStyle = styled.div``;
-
+export const DefaultSelectStyle = styled.div`
+  display: flex;
+  align-items: startch;
+  justify-content: start;
+  min-width: 260px;
+  .mobile & {}
+`;
 interface SelectProps {
     css?: any;
     setObj?: (obj: any) => void;
@@ -63,13 +68,8 @@ export class Select extends Component<SelectProps, SelectState> {
     }
     render() {
         return (
-            <DefaultSelectStyle>
-                <SELECT 
-                    selectState={this.state}
-                    selectProps={this.props}
-                    onFocus={this.onFocus}
-                    onInput={this.onInput} 
-                />
+            <DefaultSelectStyle className={'select-wrapper'}>
+                <SELECT selectState={this.state} selectProps={this.props} onFocus={this.onFocus} onInput={this.onInput} />
                 { this.state.error ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null }
             </DefaultSelectStyle>
         );

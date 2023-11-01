@@ -21,6 +21,7 @@ const INPUT_TEXT_CONTAINER = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
+  width: 100%;
   .mobile & {}
 `
 export const INPUT_TEXT_STYLE = styled.input`
@@ -34,30 +35,28 @@ export const INPUT_TEXT_STYLE = styled.input`
   color: ${ ({theme}) => theme.colors.black };
   font-size: ${ ({theme}) => theme.font.size[16] };
   font-weight: ${ ({theme}) => theme.font.weight[500] };
-  border: 1px solid ${ ({theme}) => theme.colors.grayA };
+  border: 1px solid ${ ({theme}) => theme.colors.grayB };
   background: ${ ({theme}) => theme.colors.white };
-
-  &.active {
-    /* background: ${ ({theme}) => theme.colors.whiteBlueD }; */
-  } 
+  &.active {} 
   &.error {
     background: ${ ({theme}) => theme.colors.whiteRedA };
     transition: background 0.5s 0s linear;
   }
   .mobile & {}
-`
-const INPUT_ERROR_MARKER_STYLED = styled.div`
+`;
+export const INPUT_ERROR_MARKER_STYLED = styled.div`
   position: absolute;
   top: 6px;
   left: 3px;
   width: 6px;
   height: 6px;
+  margin: 10px 0 0 0;
   border-radius: 3px;
   outline: 5px solid ${ ({theme}) => theme.colors.redTransparent(0.12) };
   background: ${ ({theme}) => theme.colors.red };
   animation: ${errorAnimation} 0.3s 1 linear;
   .mobile & {} 
-`
+`;
 interface INPUT_TEXT_STATE {
     value: string;
     error: boolean;

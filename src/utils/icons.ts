@@ -78,6 +78,12 @@ import heartIco1 from '../icons/heart-ico-1.svg'
 import heartIco2 from '../icons/heart-ico-2.svg'
 import plusIco from '../icons/plus-ico-1.svg'
 import closeDeleteIco from '../icons/close-delete-ico-1.svg'
+import closeDeleteIco1 from '../icons/close-delete-blue-ico-1.svg'
+import closeDeleteIco2 from '../icons/close-delete-red-ico-1.svg'
+import editIcon from '../icons/edit-ico-1.svg';
+import checkIcon from '../icons/check-ico-1.svg';
+import userIcon from '../icons/user-ico-1.png';
+import companyIcon from '../icons/company-ico-1.png';
 
 export const icons = {
     header: {
@@ -99,6 +105,12 @@ export const icons = {
     heartIco2: heartIco2,
     plusIco: plusIco,
     closeDeleteIco: closeDeleteIco,
+    closeDeleteIco1: closeDeleteIco1,
+    closeDeleteIco2: closeDeleteIco2,
+    editIco: editIcon,
+    checkIco: checkIcon,
+    userIcon: userIcon,
+    companyIcon: companyIcon,
 
     lk: lk,
     cart: cart,

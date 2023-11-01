@@ -27,7 +27,6 @@ const TestingContainer = styled.div`
     right: 0;
   }
 `;
-
 const TestingStyle = styled.div`
   background: #fff;
   //filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.5));
@@ -38,12 +37,8 @@ const TestingStyle = styled.div`
   max-height: calc(100% - 80px);
   overflow-y: auto;
   position: relative;
+  .mobile & {}
 `;
-
-const Close = styled.div`
-  
-`;
-
 const Header = styled.div`
   font-size: ${({ theme }) => theme.font.size[24]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
@@ -52,12 +47,11 @@ const Header = styled.div`
   text-align: left;
   border-bottom: 2px solid #D13631;
   margin-right: 39px;
+  .mobile & {}
 `;
-
 const Row = styled.div`
-  
+  .mobile & {}
 `;
-
 const RowHeader = styled.div`
   font-weight: ${({ theme }) => theme.font.weight[500]};
   color: black;
@@ -68,33 +62,29 @@ const RowHeader = styled.div`
   justify-content: start;
   padding-bottom: 8px;
   text-align: left;
+  .mobile & {}
 `;
-
 const RowHeaderRed = styled.span`
   margin-left: 2px;
   color: ${({ theme }) => theme.colors.red};
+  .mobile & {}
 `;
-
 const ButtonSend = styled(DIV_BUTTON_BLUE_STYLE)`
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
   margin-top: 16px;
+  .mobile & {}
 `;
-
 const ButtonSendSuccess = styled(ButtonSend)`
   box-shadow: 0px 0px 0px 4px rgba(0, 255, 0, 0.2);
 `;
-
 const ButtonSendError = styled(ButtonSend)`
   box-shadow: 0px 0px 0px 4px rgba(255, 0, 0, 0.2);
 `;
-
 const Testing = () => {
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
     const form:any = {};
-
     let setFio, setEmail, setPhone, setComment, setDetail = null;
     [form.full_name, setFio] = useState<any>(null);
     [form.email, setEmail] = useState<any>(null);
@@ -102,32 +92,29 @@ const Testing = () => {
     [form.comment, setComment] = useState<any>(null);
     [form.detail, setDetail] = useState<any>(null);
     const [button, setButton] = useState<any>(null);
-
     const send = () => {
         if (Object.values(form).map(value => !value || (value as InputState).obj.checkError()).some(error => error)) {
             button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
             return false;
         }
         button.Animate({Children: 'Выполняется...'});
-
         ApiMethod({
             func: 'post', url: '/employee/api/v2/test_order/',
             data: Object.keys(form).reduce((target, key) => ({...target, [key]: form[key].value}), {})
         })
-            .then(success => {
-                Object.values(form).map(value => (value as InputState).obj.clear())
-                button.Animate({Styled: ButtonSendSuccess, Children: 'Заявка отправлена', timeOut: 2000});
-            })
-            .catch(error => {
-                Object.keys(error.response.data).map(key => {
-                    if (form[key]) {
-                        form[key].obj.setError(error.response.data[key]);
-                    }
-                });
-                button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
+        .then(success => {
+            Object.values(form).map(value => (value as InputState).obj.clear())
+            button.Animate({Styled: ButtonSendSuccess, Children: 'Заявка отправлена', timeOut: 2000});
+        })
+        .catch(error => {
+            Object.keys(error.response.data).map(key => {
+                if (form[key]) {
+                    form[key].obj.setError(error.response.data[key]);
+                }
             });
+            button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
+        });
     }
-
     return (
         <TestingContainer>
             <TestingStyle>

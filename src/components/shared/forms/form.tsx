@@ -27,7 +27,6 @@ const FormStyle = styled.form`
     border-radius: 0;
   }
 `;
-
 const Form = (props: {children: any; closeButton?: boolean}) => {
     return (
         <FormStyle>
@@ -35,7 +34,6 @@ const Form = (props: {children: any; closeButton?: boolean}) => {
         </FormStyle>
     );
 };
-
 export const FormCloseStyle = styled.div`
   position: absolute;
   display: flex;
@@ -66,7 +64,7 @@ const FormContainerStyle = styled.div<{css: any}>`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   ${props => props.css};
   &.background {
     position: fixed;
@@ -85,8 +83,7 @@ const FormContainerStyle = styled.div<{css: any}>`
     }
   }
   .mobile & {}
-`
-
+`;
 export const FormContainer = (props: {children: any; css?: any; background?: boolean}) => {
     return (
         <FormContainerStyle className={props.background ? 'background': ''} css={props.css}>

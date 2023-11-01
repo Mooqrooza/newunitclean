@@ -1,24 +1,22 @@
 import React from 'react';
 import MarketPlace from "components/payment/mapAndButtons/buttons/marketPlace";
 import MoreInfo from "components/payment/mapAndButtons/buttons/moreInfo";
+import {OzonCardButton, YandexCardButton, WildberriesCardButton} from 'components/shared/marketplacecardbuttons';
 import styled from "styled-components";
 
-const ButtonsStyle = styled.div`
+const CardButtonsContainer = styled.div`
   display: flex;
-  grid-gap: 30px; gap: 30px;
-  
-  .mobile & {
-    flex-wrap: wrap;
-  }
+  gap: 30px;
+  .mobile & {}
 `;
-
-const Buttons = () => {
+const MarketplaceCardButtons = () => {
     return (
-        <ButtonsStyle>
-            <MarketPlace></MarketPlace>
-            <MoreInfo></MoreInfo>
-        </ButtonsStyle>
+        <CardButtonsContainer>
+            <OzonCardButton />
+            <YandexCardButton />
+            <WildberriesCardButton />
+        </CardButtonsContainer>
     );
 };
 
-export default Buttons;
+export default MarketplaceCardButtons;

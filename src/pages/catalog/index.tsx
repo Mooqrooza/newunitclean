@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import TabsMenu from "components/shared/tabsMenu";
 import Tab from "components/catalog/tab";
 import Content from "components/template/content";
@@ -9,6 +9,7 @@ import {GetProductList} from "src/actions/ProductListAction/ProductListAction";
 import {GetCategories} from "src/actions/CategoriesAction/CategoriesAction";
 import {IStateCategories} from "src/reducers/CategoriesReducer/CategoriesReducer.types";
 import {SectionLabel} from 'components/shared/fonts/specialFonts';
+import Feedback from "components/main/feedback";
 
 const Catalog = () => {
     const state = useTypedSelector((store) => store);
@@ -34,7 +35,8 @@ const Catalog = () => {
     return (
         <Content>
             <SectionLabel>Каталог</SectionLabel>
-            <TabsMenu tabs={tabs}></TabsMenu>
+            <TabsMenu tabs={tabs} stickyTabsButtons={true} />
+            <Feedback />
         </Content>
     );
 };

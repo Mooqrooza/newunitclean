@@ -21,7 +21,7 @@ const Content = styled.div`
   padding: 60px 30px;
   box-sizing: border-box;
   border-radius: 60px;
-  background-color: ${({ theme }) => theme.colors.grayB};
+  background-color: ${({ theme }) => theme.colors.grayC};
   background-image: url("${feedbackImage}");
   background-repeat: no-repeat;
   background-position: center

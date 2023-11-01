@@ -13,23 +13,23 @@ export default createGlobalStyle`
   html, body{
     height: 100%;
     width: 100%;
+    min-height: 100%;
     overflow-x: hidden;
   }
-
-  input {
+  input, select {
     outline:none;
     internal-autofill-selected
   }
-  input::placeholder {
+  input::placeholder, select::placeholder {
     opacity: 1;
     color: #9C9C9C;
     font-size: 1em;
   }
-  input::-webkit-input-placeholder {
+  input::-webkit-input-placeholder, select::-webkit-input-placeholder{
     color: #9C9C9C;
     font-size: 1em;
   }
-  input::-ms-input-placeholder {
+  input::-ms-input-placeholder, select::-ms-input-placeholder {
     color: #9C9C9C;
     font-size: 1em;
   }
@@ -68,6 +68,7 @@ export default createGlobalStyle`
   }
   #root {
     position: absolute;
+    min-height: 100%;
     width: 100%;
     overflow: hidden;
   }

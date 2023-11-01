@@ -10,7 +10,7 @@ import {useDispatch} from "react-redux";
 import {GetProductList} from "src/actions/ProductListAction/ProductListAction";
 import {GetCategories} from "src/actions/CategoriesAction/CategoriesAction";
 
-const Main = styled.section`
+const ProductsContainer = styled.section`
   .mobile & {}
 `;
 const Content = styled.div`
@@ -32,7 +32,7 @@ const Categories = styled.div`
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.grayB};
+  background: ${({ theme }) => theme.colors.grayC};
   gap: 10px 10px;
 
   @media (max-width: 690px) {
@@ -47,7 +47,6 @@ const ProductsList = styled.div`
   @media (max-width: 690px) {}
   .mobile & {}
 `;
-
 const ProductsBrowser = () => { 
     const state = useTypedSelector((store) => store);
     const productListState = state.ProductList as IStateProductList;
@@ -64,7 +63,7 @@ const ProductsBrowser = () => {
     }
     function select(i: number) { setSelected(i);}
     return (
-        <Main>
+        <ProductsContainer>
             <SectionLabel>Товары</SectionLabel>
             <Content>
                 <Categories>
@@ -72,12 +71,12 @@ const ProductsBrowser = () => {
                         <Category key={category.id} selected={selected} self={category.id} func={select}>{category.title}</Category>)}
                 </Categories>
                 <ProductsList>
-                    {productListState.products
-                        .filter(product => product.group == selected)
-                        .map((product) => <Product key={product.id} data={product}></Product>)}
+                    { productListState.products
+                      .filter(product => product.group == selected)
+                      .map((product) => <Product key={product.id} data={product}></Product>)}
                 </ProductsList>
             </Content>
-        </Main>
+        </ProductsContainer>
     );
 };
 

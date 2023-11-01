@@ -5,7 +5,7 @@ import {InputText} from "components/shared/forms/inputText";
 import {URLs} from "src/utils/constants";
 import logoImage from "src/images/logo-grayscale-1.svg";
 
-const Main = styled.div`
+const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 100px 30px; 
@@ -128,7 +128,7 @@ const SearchForm = () => {
 }
 const Footer = () => {
     return (
-            <Main>
+            <FooterContainer>
                 <Content>
                     <Company>
                         <Logo onClick = {() => window.open(URLs.ROOT, '_self')} />
@@ -158,7 +158,7 @@ const Footer = () => {
                         <SearchForm />
                     </Search>
                 </Content>
-            </Main>
+            </FooterContainer>
     );
 };
 

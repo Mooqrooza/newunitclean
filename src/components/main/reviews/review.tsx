@@ -12,7 +12,7 @@ const Main = styled.div`
   box-view: border-box;
   border-radius: 60px;
   transition: left 0.3s;
-  background-color: ${({ theme }) => theme.colors.grayB};
+  background-color: ${({ theme }) => theme.colors.grayC};
 `;
 const ReviewText = styled.div`
   text-align: left;

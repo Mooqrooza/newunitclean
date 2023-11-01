@@ -1,16 +1,15 @@
 import React from 'react';
-
-import {H1} from "components/shared/fonts/specialFonts";
 import Shares from "components/promotions/shares";
 import Content from "components/template/content";
-import {isMobile} from "src/utils/isMobile";
+import {SectionLabel} from 'components/shared/fonts/specialFonts';
+import Feedback from "components/main/feedback";
 
 const Promotions = () => {
-
     return (
         <Content>
-            <H1>{isMobile() ? 'Акции' : 'Акции и предложения'}</H1>
+            <SectionLabel>Акции и предложения</SectionLabel> 
             <Shares></Shares>
+            <Feedback />
         </Content>
     );
 };

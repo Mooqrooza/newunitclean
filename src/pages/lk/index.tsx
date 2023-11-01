@@ -18,15 +18,16 @@ import {IStateCompany} from "src/reducers/CompanyReducer/CompanyReducer.types";
 import {GetTable, Table} from "components/excel/table";
 import {IStateEmployee} from "src/reducers/EmployeeReducer/EmployeeReducer.types";
 import {GetEmployee} from "src/actions/EmployeeAction/EmployeeAction";
+import {SectionLabel} from 'components/shared/fonts/specialFonts';
 
-const HeaderWithButton = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
-  justify-content: center;
+const EmployeeAndCompanyContainer = styled.section`
 `;
-
-const ButtonExit = styled.img`
+const EmployeeTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+const ButtonLogout = styled.img`
   width: 30px;
   filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
   cursor: pointer;
@@ -35,8 +36,7 @@ const ButtonExit = styled.img`
     filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.4));
   }
 `;
-
-const LkButtons = styled.div`
+const EmployeeButtonsContainer = styled.div`
   padding: 58px 0 0 0;
   display: grid;
   justify-content: right;
@@ -49,75 +49,48 @@ const LkButtons = styled.div`
     grid-auto-flow: row;
   }
 `;
-
-const ToCompanyButton = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
+const ButtonCompany = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   width: min-content;
   
   .mobile & {
     width: 100%;
   }
 `;
-
 const Lk = () => {
     const Employee = useTypedSelector((store) => store.Employee);
     const {employee} = Employee as IStateEmployee;
     const Company = useTypedSelector((store) => store.Company);
     const {error} = Company as IStateCompany;
-
     const dispatch = useDispatch();
-
     useEffect(() => {
         GetEmployee()(dispatch);
         GetCompany()(dispatch);
     }, []);
-
     const logout = () => {
         LogoutUser(dispatch);
-        //window.open(URLs.ROOT, '_self');
     }
-
     const toCompany = () => {
         window.open(URLs.COMPANY_LK, '_self');
     }
-
     const downloadPriceList = () => {
         GetTable();
     }
-
     return (
         <Content>
-            <HeaderWithButton>
-                <H1>Личный кабинет</H1>
-                <ButtonExit src={icons.exit} onClick={logout} />
-            </HeaderWithButton>
-
-            <EmployeeInfo employee={employee}></EmployeeInfo>
-
-            <Table></Table>
-
-            {
-                !employee.is_staff && error ? null :
-                    <LkButtons>
-                        {
-                            employee.is_staff ?
-                                <ButtonBlue styled={ToCompanyButton} func={downloadPriceList}>Скачать прайс-лист</ButtonBlue>
-                                : null
-                        }
-                        {
-                            error ? null
-                                : <ButtonBlue styled={ToCompanyButton} func={toCompany}>Личный кабинет компании</ButtonBlue>
-                        }
-                    </LkButtons>
-            }
-
-            {
-                error
-                    ?
-                    <Registration></Registration>
-                    :
-                    null
-            }
-
+            <EmployeeAndCompanyContainer>
+                <EmployeeTitleContainer>
+                    <SectionLabel>Личный кабинет</SectionLabel>
+                    <ButtonLogout src={icons.exit} onClick={logout} />
+                </EmployeeTitleContainer>
+                <EmployeeInfo employee={employee}></EmployeeInfo>
+                { (!employee.is_staff && error) ? null :
+                    <EmployeeButtonsContainer>
+                        { employee.is_staff ? <ButtonBlue styled={ButtonCompany} func={downloadPriceList}>Скачать прайс-лист</ButtonBlue> : null }
+                        { !error ? <ButtonBlue styled={ButtonCompany} func={toCompany}>Личный кабинет компании</ButtonBlue> : null }
+                    </EmployeeButtonsContainer>
+                }
+                { error ? <Registration /> : null }
+            </EmployeeAndCompanyContainer>
             <BuyHistory></BuyHistory>
         </Content>
     );

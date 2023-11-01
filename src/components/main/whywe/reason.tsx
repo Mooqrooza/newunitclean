@@ -15,7 +15,7 @@ const ReasonStyle = styled.div`
   padding: 30px 40px 40px 40px;
   border-radius: 60px;
   box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.grayB};
+  background: ${({ theme }) => theme.colors.grayC};
   &:hover {}
   @media (max-width: 580px) {
     max-width: 100%;

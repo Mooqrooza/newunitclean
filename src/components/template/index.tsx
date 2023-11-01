@@ -9,7 +9,7 @@ const Template = (props: {children: any; clearBackground?: boolean; auth?: boole
     return (
         <div>
             <Header />
-            { props.auth && !getAuth().isAuthorized ? <Unauthorized></Unauthorized> : props.children }
+            { props.auth && !getAuth().isAuthorized ? <Unauthorized></Unauthorized> : props.children }            
             <Footer />
         </div>
     );

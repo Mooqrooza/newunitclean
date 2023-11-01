@@ -20,9 +20,7 @@ const Tab = (props: {children: any, self: number}) => {
     const TabsMenu = useTypedSelector((store) => store.TabsMenu);
     const {pos} = TabsMenu as IStateTabsMenu;
     return (
-        <TabMain className={props.self == pos ? '' : 'hidden'} >
-            {props.children}
-        </TabMain>
+        <TabMain className={props.self == pos ? '' : 'hidden'} > {props.children}</TabMain>
     )
 };
 const Tabs = (props: {tabs: any[]}) => {

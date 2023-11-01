@@ -5,8 +5,7 @@ const Text = styled.div`
   font-size: ${({ theme }) => theme.font.size[20]};
   font-weight: ${({ theme }) => theme.font.weight[600]};
   color: ${({ theme }) => theme.colors.light_gray};
-`
-
+`;
 const EmptyBasket = (props: {children: string}) => {
     return (
         <div>

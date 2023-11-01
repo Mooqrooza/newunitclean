@@ -1,16 +1,15 @@
 import React, {useCallback, useEffect} from 'react';
-import Suggestion from "components/main/suggestion";
 import WhyWe from "components/main/whywe/whywe";
 import Content from "components/template/content";
 import Greeting from "src/components/main/greeting";
 import About from "components/main/about";
 import Products from "components/main/products";
-import Feedback from "components/main/feedback";
 import Reviews from "components/main/reviews";
 import {useTypedSelector} from "src/store/configureStore";
 import {useDispatch} from "react-redux";
 import {IStateMainPage} from "src/reducers/MainPageReducer/MainPageReducer.types";
 import {GetMainPage} from "src/actions/MainPageAction/MainPageAction";
+import Feedback from "components/main/feedback";
 
 const Main = () => {
     const MainPage = useTypedSelector((store) => store.MainPage);
@@ -26,7 +25,7 @@ const Main = () => {
             <About />
             <Products />
             <Reviews/>
-            <Feedback/>
+            <Feedback />
         </Content>
     );
 };

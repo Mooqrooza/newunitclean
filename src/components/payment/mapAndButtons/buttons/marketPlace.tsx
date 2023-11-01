@@ -5,25 +5,13 @@ import ButtonBlue from "components/shared/forms/buttonBlue";
 import {LINKS} from "src/utils/constants";
 
 const MarketPlaceStyle = styled.div`
-  .mobile & {
-    width: 100%;
-  }
+  .mobile & {}
 `;
-
-const ButtonStyle = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
-  height: 47px;
-  font-size: ${({ theme }) => theme.font.size[14]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  margin-top: 40px;
-  background: #2196F361;
+const ButtonStyle = styled(DIV_BUTTON_SOFT_BLUE_STYLE)` 
+  width: 220px;
   
-  .mobile & {
-    margin-top: 0px;
-    font-size: ${({theme}) => theme.font.size[12]};
-    width: 100%;
-  }
+  .mobile & {}
 `;
-
 const MarketPlace = () => {
     return (
         <MarketPlaceStyle>

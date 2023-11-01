@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState } from 'react';
+import React, {useCallback, useEffect, useState } from 'react'; 
 import {
     InputAddress,
     InputFIO,
@@ -20,99 +20,62 @@ import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsMana
 import {setPickupAddress} from "src/actions/DeliveryAction/DeliveryAction";
 import {getAuth} from "src/store/localStorage";
 
-const InputListStyle = styled.div`
-  display: grid;
-  grid-gap: 20px; gap: 20px;
-  justify-content: end;
-  justify-self: start;
-  align-content: end;
-  width: 370px;
-
-  & input {
-    min-width: 370px;
-    width: auto;
+const InputListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: start;
+  .input-text-wrapper, .select-wrapper { 
+    min-width: 420px; 
   }
-
-  .mobile & {
-    justify-content: normal;
+  @media (max-width : 1160px) {
     width: 100%;
-    
-    & input {
-      width: calc(100% - 40px);
-      min-width: 0px;
+
+    .input-text-wrapper, .select-wrapper { 
+        max-width: 420px; 
+        min-width: 60%;
     }
   }
+  .mobile & {}
 `;
-
-const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
-  height: 47px;
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[600]};
-  /*margin-top: 40px;*/
-  
-  .mobile & {
-    margin: 0;
-  }
-  
-  .emptyCart &, .unauthed & {
-    display: none;
-  }
+const ButtonOrderStyle = styled(DIV_BUTTON_BLUE_STYLE)`
+  width: 220px;
+  .mobile & {}
 `;
-
-const ButtonSendSuccess = styled(ButtonStyle)`
-  box-shadow: 0px 0px 0px 4px rgba(0, 255, 0, 0.2);
+const ButtonSendSuccess = styled(DIV_BUTTON_BLUE_STYLE)`
+  width: 320px;
+  .mobile & {}
 `;
-
-const ButtonSendError = styled(ButtonStyle)`
-  box-shadow: 0px 0px 0px 4px rgba(255, 0, 0, 0.2);
+const ButtonSendError = styled(DIV_BUTTON_BLUE_STYLE)`
+  width: 340px;
+  .mobile & {}
 `;
-
-const ButtonFrozenStyle = styled(ButtonStyle)`
-  font-size: ${({ theme }) => theme.font.size[14]};
-  background: ${({ theme }) => theme.colors.light_gray};
-  border-color: ${({ theme }) => theme.colors.gray};
-  display: none;
-
-  .mobile & {
-    white-space: normal;
-  }
+const ButtonUnAuthed = styled(DIV_BUTTON_BLUE_STYLE)`
+  width: 380px;
+  .mobile & {}
 `;
-
-const ButtonFrozenStyleUnAuthed = styled(ButtonFrozenStyle)`
-  .unauthed & {
-    display: grid;
-  }
+const ButtonEmptyCard = styled(DIV_BUTTON_BLUE_STYLE)`
+  width: 320px;
+  .mobile & {}
 `;
-
-const ButtonFrozenStyleEmptyCart = styled(ButtonFrozenStyle)`
-  .emptyCart & {
-    display: grid;
-  }
-
-  .unauthed & {
-    display: none !important;
-  }
-`;
-
-const SuccessPromoStyle = styled.div`
-  border: 1px solid rgba(0,0,0,0.3);
-  height: 47px;
-  background: #FFFFFF;
-  border-radius: 10px;
-  font-size: ${({ theme }) => theme.font.size[16]};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
-  color: black;
-  padding: 0 20px;
-  width: calc(100% - 40px);
-  display: grid;
-  align-content: center;
+const SuccessPromoContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 52px;
+  padding: 10px 20px;
+  border-radius: 27px;
+  border: 1px solid ${ ({theme}) => theme.colors.grayB };
+  box-sizing: border-box;
+  font-size: ${({ theme }) => theme.font.size[16]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  color: ${({ theme }) => theme.colors.black};
+  .mobile & {}
 `;
-
 const SuccessPromoText = styled.div`
-  
+  .mobile & {}
 `;
-
 const SuccessPromoDrop = styled.div`
   position: absolute;
   right: 0;
@@ -121,35 +84,29 @@ const SuccessPromoDrop = styled.div`
   align-content: center;
   padding-right: 12px;
   cursor: pointer;
+  .mobile & {}
 `;
-
 const SuccessPromo = (props: {text: string; func: () => void}) => {
-
     return (
-        <SuccessPromoStyle>
+        <SuccessPromoContainer>
             <SuccessPromoText>{props.text}</SuccessPromoText>
             <SuccessPromoDrop><img src={icons.dropInput} onClick={props.func} /></SuccessPromoDrop>
-        </SuccessPromoStyle>
+        </SuccessPromoContainer>
     )
 }
-
 const InputList = () => {
     const pickupAddress = DELIVERY.PICKUP_ADDRESS || [];
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
-
     const form:any = {};
-
     const auth = getAuth();
-    let setFio, setPhone, setAddress, setPaymentType, setDetail, setMessage = null;
-    
+    let setFio, setPhone, setAddress, setPaymentType, setDetail, setMessage = null; 
     [form.full_name, setFio] = useState<any>(null);
     [form.phone_number, setPhone] = useState<any>(null);
     [form.address, setAddress] = useState<any>(null);
     [form.payment_type, setPaymentType] = useState<any>(null);
     [form.detail, setDetail] = useState<any>(null);
-    [form.message, setMessage] = useState<any>(null);
-    
+    [form.message, setMessage] = useState<any>(null);  
     const [receivingType, setReceivingType] = useState<any>(true);
     const changeReceivingType = (dt: { value:string }) => {
         setReceivingType(dt.value);
@@ -162,73 +119,64 @@ const InputList = () => {
     const [promo, setPromo] = useState<any>(null);
     const [successPromo, setSuccessPromo] = useState('');
     const [button, setButton] = useState<any>(null);
-
     const Cart = useTypedSelector((store) => store.Cart);
     const {cart, isFetching, error} = Cart as IStateCart;
-
     useEffect(() => {
         stableDispatch(GetCart());
     }, []);
-
     useEffect(() => {
         if (promo && promo.value && !promo.active && !promo.error) {
             addPromo()
         }
     }, [promo]);
-
     const openAuth = () => {
         WindowsManagerOpen(WINDOW_AUTHORIZATION)(dispatch);
     }
-
     const dropPromo = () => {
         ApiMethod({ func: 'delete', url: '/product/api/v2/order/delete_promo_code/', auth: true })
-            .then(success => setSuccessPromo(''))
-            .catch(error => setSuccessPromo(''));
+        .then(success => setSuccessPromo(''))
+        .catch(error => setSuccessPromo(''));
     }
-
     const addPromo = () => {
         ApiMethod({
             func: 'patch', url: '/product/api/v2/order/add_promo_code/',
-            data: {
-                promo_code: promo.value
-            },
+            data: { promo_code: promo.value },
             auth: true
         })
-            .then((success:any) => setSuccessPromo(success.promo_code))
-            .catch(error => promo.obj.setState({error: true}))
+        .then((success:any) => setSuccessPromo(success.promo_code))
+        .catch(error => promo.obj.setState({error: true}))
     }
-
     const order = () => {
         if (Object.values(form).map(value => !value || (value as InputState).obj.checkError()).some(error => error)) {
             button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
             return false;
         }
         button.Animate({Children: 'Выполняется...'});
-
         ApiMethod({
             func: 'patch', url: '/product/api/v2/order/',
             data: Object.keys(form).reduce((target, key) => ({...target, [key]: form[key].value}), {}),
             auth: true
         })
-            .then(success => {
-                Object.values(form).map(value => (value as InputState).obj.clear());
-                setSuccessPromo('');
-                button.Animate({Styled: ButtonSendSuccess, Children: 'Заказ оформлен', timeOut: 2000});
-            })
-            .catch(error => {
-                Object.keys(error.response.data).map(key => {
-                    if (form[key]) {
-                        form[key].obj.setError(error.response.data[key]);
-                    }
-                });
-                button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
-            })
+        .then(success => {
+            Object.values(form).map(value => (value as InputState).obj.clear());
+            setSuccessPromo('');
+            button.Animate({Styled: ButtonSendSuccess, Children: 'Заказ оформлен', timeOut: 2000});
+        })
+        .catch(error => {
+            Object.keys(error.response.data).map(key => {
+                if (form[key]) {
+                    form[key].obj.setError(error.response.data[key]);
+                }
+            });
+            button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
+        })
     }
-
     const toCart = () => { window.open(URLs.CART, '_self'); }
-
+    const buttonOrderShow = auth.isAuthorized && cart.product.length;
+    const buttonEmptyCardShow = auth.isAuthorized && !cart.product.length;
+    const buttonUnAutorizedShow = !auth.isAuthorized;
     return (
-        <InputListStyle className={(auth.isAuthorized ? '' : 'unauthed ') + (cart.product.length ? '' : 'emptyCart')}>
+        <InputListContainer className={(auth.isAuthorized ? 'autorized' : 'unauthed ') + (cart.product.length ? 'cart' : 'emptyсart')}>
             <InputFIO placeholder={'Укажите ваше ФИО'} setObj={setFio}></InputFIO>
             <InputPhoneNumber placeholder={'Укажите ваш номер телефона'} setObj={setPhone}></InputPhoneNumber>
             <Select defaultOption={{value: '', text: 'Выберите способ доставки'}} setObj={changeReceivingType} options={[
@@ -255,10 +203,10 @@ const InputList = () => {
             }
             <OutputDetail setObj={setMessage}></OutputDetail>
             <OutputDetail setObj={setDetail}></OutputDetail>
-            <ButtonBlue styled={ButtonStyle} func={order} setObj={setButton}>Заказать</ButtonBlue>
-            <ButtonBlue styled={ButtonFrozenStyleUnAuthed} func={openAuth}>Авторизуйтесь, чтобы оформить заказ</ButtonBlue>
-            <ButtonBlue styled={ButtonFrozenStyleEmptyCart} func={toCart}>Добавьте товары в корзину</ButtonBlue>
-        </InputListStyle>
+            {buttonOrderShow ? <ButtonBlue styled={ButtonOrderStyle} func={order} setObj={setButton}>Заказать</ButtonBlue> : null}
+            {buttonEmptyCardShow ? <ButtonBlue styled={ButtonEmptyCard} func={toCart}>Добавьте товары в корзину</ButtonBlue> : null}
+            {buttonUnAutorizedShow ? <ButtonBlue styled={ButtonUnAuthed} func={openAuth}>Авторизуйтесь, чтобы оформить заказ</ButtonBlue> : null}
+        </InputListContainer>
     );
 };
 

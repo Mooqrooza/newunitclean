@@ -17,7 +17,7 @@ const Label = styled.div`
   align-items: center;
   background: ${({ theme }) => theme.colors.orangeTransparent(0.1)};
   .mobile & {}
-`
+`;
 const Icon = styled.div`
   width: 24px;
   height: 24px;
@@ -41,7 +41,7 @@ const Text = styled.div`
     font-size: ${({ theme }) => theme.font.size[12]};
   }
   .mobile & {}
-`
+`;
 export interface Ilabelinfo {
     text: string;
     icon?: any;

@@ -41,12 +41,14 @@ export const Main = {
     },
     colors: {
         white: 'white',
+        whiteA: '#FCFCFC',
         black: '#1E1E1E',
         blackA: '#5E5E5E',
         gray: '#8D8D8D',
-        grayA: '#DBDBDB',
-        grayB: '#F8F8F8',
-        grayC: '#F2F2F2',
+        grayA: '#ECECEC',
+        grayB: '#DBDBDB',
+        grayC: '#F8F8F8',
+        grayD: '#F2F2F2',
         blue: '#164BA7',
         blueA: '#2F63BC',
         blueB: '#568BE7',
@@ -58,6 +60,7 @@ export const Main = {
         whiteBlueC: '#F2F6F9',
         whiteBlueD: '#f6f9fb',
         whiteBlueE: '#DBE4EC',
+        whiteBlueF: '#E3E9F3',
         orange: '#E46E28',
         orangeA: '#F07E3B',
         whiteOrange: '#F9E5D9',
@@ -78,12 +81,13 @@ export const Main = {
     gradients: {
         softBlueGradient: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));',
         softBlueGradientA: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));',
-        whiteGradient: 'linear-gradient(0deg, #FFF 0%, rgba(255, 255, 255, 0.00) 50%);'
+        whiteGradient: 'linear-gradient(0deg, #FFF 0%, rgba(255, 255, 255, 0.00) 50%);',
+        whiteBlueGradient: 'linear-gradient(90deg, #F1F6F9 0%, #F1F1F1 100%);'
     },
     shadows: {
        shadow: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)',
        shadowA: '0px 4px 18px 0px rgba(0, 0, 0, 0.16)',
-       shadowB: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)'
+       shadowB: '0px 4px 18px 4px rgba(0, 0, 0, 0.15)'
     },
     margins: {
         sectionMargin: '0 0 140px 0',

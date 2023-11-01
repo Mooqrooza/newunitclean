@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Review from './review';
 import {icons} from 'src/utils/icons';
 import styled from 'styled-components';
@@ -118,8 +118,8 @@ const Reviews: React.FC = () => {
     const [change, setChange] = useState(false);
     const [pos, setPos] = useState(0);
     const [reviewsList, setReviews] = useState<Review[]>([]);
-    const ReviewsWrapperRef = React.useRef<HTMLDivElement>(null);
-    const counterPointsRef = React.useRef<HTMLDivElement>(null);
+    const ReviewsWrapperRef = useRef<HTMLDivElement>(null);
+    const counterPointsRef = useRef<HTMLDivElement>(null);
     function leftArrow() { setPos((pos - 1 + reviewsList.length) % reviewsList.length); }
     function rightArrow() { setPos((pos + 1) % reviewsList.length); }
     function getTestReviews (revs:any) {

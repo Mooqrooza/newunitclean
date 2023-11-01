@@ -3,11 +3,16 @@ import INPUT_TEXT from "./primitives/INPUT_TEXT";
 import styled, {StyledComponent} from "styled-components";
 
 export const DefaultInputTextStyle = styled.div`
+  display: flex;
+  align-items: startch;
+  justify-content: start;
+  gap: 10px;
+  min-width: 260px;
+  &:empty { display: none; }
   .mobile & {}
 `;
 export const ErrorMessage = styled.div`
   color: ${({ theme }) => theme.colors.red};
-  padding-top: 4px;
   text-align: left;
   .mobile & {}
 `;
@@ -64,7 +69,7 @@ export class InputText extends Component<InputProps, InputState> {
     render() {
         const Styled = this.props.styledContainer ? this.props.styledContainer : this.defaultStyled;
         return (
-            <Styled>
+            <Styled className={'input-text-wrapper'}>
                 <INPUT_TEXT 
                     inputState={this.state}
                     inputProps={this.props}
