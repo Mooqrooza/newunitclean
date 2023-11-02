@@ -96,6 +96,7 @@ export interface EmployeeType {
     avatar: string;
     email: string;
     is_staff: boolean;
+    verified?: boolean;
 }
 
 export interface CompanyType {

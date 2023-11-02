@@ -53,6 +53,7 @@ export const Main = {
         blueA: '#2F63BC',
         blueB: '#568BE7',
         blueC: '#A1C0F4',
+        blueD: '#245cbe',
         whiteGrayBlue: '#EFF0F2',
         whiteBlue: '#D2E3FF',
         whiteBlueA: '#EDF3F9',
@@ -61,6 +62,7 @@ export const Main = {
         whiteBlueD: '#f6f9fb',
         whiteBlueE: '#DBE4EC',
         whiteBlueF: '#E3E9F3',
+        whiteBlueG: '#fbfdff',
         orange: '#E46E28',
         orangeA: '#F07E3B',
         whiteOrange: '#F9E5D9',
@@ -87,7 +89,8 @@ export const Main = {
     shadows: {
        shadow: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)',
        shadowA: '0px 4px 18px 0px rgba(0, 0, 0, 0.16)',
-       shadowB: '0px 4px 18px 4px rgba(0, 0, 0, 0.15)'
+       shadowB: '0px 4px 18px 4px rgba(0, 0, 0, 0.15)',
+       shadowC: '0px 0px 16px 2px rgba(0, 0, 0, 0.1)'
     },
     margins: {
         sectionMargin: '0 0 140px 0',

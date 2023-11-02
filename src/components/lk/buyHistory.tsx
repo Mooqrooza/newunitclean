@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect} from 'react';
-import {H2} from "components/shared/fonts/specialFonts";
 import ProductsList from "components/shared/productsList";
 import styled from "styled-components";
 import {useTypedSelector} from "src/store/configureStore";
@@ -13,7 +12,10 @@ import {SectionLabel} from 'components/shared/fonts/specialFonts';
 const BuyHistoryContainer = styled.section`
   .mobile & {}
 `;
-
+const NoProductsContainer = styled.div`
+  width: 330px;
+  height: 280px;
+`;
 const BuyHistory = () => {
     const PreviousOrder = useTypedSelector((store) => store.PreviousOrders);
     const {orders} = PreviousOrder as IStatePreviousOrders;
@@ -27,10 +29,12 @@ const BuyHistory = () => {
     return (
         <BuyHistoryContainer>
             <SectionLabel>История покупок</SectionLabel>
-            { !products.length ?
+            { products.length > 0 ?
                   <ProductsList products={products}></ProductsList>
                   :
-                  <NoProducts>Вы еще не совершали покупок</NoProducts>
+                  <NoProductsContainer>
+                      <NoProducts>Вы еще не совершали покупок</NoProducts>
+                  </NoProductsContainer>    
             }
         </BuyHistoryContainer>
     );

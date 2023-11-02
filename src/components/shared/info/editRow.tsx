@@ -17,12 +17,13 @@ const Title = styled.div`
   justify-content: start;
   width: 70px;
   color: ${({ theme }) => theme.colors.black};
-  font-weight: ${({ theme }) => theme.font.weight[400]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
   font-size: ${({ theme }) => theme.font.size[16]};
   white-space: nowrap;
   @media (max-width : 780px) {}
   @media (max-width : 640px) {
-    width: 50px;
+    width: 50px; 
+    margin-bottom: -10px;
     font-size: ${({ theme }) => theme.font.size[14]};
   }
   .verified & {}
@@ -33,25 +34,20 @@ const EditSaveButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
-  width: 28px;
-  height: 28px;
-  top: 0;
-  right: -14px;
+  width: 34px;
+  height: 34px;
+  top: 9px;
+  right: -17px;
   border-radius: 50%;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.whiteBlueA};
   background-position: center;
   background-repeat: no-repeat;
   transition: box-shadow 0.25s ease-in-out;
-  
-  &.edit {
-    background-image: url(${icons.checkIco});
-  }
-  &.save {
-    background-image: url(${icons.editIco});
-  }
+  &.edit { background-image: url(${icons.checkIco}); }
+  &.save { background-image: url(${icons.editIco}); }
   &:hover {
-    box-shadow: ${({theme}) => theme.shadows.shadowB};
+    box-shadow: ${({theme}) => theme.shadows.shadowC};
   }
   &:hover > svg {} 
   .mobile & {}
@@ -65,14 +61,15 @@ const getDefaultValueStyle = (theme: any) => `
   width: 450px;
   height: 52px;
   padding: 0 20px;
-  border-radius: 26px 26px 0 0;
+  border-radius: 26px;
   box-sizing: border-box;
   font-size: ${theme.font.size[16]};
   font-weight: ${theme.font.weight[400]};
   color: ${theme.colors.black};
-  border-bottom: ${theme.colors.gray} solid 1px;
+  border: ${theme.colors.grayB} solid 1px;
   background-color: ${theme.colors.whiteA};
   user-select: text;
+  border: ${theme.colors.grayB} solid 1px;
   @media (max-width : 780px) {
     width: 320px;
   }
@@ -87,15 +84,12 @@ const getDefaultValueStyle = (theme: any) => `
 const Value = styled.div`
   ${({ theme }) => getDefaultValueStyle(theme)};
 `;
-const EditValueContainer = styled.div`
-  position: relative;
-`;
 const EditValue = styled.input`
   ${({ theme }) => getDefaultValueStyle(theme)};
-  border-width: 0;
-  outline: none;
-  border-bottom: ${({ theme }) => theme.colors.blue} solid 2px;
   background-color: ${({ theme }) => theme.colors.white};
+`;
+const EditValueContainer = styled.div`
+  position: relative;
 `;
 const VerifiedIco = styled.div`
   justify-self: end;
@@ -132,21 +126,21 @@ export const EditRow = (props: {nonEditable?: boolean; title?: string; value: st
     }
     const isEditableState = !props.nonEditable;
     const isEditState = isEditableState && editing;
-    const isSavedState = !isEditableState && !editing;
     return (
         <EditRowStyle className={props.verified ? 'verified' : ''}>
             {/* <Verified verified={!!props.verified} /> */}
             <Title>{props.title || ''}</Title>   
             { isEditState ? 
-            <EditValueContainer>
-                <EditValue placeholder={value}/>
-                {isEditableState ? <EditSaveButton onClick={save} className={'edit'} /> : null}
-            </EditValueContainer> :
-            <Value>
-                {value}
-                {isEditableState ? <EditSaveButton onClick={switchEditing} className={'save'} /> : null}
-            </Value>
-          }
+                <EditValueContainer>
+                    <EditValue type={'text'} defaultValue={props.value} placeholder={value} onInput={setVal}/>
+                    {isEditableState ? <EditSaveButton onClick={save} className={'edit'} /> : null}
+                </EditValueContainer> 
+                :
+                <Value>
+                    {props.value}
+                    {isEditableState ? <EditSaveButton onClick={switchEditing} className={'save'} /> : null}
+                </Value>
+            }
         </EditRowStyle>
     );
 };

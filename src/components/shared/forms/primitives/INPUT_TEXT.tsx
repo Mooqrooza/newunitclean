@@ -42,6 +42,9 @@ export const INPUT_TEXT_STYLE = styled.input`
     background: ${ ({theme}) => theme.colors.whiteRedA };
     transition: background 0.5s 0s linear;
   }
+  @media (max-width : 400px) {
+    font-size: ${ ({theme}) => theme.font.size[14] };
+  }
   .mobile & {}
 `;
 export const INPUT_ERROR_MARKER_STYLED = styled.div`

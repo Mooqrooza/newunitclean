@@ -17,10 +17,7 @@ const FormStyle = styled.form`
   max-height: 98%;
   background: ${({ theme }) => theme.colors.white };
   box-shadow: ${({ theme }) => theme.shadows.shadow };
-
-  .background & {
-    overflow-x: auto;
-  }
+  .background & { overflow-x: auto; }
   .mobile & {
     min-height: 100%;
     max-width: 100%;
@@ -28,11 +25,7 @@ const FormStyle = styled.form`
   }
 `;
 const Form = (props: {children: any; closeButton?: boolean}) => {
-    return (
-        <FormStyle>
-            {props.children}
-        </FormStyle>
-    );
+    return <FormStyle>{props.children}</FormStyle>;
 };
 export const FormCloseStyle = styled.div`
   position: absolute;
@@ -46,10 +39,7 @@ export const FormCloseStyle = styled.div`
   border-radius: 22px;
   cursor: pointer;
   background: ${({ theme }) => theme.colors.whiteBlueA };
-
-  .mobile & {
-    position: fixed;
-  }
+  .mobile & { position: fixed; }
 `;
 const FormClose = () => {
     const dispatch = useDispatch();
@@ -64,7 +54,6 @@ const FormContainerStyle = styled.div<{css: any}>`
   display: flex;
   justify-content: center;
   align-items: center;
-
   ${props => props.css};
   &.background {
     position: fixed;
@@ -94,7 +83,6 @@ export const FormContainer = (props: {children: any; css?: any; background?: boo
         </FormContainerStyle>
     );
 };
-
 export const FormList = styled.div`
   display: flex;
   flex-direction: column;
@@ -102,19 +90,9 @@ export const FormList = styled.div`
   height: auto;
   min-height: 100px;
   border-radius: 40px;
-
-  & div {
-    margin: 10px 0;
-  }
-  & input {
-    min-width: 370px;
-  }
-  .mobile & {
-    margin: 16px;
-    & input {
-      min-width: 0px;
-    }
-  }
+  & div { margin: 10px 0; }
+  & input { min-width: 370px; }
+  .mobile & {}
 `;
 
 export const FormListContainer = styled.div`

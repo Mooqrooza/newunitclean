@@ -38,11 +38,10 @@ const INPUT_TEXT_FIELD_STYLE = styled.textarea`
   font-weight: ${ ({theme}) => theme.font.weight[500] };
   border: 1px solid ${ ({theme}) => theme.colors.grayB };
   background: ${ ({theme}) => theme.colors.white };
-  &.active {
-    /* background: ${ ({theme}) => theme.colors.whiteBlueD }; */
-  } 
-  &.error {
-    background: ${ ({theme}) => theme.colors.whiteRedA };
+  &.error { background: ${ ({theme}) => theme.colors.whiteRedA }; }
+  &.active {} 
+  @media (max-width : 400px) {
+     font-size: ${ ({theme}) => theme.font.size[12] };
   }
   .mobile & {}
 `;

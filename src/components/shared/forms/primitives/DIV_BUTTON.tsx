@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 
-const defaultButtonStyle = `  
+const defaultButtonStyle = ` 
+  position: relative; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,18 +17,24 @@ const defaultButtonStyle = `
   text-transform: uppercase;
   cursor: pointer;
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
   .mobile & {}
 `;
 const getDefaultIconStyle = (icon: any) => `
   &::after {
-    transform: translateX(20px);
     content: url(${icon});
+    position: absolute;
+    right: 12px;
     width: 24px;
     height: 24px;
   }
 `;
 export const DIV_BUTTON_BLUE_STYLE:any = styled.div<{css?: any; cssMobile?: any, icon?: any}>`
   ${defaultButtonStyle}
+  &:hover {
+    background-color: ${({theme}) => theme.colors.blueD};
+    box-shadow: ${({theme}) => theme.shadows.shadowC};
+  }
   font-size: ${ ({ theme }) => theme.font.size[15] };
   font-weight: ${ ({ theme }) => theme.font.weight[500] };
   color: ${ ({ theme }) => theme.colors.white };
@@ -49,12 +56,6 @@ export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any;
   white-space: break-spaces;
   color: ${ ({ theme }) => theme.colors.white };
   background: ${ ({ theme }) => theme.colors.grayB };
-
-  &:hover {
-    background: transparent;
-    color: ${ ({ theme }) => theme.colors.blue };
-    transition: color 0.3s 0s linear;
-  }
   &.unselected:not(:hover) {
     background: transparent;
     color: ${({ theme }) => theme.colors.black};
@@ -70,12 +71,17 @@ export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any;
   }
   .mobile & {}
 `;
-export const DIV_BUTTON_SOFT_BLUE_STYLE = styled.div<{css?: any; cssMobile?: any}>`
+export const DIV_BUTTON_SOFT_BLUE_STYLE = styled.div<{css?: any; cssMobile?: any, icon?: any}>`
   ${defaultButtonStyle}
+  &:hover {
+    background-color: ${({theme}) => theme.colors.blueG};
+    box-shadow: ${({theme}) => theme.shadows.shadowC};
+  }
   font-size: ${ ({ theme }) => theme.font.size[15] };
   font-weight: ${ ({ theme }) => theme.font.weight[500] };
   background: ${ ({ theme }) => theme.colors.whiteBlueA };
   color: ${ ({ theme }) => theme.colors.blue };
+  ${ props => (props.icon ? getDefaultIconStyle(props.icon) : '') }
   ${props => props.css}
   .mobile & { 
     ${props => props.cssMobile} 

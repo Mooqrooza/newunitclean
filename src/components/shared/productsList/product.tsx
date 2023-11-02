@@ -206,7 +206,6 @@ export const ProductTools = (props: {data: ProductType; onlyFavourite?: boolean,
     }
     const size = props.data.product_order_size;
     const count = props.data.amount_of_product;
-    const countAndSizeInfo = size ? (count ? (size+' x '+count) : size) : count ? (count+' шт.') : '';
     return <Tools>
               <CountText>{`${size} x ${count} шт.`}</CountText>
               <AddRemoveButtonContainer>
@@ -214,8 +213,8 @@ export const ProductTools = (props: {data: ProductType; onlyFavourite?: boolean,
                   <AddButton onClick={AddToCart}></AddButton>
               </AddRemoveButtonContainer>
           </Tools>
-}
-const ProductContent = (props: {data: ProductType; noStar?: boolean, onlyFavourite?: boolean, current_size?: boolean, tools: boolean}) => {
+  }
+  const ProductContent = (props: {data: ProductType; noStar?: boolean, onlyFavourite?: boolean, current_size?: boolean, tools: boolean}) => {
   const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
   const productPath = URLs.PRODUCT.replace(':id', '' + props.data.id);
   const dispatch = useDispatch();
@@ -243,12 +242,12 @@ const ProductContent = (props: {data: ProductType; noStar?: boolean, onlyFavouri
   const popularIcoPath = (IsFavourite() ? icons.heartIco2 : icons.heartIco1) || '';
   const showTools = props.tools && props.data.product_order_size;
   return (
-      <Main >
+      <Main>
           { (props.data.discount && !props.noStar) ? <PopularIco>{props.data.discount}</PopularIco> : null }
-          <ImageContainer href={productPath} >
+          <ImageContainer href={productPath} onClick={MarkAsFavourite}>
               <Image src={productImagePath} />
-              <FavouriteButton onClick={MarkAsFavourite} imageUrl={popularIcoPath} />
           </ImageContainer>
+          <FavouriteButton onClick={MarkAsFavourite} imageUrl={popularIcoPath} />
           <Info>
               <Title href={productPath}>{props.data.title}</Title>
               <Description>{props.data.description}</Description>
@@ -261,7 +260,6 @@ const ProductContent = (props: {data: ProductType; noStar?: boolean, onlyFavouri
               }
               { showTools ? <ProductTools data={props.data} onlyFavourite={props.onlyFavourite} current_size={props.current_size} /> : null }
           </PriceAndToolsContainer>
-          
       </Main>
   );
 }

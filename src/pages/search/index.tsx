@@ -9,6 +9,7 @@ import {GetSearch} from "src/actions/SearchAction/SearchAction";
 import {useParams} from "react-router-dom";
 import styled from "styled-components";
 import NoProducts from "components/shared/productsList/noProducts";
+import Feedback from "components/main/feedback";
 
 const ResultsContainer = styled.section`
   .mobile & {}
@@ -31,6 +32,7 @@ const Search = () => {
             <ResultsContainer>
                 { cache.length ? <ProductsList products={cache} /> : <NoProducts>Товаров не найдено</NoProducts> }
             </ResultsContainer>
+            <Feedback />
         </Content>
     );
 };

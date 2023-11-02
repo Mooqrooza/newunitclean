@@ -12,17 +12,29 @@ const LabelGroup = styled.div`
   }
   .mobile & {}
 `;
-const Label = styled.div`
+const Label = styled.div<{ type?: string, css?: string }>`
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.colors.orangeTransparent(0.1)};
+  background-color: ${({ theme }) => theme.colors.orangeTransparent(0.1)};
+  img { background-color: ${({ theme }) => theme.colors.orangeTransparent(0.1)}; }
+  ${({css}) => css}
   .mobile & {}
 `;
-const Icon = styled.div`
+const LabelRed = styled.div<{ type?: string, css?: string }>`
+  display: flex;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.redTransparent(0.08)};
+  img { background-color: ${({ theme }) => theme.colors.redTransparent(0.09)}; }
+  ${({css}) => css}
+  .mobile & {}
+  * {
+    color: ${({ theme }) => theme.colors.grayA};
+  }
+`;
+const Icon = styled.img`
   width: 24px;
   height: 24px;
   float: left;
-  background: ${({ theme }) => theme.colors.orangeTransparent(0.1)};
   .mobile & {}
 `;
 const Text = styled.div`
@@ -45,14 +57,21 @@ const Text = styled.div`
 export interface Ilabelinfo {
     text: string;
     icon?: any;
+    type?: string;
+    css?: string;
     func?: () => void;
 };
 export const LabelInfo = (props: Ilabelinfo ) => {
     return (
-        <Label onClick={ props.func ? props.func : undefined }>
-             <Icon><img src={props.icon || icons.shine} /></Icon>
+      props?.type === 'redAlert' ?
+        <LabelRed onClick={ props.func ? props.func : undefined } css={props.css ? props.css : ''}>
+            <Icon src={props.icon || icons.alertIcon || ''} />
             <Text>{props.text || '...'}</Text>
-        </Label>
+        </LabelRed>
+      : <Label onClick={ props.func ? props.func : undefined } css={props.css ? props.css : ''}>
+          <Icon src={props.icon || icons.shine || ''} />
+          <Text>{props.text || '...'}</Text>
+      </Label>
     );
 };
 export const LabelInfoGroup = (props:{ labels: Array<Ilabelinfo>, direction?: string, style?: any; }) => {

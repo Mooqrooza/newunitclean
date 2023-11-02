@@ -14,7 +14,6 @@ const PromoCodeStyle = styled.div`
   padding: 52px 0;
   display: grid;
   justify-content: center;
-  
   .mobile & {
     margin: 52px -${({ theme }) => theme.values.contentMobileMargin}px 0 -${({ theme }) => theme.values.contentMobileMargin}px;
     background: #2196F354;
@@ -22,25 +21,20 @@ const PromoCodeStyle = styled.div`
     grid-template-columns: 1fr;
   }
 `;
-
 const InlineButton = styled.div`
   display: grid;
   grid-template-columns: auto min-content;
-  
   .mobile & {
     margin-top: 10px;
   }
 `;
-
 const InputTextStyle = styled(INPUT_TEXT_STYLE)`
   border-radius: 10px 0 0 10px;
 `;
-
 const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   height: 100%;
   border-radius: 0 10px 10px 0;
 `;
-
 const PromoCode = () => {
     return (
         <PromoCodeStyle>

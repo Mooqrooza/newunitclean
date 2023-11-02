@@ -70,8 +70,7 @@ const TabButton = (props: { children: any, self: number, parentRef?: any } ) => 
         window.scrollTo({
             top: scrollTo,
             behavior: "smooth",
-        });        
-        
+        });          
     }
     return (
         <TabButtonStyle className={props.self == pos ? 'selected' : ''} onClick={click}>{props.children}</TabButtonStyle>

@@ -8,14 +8,13 @@ export const InfoStyle = styled.div`
   grid-template-columns: 20% 60%;
   justify-content: end;
   grid-gap: 56px; gap: 56px;
-  padding: 48px 0;
+  padding: 48px;
 
   .mobile & {
     border-bottom: none;
     grid-template-columns: unset;
   }
 `;
-
 export const InfoPhotoContainer = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -26,7 +25,6 @@ export const InfoPhotoContainer = styled.div`
     height: 100%;
   }
 `;
-
 export const InfoPhoto = styled.div<{src: string}>`
   background: url(${ props => props.src });
   margin-left: auto;

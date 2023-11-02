@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {FormHeader} from "components/shared/fonts/specialFonts";
 import {
     InputAddress,
     InputCompany,
@@ -9,29 +8,54 @@ import {
     InputUR_KPP, OutputDetail
 } from "components/shared/forms/inputText";
 import ButtonBlue from "components/shared/forms/buttonBlue";
-import {FormList} from "components/shared/forms/form";
 import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import {ApiMethod} from "src/api/APIMethod";
 import {URLs} from "src/utils/constants";
+import {icons} from "src/utils/icons";
 
 const FormContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  padding: 48px;
+  width: 100%;
+  box-sizing: border-box;
   border-radius: 40px;
   background: ${({ theme }) => theme.colors.grayC };
   .mobile & {}
 `;
-const FormListContainer = styled(FormList)`
+const FormListContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justyfy-content: center;
+gap: 20px;
+width: 100%;
+border-radius: 40px;
+box-sizing: border-box;
+background: url(${icons.companyIcon}) no-repeat;
+background-color: ${({theme}) => theme.colors.grayC};
+background-position: 50px center;
+.input-text-wrapper { 
+    width: 100%;
+    min-width: 200px; 
+    max-width: 370px; 
+}
+.mobile & {}
 `;
 const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
+  margin-top: 20px;
   width: 220px;
 `;
 const ButtonSendSuccess = styled(ButtonStyle)`
-  width: 220px;
+  width: auto;
+  min-width: 220px;
 `;
 const ButtonSendError = styled(ButtonStyle)`
-  width: 220px;
+  width: auto;
+  min-width: 220px;
 `;
 const Registration = () => {
     const form:any = {};
@@ -69,7 +93,6 @@ const Registration = () => {
     }
     return (
         <FormContainer> 
-            <FormHeader>Регистрация компании</FormHeader>
             <FormListContainer>
                 <InputCompany placeholder={'Наименование организации'} setObj={setTitle}></InputCompany>
                 <InputFIZ_OR_UR_INN placeholder={'ИНН'} setObj={setInn}></InputFIZ_OR_UR_INN>

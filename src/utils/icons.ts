@@ -84,6 +84,8 @@ import editIcon from '../icons/edit-ico-1.svg';
 import checkIcon from '../icons/check-ico-1.svg';
 import userIcon from '../icons/user-ico-1.png';
 import companyIcon from '../icons/company-ico-1.png';
+import logoutIcon from '../icons/logout-ico-1.svg';
+import alertIcon from '../icons/alert-ico-1.svg';
 
 export const icons = {
     header: {
@@ -94,7 +96,6 @@ export const icons = {
         close: headerClose,
         closeA: headerClose2, 
     },
-
     shine: shine,
     whyWeIco1: whyWeIco1,
     whyWeIco2: whyWeIco2,
@@ -111,6 +112,8 @@ export const icons = {
     checkIco: checkIcon,
     userIcon: userIcon,
     companyIcon: companyIcon,
+    logoutIcon: logoutIcon,
+    alertIcon: alertIcon,
 
     lk: lk,
     cart: cart,
