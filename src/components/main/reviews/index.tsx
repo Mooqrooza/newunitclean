@@ -122,12 +122,6 @@ const Reviews: React.FC = () => {
     const counterPointsRef = useRef<HTMLDivElement>(null);
     function leftArrow() { setPos((pos - 1 + reviewsList.length) % reviewsList.length); }
     function rightArrow() { setPos((pos + 1) % reviewsList.length); }
-    function getTestReviews (revs:any) {
-        revs.push({ ...revs[0], id: revs.length+1 });
-        revs.push({ ...revs[1], id: revs.length+1 });
-        revs.push({ ...revs[2], id: revs.length+1 });
-        return revs;
-    }
     let processReviewsScrollControllTmr:any = null;
     function processReviewsScrollControll () {
         clearTimeout(processReviewsScrollControllTmr);
@@ -136,13 +130,14 @@ const Reviews: React.FC = () => {
             const reviewsWrapperEl = ReviewsWrapperRef.current;
             const counterPointsContainerEl = counterPointsRef.current;
             if (reviewsWrapperEl) {
+                const reviews = getReviews();
                 const reviewsWrapperElWidth = reviewsWrapperEl.clientWidth;
                 const firstChildEl = reviewsWrapperEl.firstElementChild;
                 const childElWidth = firstChildEl?.clientWidth || 1;
-                const childEls= Array.from(reviewsWrapperEl.children);
-                const childCount = reviewsList.length;
+                const childEls = Array.from(reviewsWrapperEl.children);
+                const childCount = reviews.length;
                 const fitElCount = Math.floor((reviewsWrapperElWidth / childElWidth) || 1);
-                const stepCounts = Math.round(childCount / fitElCount);
+                const stepCounts = Math.ceil(childCount / fitElCount);
                 const pointEls: Array<HTMLElement> = [];
                 const appendChildElsTo = (parentEl:HTMLElement, childEls:Array<HTMLElement> = []) => {
                     parentEl.innerHTML = "";
@@ -178,15 +173,14 @@ const Reviews: React.FC = () => {
                 for (let i=0; i < stepCounts; i++) { 
                     pointEls.push( getPointEl(i) );
                 }
-                if (counterPointsContainerEl instanceof HTMLElement) {
+                if (counterPointsContainerEl instanceof HTMLElement) { 
                     appendChildElsTo(counterPointsContainerEl, pointEls);
                 } 
             }
         }, 500);
     }
     useEffect(() => { 
-       const revs = getTestReviews(getReviews());
-       setReviews(revs); 
+       setReviews(getReviews()); 
        processReviewsScrollControll(); 
     }, []);
     return (

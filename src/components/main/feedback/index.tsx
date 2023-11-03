@@ -24,8 +24,7 @@ const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.grayC};
   background-image: url("${feedbackImage}");
   background-repeat: no-repeat;
-  background-position: center
-  background-size: cover;
+  background-position: 10% 10%;
   .mobile & {}
 `;
 const Form =  styled.div`

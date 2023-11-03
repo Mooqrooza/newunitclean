@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {SectionLabel} from "components/shared/fonts/specialFonts";
-import aboutImage from "src/images/about-image-1.jpg";
+import aboutImage from "src/images/about-image-2.jpg";
 
 const Main = styled.section`
    .mobile & {}
