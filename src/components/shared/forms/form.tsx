@@ -10,18 +10,23 @@ const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
   padding: 40px;
-  min-width: 580px;
+  min-width: 570px;
   max-width: 680px;
+  max-height: 98%;
   border-radius: 40px;
   box-sizing: border-box;
-  max-height: 98%;
+  
   background: ${({ theme }) => theme.colors.white };
   box-shadow: ${({ theme }) => theme.shadows.shadow };
   .background & { overflow-x: auto; }
-  .mobile & {
-    min-height: 100%;
+  @media (max-width: 1000px) {
+    width: 100%;
     max-width: 100%;
+    min-width: 280px;
+    min-height: 100%;
+    max-height: 100%;
     border-radius: 0;
+    padding: 10px;
   }
 `;
 const Form = (props: {children: any; closeButton?: boolean}) => {
@@ -39,7 +44,6 @@ export const FormCloseStyle = styled.div`
   border-radius: 22px;
   cursor: pointer;
   background: ${({ theme }) => theme.colors.whiteBlueA };
-  .mobile & { position: fixed; }
 `;
 const FormClose = () => {
     const dispatch = useDispatch();
@@ -64,9 +68,9 @@ const FormContainerStyle = styled.div<{css: any}>`
     z-index: 2;
     align-content: center;
     background: #00000080;
-    
-    .mobile &.background {
-      width: 100%;
+  }
+  @media (max-width: 800px) {
+    &.background {
       overflow-y: auto;
       z-index: 4;
     }
@@ -87,11 +91,15 @@ export const FormList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: start;
   height: auto;
   min-height: 100px;
   border-radius: 40px;
   & div { margin: 10px 0; }
-  & input { min-width: 370px; }
+  & input { min-width: 360px; }
+  @media (max-width: 700px) {
+    & input { min-width: 280px; }
+  }
   .mobile & {}
 `;
 

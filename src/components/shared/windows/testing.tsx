@@ -29,7 +29,6 @@ const TestingContainer = styled.div`
 `;
 const TestingStyle = styled.div`
   background: #fff;
-  //filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.5));
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   padding: 40px 16px;

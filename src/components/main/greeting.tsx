@@ -4,6 +4,7 @@ import { LabelInfoGroup } from "components/shared/forms/labelInfo";
 import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import styled from "styled-components";
 import greetingImage from "src/images/greeting-image-1.png";
+import {URLs} from "src/utils/constants";
 
 const Main = styled.section`
    position: relative;
@@ -17,7 +18,11 @@ const Main = styled.section`
        align-items: center;
        height: auto;
        padding: 40px;
+       border-radius: 60px;
        box-sizing: border-box;
+    }
+    @media (max-width: 600px) {
+      border-radius: 40px;
     }
    .mobile & {}
 `;
@@ -94,7 +99,7 @@ const Greetings = () => {
           <TextContainer>
               <Maintext>Хороший короткий текст</Maintext>
               <LabelInfoGroup labels={labelInfo}/>
-              <Button>Каталог</Button>
+              <Button onClick={() => { window.open(URLs.CATALOG, '_self'); }}>Каталог</Button>
           </TextContainer>
       </Main>
     );

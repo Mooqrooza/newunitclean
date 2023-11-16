@@ -41,6 +41,12 @@ export const FormHeader = styled.div`
   text-align: center;
   font-size: ${({ theme }) => theme.font.size[32]};
   color: ${({ theme }) => theme.colors.blue};
+  padding: 20px 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  @media (max-width: 380px) {
+    
+  }
 `;
 export const FormText = styled.div`
   ${DefaultHStyle}

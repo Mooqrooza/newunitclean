@@ -26,6 +26,7 @@ const ReviewsWrapper= styled(RefDivComponent)`
   display: flex;
   grid-auto-columns: 30%;
   gap: 0 30px;
+  min-width: 220px;
   padding: 0 30% 0 0;
   overflow: hidden;
 `;
@@ -126,7 +127,6 @@ const Reviews: React.FC = () => {
     function processReviewsScrollControll () {
         clearTimeout(processReviewsScrollControllTmr);
         processReviewsScrollControllTmr = setTimeout(() => {
-            window.addEventListener('resize', () => { processReviewsScrollControll(); });
             const reviewsWrapperEl = ReviewsWrapperRef.current;
             const counterPointsContainerEl = counterPointsRef.current;
             if (reviewsWrapperEl) {
@@ -136,8 +136,8 @@ const Reviews: React.FC = () => {
                 const childElWidth = firstChildEl?.clientWidth || 1;
                 const childEls = Array.from(reviewsWrapperEl.children);
                 const childCount = reviews.length;
-                const fitElCount = Math.floor((reviewsWrapperElWidth / childElWidth) || 1);
-                const stepCounts = Math.ceil(childCount / fitElCount);
+                const fitElCount = Math.floor(reviewsWrapperElWidth / (childElWidth || 1))  || 1;
+                const stepCounts = Math.ceil(childCount / (fitElCount || 1));
                 const pointEls: Array<HTMLElement> = [];
                 const appendChildElsTo = (parentEl:HTMLElement, childEls:Array<HTMLElement> = []) => {
                     parentEl.innerHTML = "";
@@ -153,6 +153,7 @@ const Reviews: React.FC = () => {
                     const idx = +pointEl.getAttribute('data-index');
                     const scrollToElInx = idx ? (idx * fitElCount) : 0;
                     const scrollToEl = childEls[scrollToElInx];
+                    
                     allPointEls.forEach((el:any) => { el.classList.remove('active'); });
                     pointEl.classList.add('active')
                     if (scrollToEl instanceof HTMLElement) {
@@ -182,6 +183,7 @@ const Reviews: React.FC = () => {
     useEffect(() => { 
        setReviews(getReviews()); 
        processReviewsScrollControll(); 
+       window.addEventListener('resize', () => { processReviewsScrollControll(); });
     }, []);
     return (
         <Main>

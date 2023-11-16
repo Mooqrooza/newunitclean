@@ -60,7 +60,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: Roboto, "Open Sans", Helvetica, Arial, sans-serif;
-    letter-spacing: 0em;
+    letter-spacing: normal;
     text-align: center;
     color: #FFFFFF;
     overflow-x: hidden;

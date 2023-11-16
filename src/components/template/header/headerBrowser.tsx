@@ -3,7 +3,7 @@ import styled, {css} from "styled-components";
 import * as constants from "src/utils/constants";
 import HeaderMenuButton from "src/components/template/header/headerMenuButton";
 import HeaderFeedbackButton from "components/template/header/headerFeedbackButton";
-import { headerMenuButton } from "src/utils/types";
+import {headerMenuButton} from "src/utils/types";
 import {showFeedback} from "components/template/header/headerFuncs";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateWindows} from "src/reducers/WindowsManagerReducer/WindowsManagerReducer.types";

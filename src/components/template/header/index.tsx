@@ -16,18 +16,12 @@ const Header = (props?: any) => {
     const requireMinView = () => window.innerWidth < 1210;
     const [minView, setMinView] = useState(requireMinView());
     let resizeOfsetTmr:any = null;
-    const winResize = (e:any) => {
+    const onWinResize = (e:any) => {
         clearTimeout(resizeOfsetTmr);
-        resizeOfsetTmr = setTimeout(() => {
-            if (requireMinView()) {
-                if (!minView) { setMinView(true); }
-            } else {
-                if (minView) { setMinView(false); }
-            }
-        }, 100);
+        resizeOfsetTmr = setTimeout(() => { setMinView(!minView); }, 100);
     }  
     useEffect(() => {
-        window.addEventListener('resize', winResize);
+        window.addEventListener('resize', onWinResize);
     }, [minView]);
     return (
         <div>

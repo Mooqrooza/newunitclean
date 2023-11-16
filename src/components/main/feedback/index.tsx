@@ -25,6 +25,9 @@ const Content = styled.div`
   background-image: url("${feedbackImage}");
   background-repeat: no-repeat;
   background-position: 10% 10%;
+  @media (max-width: 800px) {
+    border-radius: 40px;
+  }
   .mobile & {}
 `;
 const Form =  styled.div`

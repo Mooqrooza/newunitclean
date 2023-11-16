@@ -12,10 +12,10 @@ const TabsButtonsStyle = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: start;
+  gap: 10px;
   padding: 20px;
   margin: 0 0 50px 0;
   border-radius: 34px;
-  gap: 10px;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.grayC};
   .sticky & {
@@ -27,7 +27,11 @@ const TabsButtonsStyle = styled.div`
     margin: 0;
     border-radius: 0;
     box-shadow: ${({theme}) => theme.shadows.shadowA};  
-    z-index: 2;
+    z-index: 1;
+  }
+  @media (max-width: 560px) {
+     flex-direction: column;
+     gap: 15px;
   }
   .mobile & {}
 `;
@@ -35,10 +39,11 @@ const TabButtonStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
-  height: 28px;
-  padding: 0 20px;
+  text-align: left;
+  min-height: 28px;
+  padding: 5px 20px;
   border-radius: 14px;
+  box-sizing: border-box;
   font-size: ${({ theme }) => theme.font.size[16]};
   font-weight: ${({ theme }) => theme.font.weight[500]};
   color: ${({ theme }) => theme.colors.black};
@@ -53,6 +58,9 @@ const TabButtonStyle = styled.div`
   &.selected {
     color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.blue};
+  }
+  @media (max-width: 560px) {
+    width: 100%;
   }
   .mobile & {}
 `;
@@ -78,23 +86,42 @@ const TabButton = (props: { children: any, self: number, parentRef?: any } ) => 
 };
 const TabsButtons = (props: {titles: any[], stickyButtons?: any}) => {
     const ButtonsContainerRef = useRef<HTMLDivElement>(null);
+    let containerEl: any = null;
+    const onScroll = () => {
+        const titleElTop = containerEl.offsetTop;
+        const bodyScrollTop = Math.abs(document.body.getBoundingClientRect().top);
+        if (bodyScrollTop >= titleElTop) { 
+            containerEl.style.height = containerEl.clientHeight+'px';
+            containerEl.classList.add("sticky") 
+        } else { 
+            containerEl.style.height = 'auto';
+            containerEl.classList.remove("sticky"); 
+        }
+    }
     const processStickyButtons = () => {
-        const containerEl = ButtonsContainerRef?.current;
-        if (containerEl) { window.onscroll = () => {
-             const titleElTop = containerEl.offsetTop;
-             const bodyScrollTop = Math.abs(document.body.getBoundingClientRect().top);
-             if (bodyScrollTop >= titleElTop) { 
-                containerEl.style.height = containerEl.clientHeight+'px';
-                containerEl.classList.add("sticky") 
-            } 
-             else { 
+        containerEl = ButtonsContainerRef?.current;
+        if (containerEl) { 
+             const winWidth = window.innerWidth;
+             if (winWidth > 900) {
+                onScroll();
+                window.addEventListener('scroll', onScroll);
+             } else {
+                window.removeEventListener('scroll', onScroll);
                 containerEl.style.height = 'auto';
                 containerEl.classList.remove("sticky"); 
-            }
-        }}
+             }  
+        }
+    }
+    const initStickyButtons = () => {
+        let resizeTmr: any = null;
+        processStickyButtons();
+        window.addEventListener('resize', () => { 
+            clearTimeout(resizeTmr);
+            resizeTmr = setTimeout(() => { processStickyButtons(); }, 80);
+        });
     }
     useEffect(() => {
-        if (props.stickyButtons) { processStickyButtons() }
+        if (props.stickyButtons) { initStickyButtons(); }
     },[])
     return (
         <TabsButtonsContainerStyle ref={ButtonsContainerRef}>
