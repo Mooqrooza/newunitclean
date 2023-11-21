@@ -87,7 +87,7 @@ const TextItem = styled.div`
   margin: 0 0 10px 0;
   color: ${({ theme }) => theme.colors.blackA};
   font-size: ${({ theme }) => theme.font.size[17]};
-  font-weight: ${({ theme }) => theme.font.weight[500]};
+  font-weight: ${({ theme }) => theme.font.weight[400]};
   text-decoration: none;
    .mobile & {}
 `;
@@ -95,7 +95,7 @@ const LinkItem = styled.a`
   margin: 0 0 10px 0;
   color: ${({ theme }) => theme.colors.blackA};
   font-size: ${({ theme }) => theme.font.size[17]};
-  font-weight: ${({ theme }) => theme.font.weight[500]};
+  font-weight: ${({ theme }) => theme.font.weight[400]};
   text-decoration: none;
    .mobile & {}
 `;

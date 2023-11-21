@@ -12,7 +12,7 @@ const Background = styled.div`{
     img { width: 100%; }  
   `;
 const EmptyBasket = (props: {children: string}) => {
-    return (<Background><img src={basketImage} /></Background>);
+    return (<Background><img src={basketImage}/></Background>);
 };
 
 export default EmptyBasket;

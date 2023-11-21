@@ -56,16 +56,10 @@ const ImagesMobile = (props: {images: string[]}) => {
         if (event.touches.length) {
             setLastTouch(event.touches.item(event.touches.length - 1).screenX / window.innerWidth);
         }
-
         if (firstTouch - lastTouch > 0.15) {
-            if (selected < props.images.length - 1) {
-                setSelected(selected + 1);
-            }
-        }
-        else if (firstTouch - lastTouch < -0.15) {
-            if (selected > 0) {
-                setSelected(selected - 1);
-            }
+            if (selected < props.images.length - 1) { setSelected(selected + 1); }
+        } else if (firstTouch - lastTouch < -0.15) {
+            if (selected > 0) { setSelected(selected - 1); }
         }
     }
     return (

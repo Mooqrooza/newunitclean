@@ -8,12 +8,21 @@ const Background = styled.div`{
   display: flex;
   align-items: center;
   justify-content: start;
-  width: 100%;
+  width: calc(25% - 23px);
   margin-bottom: 64px;
   img { width: 100%; }  
+  @media (max-width: 1100px) {
+    width: calc(33% - 20px);
+  }
+  @media (max-width: 840px) {
+    width: calc(50% - 18px);
+  }
+  @media (max-width: 520px) {
+    width: 100%;
+  }
 `;
 const EmptyBasket = (props: {children: string}) => {
-    return (<Background><img src={basketImage} /></Background>);
+    return (<Background><img src={basketImage} className={"22222"}/></Background>);
 };
 
 export default EmptyBasket;

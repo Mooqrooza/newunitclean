@@ -50,13 +50,14 @@ const SmallImagesContainer = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  min-height: 100px;
+  gap: 8px;
+  height: auto;
   .mobile & {}
 `;
 const Image = styled.div<{src: string}>`
+  position: relative;
   aspect-ratio: 1;
-  height: 100%;
+  min-height: 100px;
   border-radius: 20px;
   cursor: pointer;
   opacity: 0.7;

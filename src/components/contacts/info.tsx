@@ -28,7 +28,7 @@ const Info = styled.div`
   user-select: text;
   text-align: left;
   color: ${({ theme }) => theme.colors.black};
-  font-weight: ${({ theme }) => theme.font.weight[500]};
+  font-weight: ${({ theme }) => theme.font.weight[400]};
   font-size: ${({ theme }) => theme.font.size[18]};
   @media (max-width : 520px) {
     font-size: ${({ theme }) => theme.font.size[16]};

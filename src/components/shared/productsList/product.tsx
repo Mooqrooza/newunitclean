@@ -17,11 +17,19 @@ const Main = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 10px;
-  width: 330px;
-  min-height: 280px;
+  width: calc(25% - 23px);
   text-decoration: none;
   text-align: left;
   &:hover {}
+  @media (max-width: 1100px) {
+    width: calc(33% - 20px);
+  }
+  @media (max-width: 840px) {
+    width: calc(50% - 18px);
+  }
+  @media (max-width: 520px) {
+    width: 100%;
+  }
   .mobile .show-buttons & {}
 `;
 const ImageContainer = styled.a`
@@ -83,7 +91,7 @@ const Description = styled.div`
   position: relative;
   height: 40px;
   font-size: ${({ theme }) => theme.font.size[14]};
-  font-weight: ${({ theme }) => theme.font.weight[500]};
+  font-weight: ${({ theme }) => theme.font.weight[400]};
   color: ${({ theme }) => theme.colors.gray};
   text-overflow: ellipsis;
   overflow: hidden;

@@ -13,19 +13,25 @@ const buttons = [
     {href: constants.URLs.CART, text: "Корзина", icon: icons.cart, auth: true}
 ]
 const Header = (props?: any) => {
-    const requireMinView = () => window.innerWidth < 1210;
-    const [minView, setMinView] = useState(requireMinView());
-    let resizeOfsetTmr:any = null;
-    const onWinResize = (e:any) => {
-        clearTimeout(resizeOfsetTmr);
-        resizeOfsetTmr = setTimeout(() => { setMinView(!minView); }, 100);
-    }  
-    useEffect(() => {
-        window.addEventListener('resize', onWinResize);
-    }, [minView]);
+    const requireMobileType = () => window.innerWidth < 1210;
+    const [mobileType, setMobileType] = useState(requireMobileType());
+    let resizeTmr = 0;
+    const resizeHandler = function (e:any) {
+        clearTimeout(resizeTmr);
+        resizeTmr = setTimeout(() => { 
+            if (mobileType && !requireMobileType()) { setMobileType(false); } 
+            else if (!mobileType && requireMobileType()) { setMobileType(true); }
+        }, 100);
+    }
+    const controllHeaderType = () => {
+        clearTimeout(resizeTmr);
+        window.removeEventListener('resize', resizeHandler);
+        window.addEventListener('resize', resizeHandler);
+    }
+    useEffect(() => { controllHeaderType(); });
     return (
         <div>
-            { minView ? 
+            { mobileType ? 
                 <HeaderContainerMobile buttons={buttons} ></HeaderContainerMobile>
                 : <HeaderContainer buttons={buttons}></HeaderContainer>
             }

@@ -9,12 +9,15 @@ export default createGlobalStyle`
   ::selection {
     background: #FFF0E5;
   }
-
   html, body{
     height: 100%;
     width: 100%;
     min-height: 100%;
     overflow-x: hidden;
+  }
+  * {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
   }
   input, select {
     outline:none;

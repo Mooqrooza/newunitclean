@@ -88,14 +88,13 @@ const Info = (props: {data: ProductType}) => {
             { hidePrice ?  null : <Price>{props.data.price ? (auth.isAuthorized ? '' : 'от ') + showMoneySum(props.data.price) + ' ₽' : null}</Price> }
             <Description>
                 { props.data.description ? <InfoRow title={'Описание'}>{props.data.description}</InfoRow> : null }
-                <InfoRow title={'Видео'}>{''}</InfoRow>
                 { props.data.sizes?.length ? 
                     <InfoRow title={'Размеры'}><RadioButtons setSize={setSize} buttons={props.data.sizes} /></InfoRow> : null
                 }
             </Description>
             { auth.isAuthorized
                 ? <ButtonAddToBasket func={AddToCart} setObj={setButton}>Добавить в корзину</ButtonAddToBasket>
-                : <ButtonAutorize func={openAuth}>Чтобы добавить в корзину, авторизуйтесь</ButtonAutorize>
+                : <ButtonAutorize func={openAuth}>Добавить в корзину</ButtonAutorize>
             }
         </ProductContainer>
     );

@@ -71,9 +71,17 @@ interface INPUT_TEXT_PROPS {
     placeholder?: string;
     name?: string;
 }
-const INPUT_TEXT = (props: {inputState: INPUT_TEXT_STATE; inputProps: INPUT_TEXT_PROPS; onFocus: (active: boolean) => void; onInput: (event: any) => void; type: string}) => {
+const INPUT_TEXT = (props: {
+        inputState: INPUT_TEXT_STATE; inputProps: INPUT_TEXT_PROPS; 
+        onFocus: (active: boolean) => void; 
+        onInput: (event: any) => void; type: string
+        onBlur?: (event: any) => void; 
+      }) => {
     function focus() { props.onFocus(true); }
-    function blur() { props.onFocus(false); }
+    function blur(event: any) {
+      props.onFocus(false); 
+      if (props.onBlur) props.onBlur(event);
+    }
     const Styled = props.inputProps.styled ? props.inputProps.styled : INPUT_TEXT_STYLE;
     return (
         <INPUT_TEXT_CONTAINER className={props.inputState.error ? 'error' : ''}>

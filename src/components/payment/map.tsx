@@ -16,20 +16,29 @@ const MainContainer = styled.div`
   .mobile & {}
 `;
 const Address = styled.div`
-  background: ${ ({theme}) => theme.colors.grayC };
-  padding: 20px 40px;
   width: 100%;
-  box-sizing: border-box;
+  min-height: 40px;
   margin: 10px 0 0 0;
+  padding: 20px 30px;
   border-radius: 40px;
+  box-sizing: border-box;
   cursor: pointer;
+  background: ${ ({theme}) => theme.colors.grayC };
+  &.active {
+    background: ${ ({theme}) => theme.colors.whiteBlueA };
+  }
   .mobile & {}
 `;
 const InfoItem = styled.div`
-   p {
+   display: flex;
+   text-align: left;
+   gap: 20px;
+
+   * {
+     text-align: left;
      color: ${ ({theme}) => theme.colors.black };
      font-weight: ${ ({theme}) => theme.font.weight[500] };
-   }
+   } 
   .mobile & {}
 `;
 const MapAndButtons = (props: {withButtons?: boolean}) => {
@@ -50,10 +59,10 @@ const MapAndButtons = (props: {withButtons?: boolean}) => {
         <MainContainer>
             {MAP}
             {props.withButtons ? pickupAddressList.map((it, idx) => (
-                <Address key={idx} style={address === it.ADDRESS ? {background: '#f1f1f1'} : {}} onClick={() => {onClickAddress(it.ADDRESS)}}>
+                <Address key={idx} className={address === it.ADDRESS ? ' active' : ''} onClick={() => {onClickAddress(it.ADDRESS)}}>
                     <InfoItem>
-                       <p>Самовывоз по адресу</p>
-                       <p>{it.ADDRESS}</p>
+                       <div>Самовывоз по адресу:</div>
+                       <div>{it.ADDRESS}</div>
                     </InfoItem>
                 </Address>
             )) : null}

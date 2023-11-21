@@ -3,7 +3,8 @@ import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {ApiMethod} from "src/api/APIMethod";
 import ButtonBlue from "components/shared/forms/buttonBlue";
-import {InputDate, InputFIO, InputPhoneNumber, InputState, OutputDetail} from "components/shared/forms/inputText";
+import {InputFIO, InputPhoneNumber, InputState, OutputDetail} from "components/shared/forms/inputText";
+import RadioButtonBlue from "components/shared/forms/radioButton";
 import InputTextField from "components/shared/forms/inputTextField";
 import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import {SectionLabel} from "components/shared/fonts/specialFonts";
@@ -89,12 +90,12 @@ const Feedback = () => {
             <SectionLabel>Заказать звонок</SectionLabel>
             <Content>
                 <Form>
-                    <Text>Если у Вас остались вопросы, оставьте контактные данные, и наш менеждер свяжется с Вами в удобное время.</Text>
+                    <Text>Оставьте Ваш телефон и наш менеджер свяжется с Вами в ближайшее время.</Text>
                     <InputFIO placeholder='Имя' setObj={setName}></InputFIO>
                     <InputPhoneNumber placeholder='Телефон' setObj={setPhone}></InputPhoneNumber>
-                    <InputDate placeholder='Когда перезвонить' setObj={setDate}></InputDate>
                     <InputTextField placeholder='Комментарий' setObj={setComment}></InputTextField>
                     <OutputDetail setObj={setDetail}></OutputDetail>
+                    
                     <ButtonBlue styled={ButtonSend} func={orderCall} setObj={setButton}>Отправить</ButtonBlue>
                 </Form>
             </Content>

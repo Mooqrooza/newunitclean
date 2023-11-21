@@ -34,7 +34,7 @@ const Content = styled.div`
   max-width: 1410px;
   height: 100%;
   .mobile & {}
-`
+`;
 const LinksContainer = styled.div`
   display: flex;
   flex: 1;
@@ -72,8 +72,8 @@ const PhoneFeedback = styled.div`
 const PhoneNumberText = styled.div`
   user-select: text;
   margin: 10px 0 0 0;
-  font-size: ${({ theme }) => theme.font.size[15]};
-  font-weight: ${({ theme }) => theme.font.weight[500]};
+  font-size: ${({ theme }) => theme.font.size[16]};
+  font-weight: ${({ theme }) => theme.font.weight[600]};
   color: ${({ theme }) => theme.colors.black};
   .mobile & {}
 `;

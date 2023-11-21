@@ -57,13 +57,17 @@ export class InputText extends Component<InputProps, InputState> {
         this.setState({error: true, errorText: errorText ? errorText : this.state.errorText});
     }
     onInput = (event?: any) => {
-        this.setState({value: event.target.value});
+        const el = event.target;
+        let value = el.value;
+        value = value[0] === '8' ? '+7' + value.slice(1) : value;
+        this.setState({value: value});
     }
     onFocus = (active: boolean) => {
         this.setState({active: active});
         if (active) { this.setState({error: false}); }
         else { this.checkError(); }
     }
+    onBlur = (event: any) => {}
     getType = () => { return 'text' }
     clear = () => { this.setState({value: ''})}
     render() {
@@ -74,6 +78,7 @@ export class InputText extends Component<InputProps, InputState> {
                     inputState={this.state}
                     inputProps={this.props}
                     onFocus={this.onFocus}
+                    onBlur={this.onBlur}
                     onInput={this.onInput}
                     type={this.getType()} 
                 />
@@ -83,7 +88,7 @@ export class InputText extends Component<InputProps, InputState> {
 }
 export class InputPhoneNumber extends InputText {
     check = (value: string) => {
-        if (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(value) && value.length <= 11) {
+        if (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(value) && value.length <= 12) {
             return false
         }
         else { return true; }

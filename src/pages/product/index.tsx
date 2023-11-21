@@ -39,11 +39,13 @@ const InfoContainer = styled.div`
      width: 100%;
      max-width: 100%;
    }
+   .mobile & {}
 `;
 const OtherProductsContainer = styled.section`
+  .mobile & {}
 `;
 const MonthTrendContainer = styled.section`
-  padding: 100px 0 154px 0;
+  .mobile & {}
 `;
 const Title = styled(H3)`
   padding: 0;
