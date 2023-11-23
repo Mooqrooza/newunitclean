@@ -20,6 +20,7 @@ import {WindowsManagerOpen} from "src/actions/WindowsManagerAction/WindowsManage
 import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsManagerAction.types";
 import {setPickupAddress} from "src/actions/DeliveryAction/DeliveryAction";
 import {getAuth} from "src/store/localStorage";
+import * as constants from "src/utils/constants";
 
 const InputListContainer = styled.div`
   display: flex;
@@ -185,7 +186,7 @@ const InputList = () => {
             <OutputDetail setObj={setMessage}></OutputDetail>
             <OutputDetail setObj={setDetail}></OutputDetail>
             <UserAgreementCheckBoxContainer>
-                <CheckBox label={'Даю согласие на обработку персональных данных согласно с политикой конфиденциальности'} require={true} setObj={setUserAgreemnet} />
+                <CheckBox label={<div>Даю согласие на обработку персональных данных согласно с <a href={constants.URLs.PRIVACY_POLICY}>политикой конфиденциальности</a></div>} require={true} setObj={setUserAgreemnet} />
             </UserAgreementCheckBoxContainer> 
             {buttonOrderShow ? <ButtonBlue styled={ButtonOrderStyle} func={order} setObj={setButton}>Заказать</ButtonBlue> : null}
             {buttonEmptyCardShow ? <ButtonBlue styled={ButtonOrderStyle} func={toCart}>Добавьте товары в корзину</ButtonBlue> : null}

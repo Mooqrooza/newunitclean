@@ -12,6 +12,8 @@ import {BASE_URL, URLs} from "src/utils/constants";
 const BannerStyle = styled.div`
   display: flex;
   align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
   gap: 30px;
   min-height: 280px;
   padding: 40px;
@@ -22,6 +24,9 @@ const BannerStyle = styled.div`
   &:hover {
     box-shadow: ${({theme}) => theme.shadows.shadowA};   
   }
+  @media (max-width : 740px) {
+    justify-content: center; 
+  }
   .mobile & {}
 `;
 const Info = styled.div`
@@ -31,12 +36,16 @@ const Info = styled.div`
   flex: 1;
   align-items: start;
   gap: 20px;
+  @media (max-width : 740px) {
+    align-items: center; 
+  }
   .mobile & {}
 `;
 const Title = styled.div`
   font-size: ${({ theme }) => theme.font.size[48]};
   font-weight: ${({ theme }) => theme.font.weight[500]};
   color: ${({ theme }) => theme.colors.blue};
+  text-align: left;
   .mobile & {}
 `;
 
@@ -60,6 +69,17 @@ const Image = styled.div<{src: string}>`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  @media (max-width : 740px) {
+    display: none; 
+  }
+  .mobile & {}
+`;
+const ImageInInfo= styled(Image)<{src: string}>`
+  display: none; 
+  margin: 10px 0;
+  @media (max-width : 740px) {
+    display: block; 
+  }
   .mobile & {}
 `;
 const Banner = (props: {header: string; text: string}) => {
@@ -79,6 +99,7 @@ const Banner = (props: {header: string; text: string}) => {
                 <Info>
                     <Title>{props.header}</Title>
                     <Description>{props.text}</Description>
+                    <ImageInInfo src={products[0].image && products[0].image.length ? BASE_URL + products[0].image[0] : ''} />
                     <ButtonBlue styled={ButtonStyle} func={() => open(products[0].id)}>Подробнее</ButtonBlue>
                 </Info>
                 <Image src={products[0].image && products[0].image.length ? BASE_URL + products[0].image[0] : ''} />

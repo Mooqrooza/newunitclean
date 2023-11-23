@@ -51,6 +51,9 @@ const Label = styled.label`
   color: ${({ theme }) => theme.colors.black};
   cursor: pointer;
 
+  a {
+    color: ${({ theme }) => theme.colors.blue};
+  }
   &.error {
     &::before {
         box-shadow: 0px 0px 0px 4px ${ ({theme}) => theme.colors.redTransparent(0.2) };
@@ -59,7 +62,7 @@ const Label = styled.label`
   }
 `;
 interface CheckBoxProps {
-    label?: string,
+    label?: any,
     setObj?: (obj: any) => void;
     defaultValue?: boolean;
     require?: boolean;
@@ -101,6 +104,7 @@ export class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
     onClick = (e:any) => {
         const labelEl = e.target;
         const inputEl = labelEl.previousElementSibling;
+
         this.setState({ value: !inputEl.checked }, () => {
             this.checkError();
         });  
@@ -113,8 +117,11 @@ export class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
         return (
             <Container className={className}>
                 <Checkbox type={'checkbox'} id={elementId} />
-                {<Label className={className} htmlFor={elementId} onClick={this.onClick} onBlur={this.onBlur}>{this.props.label ? this.props.label : ''}</Label>}
+                {<Label className={className} htmlFor={elementId} onClick={this.onClick} onBlur={this.onBlur}>
+                    {this.props.label ? this.props.label : ''}
+                </Label>}
             </Container>
         );
     }
 }
+

@@ -36,7 +36,8 @@ export const URLs = {
     COMPANY_LK: '/company',
     SEARCH: '/search',
     SEARCH_WITH_PARAM: '/search/:search',
-    P404: '*'
+    P404: '*',
+    PRIVACY_POLICY: '/privacy-policy'
 }
 
 export const INFO = {

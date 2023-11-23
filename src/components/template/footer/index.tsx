@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import * as constants from "src/utils/constants";
+import {IStateAuth} from "src/reducers/AuthReducer/AuthReducer.types";
 import styled from "styled-components";
 import {InputText} from "components/shared/forms/inputText";
 import {URLs} from "src/utils/constants";
 import logoImage from "src/images/logo-grayscale-1.svg";
+import {useTypedSelector} from "src/store/configureStore";
+import {useDispatch} from "react-redux";
+import {WindowsManagerOpen} from "src/actions/WindowsManagerAction/WindowsManagerAction";
+import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsManagerAction.types";
 
 const FooterContainer = styled.div`
   display: flex;
@@ -93,6 +98,7 @@ const TextItem = styled.div`
 `;
 const LinkItem = styled.a`
   margin: 0 0 10px 0;
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blackA};
   font-size: ${({ theme }) => theme.font.size[17]};
   font-weight: ${({ theme }) => theme.font.weight[400]};
@@ -127,6 +133,14 @@ const SearchForm = () => {
   )
 }
 const Footer = () => {
+    const Auth = useTypedSelector((store) => store.Auth);
+    const {isAuthorized} = Auth as IStateAuth;
+    const dispatch = useDispatch();
+    const stableDispatch = useCallback(dispatch, []);
+    const onClickLinkItem = (url: string) => {
+       if (isAuthorized) { window.open(url, '_self'); } 
+       else { stableDispatch(WindowsManagerOpen(WINDOW_AUTHORIZATION, url)); }
+    }
     return (
             <FooterContainer>
                 <Content>
@@ -143,8 +157,9 @@ const Footer = () => {
                         <LinkItem href={constants.URLs.PROMOTION}>Акции</LinkItem>
                         <LinkItem href={constants.URLs.PAYMENT}>Доставка и оплата</LinkItem>
                         <LinkItem href={constants.URLs.CONTACTS}>Контакты</LinkItem>
-                        <LinkItem href={constants.URLs.LK}>Личный кабинет</LinkItem>
-                        <LinkItem href={constants.URLs.CART}>Корзина</LinkItem>                        
+                        <LinkItem onClick={() => onClickLinkItem(constants.URLs.LK)}>Личный кабинет</LinkItem>
+                        <LinkItem onClick={() => onClickLinkItem(constants.URLs.CART)}>Корзина</LinkItem>  
+                        <LinkItem href={constants.URLs.PRIVACY_POLICY}>Политика конфиденциальности</LinkItem>                        
                     </Menu>
                     <Contacts>
                         <Title>Контакты</Title>

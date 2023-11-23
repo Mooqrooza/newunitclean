@@ -9,6 +9,7 @@ import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTT
 import {SectionLabel} from "components/shared/fonts/specialFonts";
 import feedbackImage from "src/images/feedback-image-1.png";
 import {getFormatedData} from 'src/utils/functions';
+import * as constants from "src/utils/constants";
 
 const Main = styled.section`
   .mobile & {}
@@ -42,8 +43,8 @@ const Text = styled.div`
   display: inline-block;
   text-align: left;
   color: ${({ theme }) => theme.colors.black};
-  font-size: ${({ theme }) => theme.font.size[18]};
-  font-weight: ${({ theme }) => theme.font.weight[500]}; 
+  font-size: ${({ theme }) => theme.font.size[16]};
+  font-weight: ${({ theme }) => theme.font.weight[400]}; 
   .mobile & {}
 `;
 const ButtonSend = styled(DIV_BUTTON_BLUE_STYLE)`
@@ -100,7 +101,7 @@ const Feedback = () => {
                     <InputTextField placeholder='Комментарий' setObj={setComment}></InputTextField>
                     <InputDate placeholder='Когда перезвонить' setObj={setDate} hidden={true} defaultValue={getFormatedData(new Date, 'yyyy-mm-dd')}></InputDate>
                     <OutputDetail setObj={setDetail} hidden={true}></OutputDetail>
-                    <CheckBox label={'Даю согласие на обработку персональных данных согласно с политикой конфиденциальности'} require={true} setObj={setUserAgreemnet} />
+                    <CheckBox label={<div>Даю согласие на обработку персональных данных согласно с <a href={constants.URLs.PRIVACY_POLICY}>политикой конфиденциальности</a></div>} require={true} setObj={setUserAgreemnet} />
                     <ButtonBlue styled={ButtonSend} func={orderCall} setObj={setButton}>Отправить</ButtonBlue>
                 </Form>
             </Content>

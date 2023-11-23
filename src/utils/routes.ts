@@ -10,6 +10,7 @@ import Payment from "src/pages/payment";
 import Product from "src/pages/product";
 import CompanyLk from "src/pages/company_lk";
 import Search from "src/pages/search";
+import PrivacyPolicy from 'src/pages/privacyPolicy';
 import Page404 from "src/pages/special/page404";
 
 export const routes:route[] = [
@@ -75,6 +76,10 @@ export const routes:route[] = [
         url: constants.URLs.PRODUCT,
         page: Product,
         mobileClearBackground: true,
+    },
+    {
+        url: constants.URLs.PRIVACY_POLICY,
+        page: PrivacyPolicy
     },
     {
         url: constants.URLs.P404,

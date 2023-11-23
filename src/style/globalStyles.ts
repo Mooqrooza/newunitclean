@@ -6,9 +6,6 @@ export default createGlobalStyle`
   ::-moz-selection { /* Code for Firefox */
     background: #FFF0E5;
   }
-  ::selection {
-    background: #FFF0E5;
-  }
   html, body{
     height: 100%;
     width: 100%;
