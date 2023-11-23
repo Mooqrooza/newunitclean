@@ -1,6 +1,21 @@
 import React from 'react';
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
+export const showAnimation = keyframes`
+  0% {
+    opacity: 0.2; 
+    transform: scale(0.96)
+  }
+  70% { 
+    opacity: 1; 
+    transform: scale(1.01); 
+  }
+  90% { transform: scale(0.98); }
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+`;
 const defaultButtonStyle = ` 
   position: relative; 
   display: flex;
@@ -42,11 +57,13 @@ export const DIV_BUTTON_BLUE_STYLE:any = styled.div<{css?: any; cssMobile?: any,
   
   ${ props => (props.icon ? getDefaultIconStyle(props.icon) : '') }
   ${ props => props.css}  
+  animation: ${showAnimation} 0.16s 1 linear;
   .mobile & { ${props => props.cssMobile} }
 `;
 export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any; cssMobile?: any, icon?: any}>`
   ${defaultButtonStyle}
   ${props => props.css}  
+  width: 100%;
   height: auto;
   border-radius: 40px;
   text-align: left;
@@ -56,6 +73,10 @@ export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any;
   white-space: break-spaces;
   color: ${ ({ theme }) => theme.colors.white };
   background: ${ ({ theme }) => theme.colors.grayB };
+  transition: all 0.12s 0s linear;
+  &:hover {
+    background: ${({ theme }) => theme.colors.blue};
+  }
   &.unselected:not(:hover) {
     background: transparent;
     color: ${({ theme }) => theme.colors.black};
@@ -63,7 +84,6 @@ export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any;
   &.selected {
     color: ${({ theme }) => theme.colors.white};
     background: ${({ theme }) => theme.colors.blue};
-    transition: background 0.1s 0s linear;
   }
   ${ props => (props.icon ? getDefaultIconStyle(props.icon) : '') }
   &.unselected::after {

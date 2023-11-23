@@ -73,7 +73,7 @@ export const Registration = () => {
                     <InputPhoneNumber placeholder={'Телефон'} setObj={setPhone}></InputPhoneNumber>
                     <InputAddress placeholder={'Адрес'} setObj={setAddress}></InputAddress>
                     <InputPassword placeholder={'Пароль'} setObj={setPass1}></InputPassword>
-                    <InputPassword placeholder={'Повторите пароль'} setObj={setPass2}></InputPassword>
+                    <InputPassword placeholder={'Повторите пароль'} setObj={setPass2} infoText={'Пароль должен содержать цифры, латинские буквы и спецсимвол (. , ! %)'}></InputPassword>
                     <OutputDetail setObj={setDetail}></OutputDetail>
                     <ButtonBlue styled={ButtonStyle} func={reg} setObj={setButton}>Зарегистрировать</ButtonBlue>
                     <ButtonBlue styled={ButtonAuthStyle} func={switchToAuth}>Войти</ButtonBlue>

@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import ButtonBlue from "components/shared/forms/buttonBlue";
 import TabContent from "components/shared/tabsMenu/tabContent";
-import EmptyBasket from "components/shared/productsList/empty";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStatePreviousOrders} from "src/reducers/PreviousOrdersReducer/PreviousOrdersReducer.types";
 import {URLs} from "src/utils/constants";
@@ -9,6 +8,7 @@ import {GetPreviousOrders} from "src/actions/PreviousOrdersAction/PreviousOrders
 import {useDispatch} from "react-redux";
 import Order from "components/cart/shared/order";
 import styled from "styled-components";
+import EmptyCard from 'src/components/shared/other/emptyCard';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const PreviousOrders = () => {
             <TabContent>{ orders.reverse().map((order) => <Order key={order.id} order={order} />) }</TabContent>
             :
             <TabContent>
-                <EmptyBasket>Вы еще не сделали свой первый заказ :(</EmptyBasket>
+                <EmptyCard />
                 <ButtonContainer>
                     <ButtonShowProducts func={() => window.open(URLs.CATALOG, '_self')}>Посмотреть товары</ButtonShowProducts>
                 </ButtonContainer>

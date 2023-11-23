@@ -17,9 +17,8 @@ export const errorAnimation = keyframes`
   }
 `;
 const INPUT_TEXT_CONTAINER = styled.div`
-  display: flex;
   position: relative;
-  align-items: center;
+  display: flex;
   justify-content: center;
   width: 100%;
   .mobile & {}
@@ -47,8 +46,8 @@ const INPUT_TEXT_FIELD_STYLE = styled.textarea`
 `;
 const INPUT_ERROR_MARKER_STYLED = styled.div`
   position: absolute;
-  top: -2px;
-  left: 2px;
+  top: 10px;
+  left: 0;
   width: 6px;
   height: 6px;
   border-radius: 3px;

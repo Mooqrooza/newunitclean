@@ -81,11 +81,15 @@ import closeDeleteIco from '../icons/close-delete-ico-1.svg'
 import closeDeleteIco1 from '../icons/close-delete-blue-ico-1.svg'
 import closeDeleteIco2 from '../icons/close-delete-red-ico-1.svg'
 import editIcon from '../icons/edit-ico-1.svg';
-import checkIcon from '../icons/check-ico-1.svg';
+import checkIco from '../icons/check-ico-1.svg';
+import checkIco2 from '../icons/check-ico-2.svg';
 import userIcon from '../icons/user-ico-1.png';
 import companyIcon from '../icons/company-ico-1.png';
 import logoutIcon from '../icons/logout-ico-1.svg';
 import alertIcon from '../icons/alert-ico-1.svg';
+import mapIco from '../icons/map-ico-1.svg';
+import mapGreyIco from '../icons/map-grey-ico-1.svg';
+import mapIco2 from '../icons/map-ico-2.svg';
 
 export const icons = {
     header: {
@@ -109,11 +113,15 @@ export const icons = {
     closeDeleteIco1: closeDeleteIco1,
     closeDeleteIco2: closeDeleteIco2,
     editIco: editIcon,
-    checkIco: checkIcon,
+    checkIco: checkIco,
+    checkIco2: checkIco2,
     userIcon: userIcon,
     companyIcon: companyIcon,
     logoutIcon: logoutIcon,
     alertIcon: alertIcon,
+    mapIco: mapIco,
+    mapGreyIco: mapGreyIco,
+    mapIco2: mapIco2,
 
     lk: lk,
     cart: cart,

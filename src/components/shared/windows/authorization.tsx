@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
-import {FormContainer, FormList} from "components/shared/forms/form";
+import {FormContainer} from "components/shared/forms/form";
 import {FormHeader} from "components/shared/fonts/specialFonts";
 import {
     InputLoginOrEMail, InputPassword, 
@@ -15,7 +15,22 @@ import {IStateWindows} from "src/reducers/WindowsManagerReducer/WindowsManagerRe
 import {WindowsManagerClear, WindowsManagerOpen} from "src/actions/WindowsManagerAction/WindowsManagerAction";
 import {WINDOW_REGISTRATION} from "src/actions/WindowsManagerAction/WindowsManagerAction.types";
 
-const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)` min-width: 220px;`;
+const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`
+  min-width: 220px;
+`;
+export const FormList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  width: 100%;
+  max-width: 360px; 
+  min-height: 100px;
+  height: auto;
+  border-radius: 40px;
+  .mobile & {}
+`;
 const ButtonSendSuccess = styled(ButtonStyle)` min-width: 220px;`;
 const ButtonSendError = styled(ButtonStyle)` min-width: 220px;`;
 const ButtonRegStyle = styled(DIV_BUTTON_SOFT_BLUE_STYLE)` width: 220px;`;
@@ -59,13 +74,13 @@ export const Authorization = () => {
     return (
         <FormContainer background={true}>
             <FormHeader>Вход</FormHeader>
-            <FormList>
-                <InputLoginOrEMail placeholder={'Логин или E-mail'} name='login' setObj={setLogin}></InputLoginOrEMail>
-                <InputPassword placeholder={'Пароль'} name='password' setObj={setPass}></InputPassword>
-                <OutputDetail setObj={setDetail}></OutputDetail>
-                <ButtonBlue styled={ButtonStyle} func={auth} setObj={setButton}>Войти</ButtonBlue>
-                <ButtonBlue styled={ButtonRegStyle} func={switchToReg}>Регистрация</ButtonBlue>
-            </FormList>
+                <FormList>
+                    <InputLoginOrEMail placeholder={'Логин или E-mail'} name='login' setObj={setLogin}></InputLoginOrEMail>
+                    <InputPassword placeholder={'Пароль'} name='password' setObj={setPass}></InputPassword>
+                    <OutputDetail setObj={setDetail}></OutputDetail>
+                    <ButtonBlue styled={ButtonStyle} func={auth} setObj={setButton}>Войти</ButtonBlue>
+                    <ButtonBlue styled={ButtonRegStyle} func={switchToReg}>Регистрация</ButtonBlue>
+                </FormList>
         </FormContainer>
     );
 };

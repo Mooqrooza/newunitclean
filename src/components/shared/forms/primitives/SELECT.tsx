@@ -64,7 +64,7 @@ const SELECT = (props: {selectProps: SELECT_PROPS; selectState: SELECT_STATE; on
             <option value={props.selectProps.defaultOption?.value}>{props.selectProps.defaultOption?.text}</option>
             { props.selectProps.options.map((option, i) => <option key={i} value={option.value} className={'option'}>{option.text}</option>) }
           </SELECT_STYLE>
-          { props.selectState.error  ? <INPUT_ERROR_MARKER_STYLED className='input-error-marker' /> : null}
+          { props.selectState.error  ? <INPUT_ERROR_MARKER_STYLED className='input-error-marker' /> : null }
       </SELECT_CONTAINER>
     );
 };

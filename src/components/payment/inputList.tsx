@@ -10,6 +10,7 @@ import {Select} from "components/shared/forms/select";
 import {useDispatch} from "react-redux";
 import {ApiMethod} from "src/api/APIMethod";
 import ButtonBlue from "components/shared/forms/buttonBlue";
+import {CheckBox} from "src/components/shared/forms/checkBox";
 import {icons} from "src/utils/icons";
 import {useTypedSelector} from "src/store/configureStore";
 import {IStateCart} from "src/reducers/CartReducer/CartReducer.types";
@@ -39,23 +40,10 @@ const InputListContainer = styled.div`
   .mobile & {}
 `;
 const ButtonOrderStyle = styled(DIV_BUTTON_BLUE_STYLE)`
-  width: 220px;
-  .mobile & {}
-`;
-const ButtonSendSuccess = styled(DIV_BUTTON_BLUE_STYLE)`
-  width: 320px;
-  .mobile & {}
-`;
-const ButtonSendError = styled(DIV_BUTTON_BLUE_STYLE)`
-  width: 340px;
-  .mobile & {}
-`;
-const ButtonUnAuthed = styled(DIV_BUTTON_BLUE_STYLE)`
-  width: 380px;
-  .mobile & {}
-`;
-const ButtonEmptyCard = styled(DIV_BUTTON_BLUE_STYLE)`
-  width: 320px;
+  align-self: flex-start;
+  max-width: 100%;
+  min-width: 220px;
+  margin: 10px 0 0 0;
   .mobile & {}
 `;
 const SuccessPromoContainer = styled.div`
@@ -86,6 +74,10 @@ const SuccessPromoDrop = styled.div`
   cursor: pointer;
   .mobile & {}
 `;
+const UserAgreementCheckBoxContainer = styled.div`
+  max-width: 420px;
+ .mobile & {}
+`;
 const SuccessPromo = (props: {text: string; func: () => void}) => {
     return (
         <SuccessPromoContainer>
@@ -100,13 +92,14 @@ const InputList = () => {
     const stableDispatch = useCallback(dispatch, []);
     const form:any = {};
     const auth = getAuth();
-    let setFio, setPhone, setAddress, setPaymentType, setDetail, setMessage = null; 
+    let setFio, setPhone, setAddress, setPaymentType, setDetail, setMessage , setUserAgreemnet = null; 
     [form.full_name, setFio] = useState<any>(null);
     [form.phone_number, setPhone] = useState<any>(null);
     [form.address, setAddress] = useState<any>(null);
     [form.payment_type, setPaymentType] = useState<any>(null);
     [form.detail, setDetail] = useState<any>(null);
     [form.message, setMessage] = useState<any>(null);  
+    [form.userAgreemnet, setUserAgreemnet] = useState<any>(null);
     const [receivingType, setReceivingType] = useState<any>(true);
     const changeReceivingType = (dt: { value:string }) => {
         setReceivingType(dt.value);
@@ -121,34 +114,24 @@ const InputList = () => {
     const [button, setButton] = useState<any>(null);
     const Cart = useTypedSelector((store) => store.Cart);
     const {cart, isFetching, error} = Cart as IStateCart;
-    useEffect(() => {
-        stableDispatch(GetCart());
-    }, []);
-    useEffect(() => {
-        if (promo && promo.value && !promo.active && !promo.error) {
-            addPromo()
-        }
-    }, [promo]);
-    const openAuth = () => {
-        WindowsManagerOpen(WINDOW_AUTHORIZATION)(dispatch);
-    }
+    useEffect(() => { stableDispatch(GetCart()); }, []);
+    useEffect(() => { if (promo && promo.value && !promo.active && !promo.error) { addPromo(); } }, [promo]);
+    const openAuth = () => { WindowsManagerOpen(WINDOW_AUTHORIZATION)(dispatch); }
     const dropPromo = () => {
-        ApiMethod({ func: 'delete', url: '/product/api/v2/order/delete_promo_code/', auth: true })
-        .then(success => setSuccessPromo(''))
-        .catch(error => setSuccessPromo(''));
+        ApiMethod({ 
+            func: 'delete', url: '/product/api/v2/order/delete_promo_code/', auth: true 
+        }).then(success => setSuccessPromo('')).catch(error => setSuccessPromo(''));
     }
     const addPromo = () => {
         ApiMethod({
             func: 'patch', url: '/product/api/v2/order/add_promo_code/',
             data: { promo_code: promo.value },
             auth: true
-        })
-        .then((success:any) => setSuccessPromo(success.promo_code))
-        .catch(error => promo.obj.setState({error: true}))
+        }).then((success:any) => setSuccessPromo(success.promo_code)).catch(error => promo.obj.setState({error: true}))
     }
     const order = () => {
         if (Object.values(form).map(value => !value || (value as InputState).obj.checkError()).some(error => error)) {
-            button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
+            button.Animate({Styled: ButtonOrderStyle, Children: 'Данные некорректны', timeOut: 2000});
             return false;
         }
         button.Animate({Children: 'Выполняется...'});
@@ -160,15 +143,13 @@ const InputList = () => {
         .then(success => {
             Object.values(form).map(value => (value as InputState).obj.clear());
             setSuccessPromo('');
-            button.Animate({Styled: ButtonSendSuccess, Children: 'Заказ оформлен', timeOut: 2000});
+            button.Animate({Styled: ButtonOrderStyle, Children: 'Заказ оформлен', timeOut: 2000});
         })
         .catch(error => {
             Object.keys(error.response.data).map(key => {
-                if (form[key]) {
-                    form[key].obj.setError(error.response.data[key]);
-                }
+                if (form[key]) { form[key].obj.setError(error.response.data[key]); }
             });
-            button.Animate({Styled: ButtonSendError, Children: 'Введенные данные некорректны', timeOut: 2000});
+            button.Animate({Styled: ButtonOrderStyle, Children: 'Данные некорректны', timeOut: 2000});
         })
     }
     const toCart = () => { window.open(URLs.CART, '_self'); }
@@ -203,9 +184,12 @@ const InputList = () => {
             }
             <OutputDetail setObj={setMessage}></OutputDetail>
             <OutputDetail setObj={setDetail}></OutputDetail>
+            <UserAgreementCheckBoxContainer>
+                <CheckBox label={'Даю согласие на обработку персональных данных согласно с политикой конфиденциальности'} require={true} setObj={setUserAgreemnet} />
+            </UserAgreementCheckBoxContainer> 
             {buttonOrderShow ? <ButtonBlue styled={ButtonOrderStyle} func={order} setObj={setButton}>Заказать</ButtonBlue> : null}
-            {buttonEmptyCardShow ? <ButtonBlue styled={ButtonEmptyCard} func={toCart}>Добавьте товары в корзину</ButtonBlue> : null}
-            {buttonUnAutorizedShow ? <ButtonBlue styled={ButtonUnAuthed} func={openAuth}>Авторизуйтесь, чтобы оформить заказ</ButtonBlue> : null}
+            {buttonEmptyCardShow ? <ButtonBlue styled={ButtonOrderStyle} func={toCart}>Добавьте товары в корзину</ButtonBlue> : null}
+            {buttonUnAutorizedShow ? <ButtonBlue styled={ButtonOrderStyle} func={openAuth}>Заказать</ButtonBlue> : null}
         </InputListContainer>
     );
 };

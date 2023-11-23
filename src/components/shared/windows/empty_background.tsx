@@ -15,22 +15,12 @@ const Background = styled.div`
   align-content: center;
   background: linear-gradient(138.97deg, rgba(173, 184, 196, 0.252) 16.4%, rgba(113, 113, 113, 0.259) 70%);
   box-shadow: inset 0px 4.74611px 300px rgba(0, 0, 0, 0.25);
-  
-  .mobile & {
-    background: rgba(0, 0, 0, 0.7);
-  }
+  .mobile & { background: rgba(0, 0, 0, 0.7); }
 `;
-
 const EmptyBackground = () => {
     const dispatch = useDispatch();
-
-    const click = () => {
-        WindowsManagerClear()(dispatch);
-    }
-
-    return (
-        <Background onClick={click}></Background>
-    );
+    const click = () => { WindowsManagerClear()(dispatch); }
+    return <Background onClick={click}></Background>;
 };
 
 export default EmptyBackground;

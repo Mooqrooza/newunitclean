@@ -124,12 +124,16 @@ const Reviews: React.FC = () => {
     function leftArrow() { setPos((pos - 1 + reviewsList.length) % reviewsList.length); }
     function rightArrow() { setPos((pos + 1) % reviewsList.length); }
     let processReviewsScrollControllTmr:any = null;
+    let oldWinSize = 0;
     function processReviewsScrollControll () {
         clearTimeout(processReviewsScrollControllTmr);
         processReviewsScrollControllTmr = setTimeout(() => {
+            const newWinSize =  window.innerWidth;
+            const winWidthChanged = oldWinSize !== newWinSize;
             const reviewsWrapperEl = ReviewsWrapperRef.current;
             const counterPointsContainerEl = counterPointsRef.current;
-            if (reviewsWrapperEl) {
+            if (winWidthChanged && reviewsWrapperEl) {
+                oldWinSize = newWinSize;
                 const reviews = getReviews();
                 const reviewsWrapperElWidth = reviewsWrapperEl.clientWidth;
                 const firstChildEl = reviewsWrapperEl.firstElementChild;

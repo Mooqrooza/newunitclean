@@ -20,12 +20,11 @@ const RadioButton = (props: {id: number; title: string; pos: number; func: (i: n
         <RadioButtonBlue styled={ButtonSelected} func={click}>{props.title}</RadioButtonBlue>
         : <RadioButtonBlue styled={ButtonUnSelected} func={click}>{props.title}</RadioButtonBlue>
     );
-}
+};
 const RadioButtonsContainer = styled.div`
   display: flex;
   justify-content: start;
   gap: 10px;
-  overflow-x: auto;
   .mobile & {}
 `;
 const RadioButtons = (props: {buttons: ProductSizeType[]; setSize: (id: number) => void}) => {

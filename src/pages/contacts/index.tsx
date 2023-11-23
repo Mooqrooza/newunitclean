@@ -11,7 +11,7 @@ const Contacts = () => {
         <Content>
             <SectionLabel>Контакты</SectionLabel>
             <ContactsInfo />
-            <MarketplaceCardButtons title={'Наши партнеры'}/>
+            <MarketplaceCardButtons title={'ЗАКАЗАТЬ ПРОДУКЦИЮ НА МАРКЕТПЛЕЙСЕ'}/>
             <Feedback />
         </Content>
     );

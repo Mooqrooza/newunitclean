@@ -1,6 +1,5 @@
 import React, {useCallback} from 'react';
 import styled from "styled-components";
-import {Main} from "src/themes/main";
 import {icons} from "src/utils/icons";
 import {useDispatch} from "react-redux";
 import {WindowsManagerClear} from "src/actions/WindowsManagerAction/WindowsManagerAction";
@@ -9,7 +8,9 @@ const FormStyle = styled.form`
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 40px;
+  width: 100%;
   min-width: 570px;
   max-width: 680px;
   max-height: 98%;
@@ -92,17 +93,14 @@ export const FormList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  height: auto;
+  gap: 20px;
+  width: 100%;
+  max-width: 440px; 
   min-height: 100px;
+  height: auto;
   border-radius: 40px;
-  & div { margin: 10px 0; }
-  & input { min-width: 360px; }
-  @media (max-width: 700px) {
-    & input { min-width: 280px; }
-  }
   .mobile & {}
 `;
-
 export const FormListContainer = styled.div`
   overflow-y: auto;
 `;

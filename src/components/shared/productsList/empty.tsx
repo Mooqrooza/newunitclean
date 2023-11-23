@@ -22,7 +22,7 @@ const Background = styled.div`{
   }
 `;
 const EmptyBasket = (props: {children: string}) => {
-    return (<Background><img src={basketImage} className={"22222"}/></Background>);
+    return (<Background><img src={basketImage} /></Background>);
 };
 
 export default EmptyBasket;

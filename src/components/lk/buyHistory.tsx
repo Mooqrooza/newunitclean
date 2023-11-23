@@ -6,7 +6,7 @@ import {IStatePreviousOrders} from "src/reducers/PreviousOrdersReducer/PreviousO
 import {useDispatch} from "react-redux";
 import {GetPreviousOrders} from "src/actions/PreviousOrdersAction/PreviousOrdersAction";
 import {ProductType} from "src/utils/types";
-import NoProducts from "components/shared/productsList/noProducts";
+import EmptyCard from 'src/components/shared/other/emptyCard';
 import {SectionLabel} from 'components/shared/fonts/specialFonts';
 
 const BuyHistoryContainer = styled.section`
@@ -33,7 +33,7 @@ const BuyHistory = () => {
                   <ProductsList products={products}></ProductsList>
                   :
                   <NoProductsContainer>
-                      <NoProducts>Вы еще не совершали покупок</NoProducts>
+                      <EmptyCard />
                   </NoProductsContainer>    
             }
         </BuyHistoryContainer>

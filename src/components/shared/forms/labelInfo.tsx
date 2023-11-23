@@ -54,6 +54,13 @@ const Text = styled.div`
   }
   .mobile & {}
 `;
+const LabelMin = styled(Text)<{ type?: string, css?: string }>`
+  display: flex;
+  align-items: center;
+  ${({css}) => css}
+  font-size: ${({ theme }) => theme.font.size[14]};
+  .mobile & {}
+`;
 export interface Ilabelinfo {
     text: string;
     icon?: any;
@@ -61,15 +68,18 @@ export interface Ilabelinfo {
     css?: string;
     func?: () => void;
 };
+export const LabelInfoMin = (props: Ilabelinfo ) => {
+  return <LabelMin onClick={ props.func ? props.func : undefined } css={props.css ? props.css : ''}>{props.text || '...'}</LabelMin>
+};
 export const LabelInfo = (props: Ilabelinfo ) => {
     return (
       props?.type === 'redAlert' ?
         <LabelRed onClick={ props.func ? props.func : undefined } css={props.css ? props.css : ''}>
-            <Icon src={props.icon || icons.alertIcon || ''} />
+            {props.icon === false ? null : <Icon src={props.icon || icons.alertIcon || ''} />}
             <Text>{props.text || '...'}</Text>
         </LabelRed>
       : <Label onClick={ props.func ? props.func : undefined } css={props.css ? props.css : ''}>
-          <Icon src={props.icon || icons.shine || ''} />
+          {props.icon === false ? null : <Icon src={props.icon || icons.shine || ''} />}
           <Text>{props.text || '...'}</Text>
       </Label>
     );

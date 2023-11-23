@@ -10,7 +10,7 @@ const Payment = () => {
         <Content>
             <SectionLabel>Доставка и оплата</SectionLabel>
             <InputsAndMapWithButtons />
-            <MarketplaceCardButtons />
+            <MarketplaceCardButtons title={'ЗАКАЗАТЬ ПРОДУКЦИЮ НА МАРКЕТПЛЕЙСЕ'}/>
             <Feedback />
         </Content>
     );

@@ -141,11 +141,10 @@ const Footer = () => {
                         <LinkItem href={constants.URLs.ROOT}>Главная</LinkItem>
                         <LinkItem href={constants.URLs.CATALOG}>Каталог</LinkItem>
                         <LinkItem href={constants.URLs.PROMOTION}>Акции</LinkItem>
-                        <LinkItem href={constants.URLs.CONTACTS}>Контакты</LinkItem>
-                        <LinkItem href={constants.URLs.REVIEWS}>Отзывы</LinkItem>
-                        <LinkItem href={constants.URLs.CART}>Корзина</LinkItem>
                         <LinkItem href={constants.URLs.PAYMENT}>Доставка и оплата</LinkItem>
+                        <LinkItem href={constants.URLs.CONTACTS}>Контакты</LinkItem>
                         <LinkItem href={constants.URLs.LK}>Личный кабинет</LinkItem>
+                        <LinkItem href={constants.URLs.CART}>Корзина</LinkItem>                        
                     </Menu>
                     <Contacts>
                         <Title>Контакты</Title>

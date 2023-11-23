@@ -1,9 +1,25 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {getMapEmbed, DELIVERY} from "src/utils/constants";
 import {setPickupAddress} from "src/actions/DeliveryAction/DeliveryAction";
+import {icons} from 'src/utils/icons';
 
+export const showAnimation = keyframes`
+  0% {
+    opacity: 0.2; 
+    transform: scale(0.99)
+  }
+  60% { 
+    opacity: 1; 
+    transform: scale(1.005); 
+  }
+  90% { transform: scale(0.995); }
+  94% {
+    opacity: 1;
+    transform: scale(1)
+  }
+`;
 const MainContainer = styled.div`
   display: flex:
   flex-direction: column;
@@ -19,26 +35,39 @@ const Address = styled.div`
   width: 100%;
   min-height: 40px;
   margin: 10px 0 0 0;
-  padding: 20px 30px;
+  padding: 20px 20px 20px 58px;
   border-radius: 40px;
   box-sizing: border-box;
   cursor: pointer;
-  background: ${ ({theme}) => theme.colors.grayC };
+  background-color: ${ ({theme}) => theme.colors.grayC };
+  background-image: url(${icons.mapGreyIco});
+  background-position: 20px center;
+  background-repeat: no-repeat;
+
   &.active {
-    background: ${ ({theme}) => theme.colors.whiteBlueA };
+    background-color: ${ ({theme}) => theme.colors.whiteBlueA };
+    background-image: url(${icons.mapIco});
+    animation: ${showAnimation} 0.16s 1 linear;
   }
   .mobile & {}
 `;
 const InfoItem = styled.div`
    display: flex;
+   align-items: center;
    text-align: left;
    gap: 20px;
-
    * {
      text-align: left;
      color: ${ ({theme}) => theme.colors.black };
      font-weight: ${ ({theme}) => theme.font.weight[500] };
    } 
+
+   @media (max-width : 800px) { 
+      flex-direction: column;
+      align-items: start;
+      gap: 5px;
+      font-size: ${ ({ theme }) => theme.font.size[14] };
+   }
   .mobile & {}
 `;
 const MapAndButtons = (props: {withButtons?: boolean}) => {

@@ -17,10 +17,12 @@ export const errorAnimation = keyframes`
   }
 `;
 const INPUT_TEXT_CONTAINER = styled.div`
-  display: flex;
   position: relative;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   justify-content: center;
+  gap: 8px;
   width: 100%;
   .mobile & {}
 `
@@ -28,10 +30,9 @@ export const INPUT_TEXT_STYLE = styled.input`
   width: 100%;
   height: 52px;
   padding: 0 20px;
-  margin: 0;
   font-weight: 400;
   border-radius: 26px;
-  resize: none;
+  box-sizing: border-box;
   color: ${ ({theme}) => theme.colors.black };
   font-size: ${ ({theme}) => theme.font.size[16] };
   font-weight: ${ ({theme}) => theme.font.weight[500] };
@@ -49,11 +50,10 @@ export const INPUT_TEXT_STYLE = styled.input`
 `;
 export const INPUT_ERROR_MARKER_STYLED = styled.div`
   position: absolute;
-  top: 6px;
-  left: 3px;
+  top: 8px;
+  left: 0;
   width: 6px;
   height: 6px;
-  margin: 10px 0 0 0;
   border-radius: 3px;
   outline: 5px solid ${ ({theme}) => theme.colors.redTransparent(0.12) };
   background: ${ ({theme}) => theme.colors.red };
@@ -70,9 +70,11 @@ interface INPUT_TEXT_PROPS {
     styled?: any;
     placeholder?: string;
     name?: string;
+    infoText?: string;
 }
 const INPUT_TEXT = (props: {
-        inputState: INPUT_TEXT_STATE; inputProps: INPUT_TEXT_PROPS; 
+        inputState: INPUT_TEXT_STATE; 
+        inputProps: INPUT_TEXT_PROPS; 
         onFocus: (active: boolean) => void; 
         onInput: (event: any) => void; type: string
         onBlur?: (event: any) => void; 
@@ -95,7 +97,7 @@ const INPUT_TEXT = (props: {
                 placeholder={props.inputProps.placeholder}
                 className={[ (props.inputState.error ? 'error' : ''), (props.inputState.active ? 'active' : '')].join(' ')} 
             />
-            { props.inputState.error ? <INPUT_ERROR_MARKER_STYLED className='input-error-marker' /> : null}
+            {props.inputState.error ? <INPUT_ERROR_MARKER_STYLED className='input-error-marker' /> : null}
         </INPUT_TEXT_CONTAINER>
     );
 };

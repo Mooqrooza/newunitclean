@@ -2,17 +2,38 @@ import React, {Component} from 'react';
 import INPUT_TEXT from "./primitives/INPUT_TEXT";
 import styled, {StyledComponent} from "styled-components";
 
-export const DefaultInputTextStyle = styled.div`
+export const InputTextContainer = styled.div`
+  position: relative;
   display: flex;
-  align-items: startch;
-  justify-content: start;
+  flex-direction: column;
+  align-items: stretch;
   gap: 10px;
-  min-width: 260px;
+  width: 100%;
   &:empty { display: none; }
+  .mobile & {}
+`;
+export const InfoText =  styled.div`
+  display: flex;
+  justify-self: start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: ${({ theme }) => theme.font.size[14]};
+  font-weight: ${({ theme }) => theme.font.weight[400]};
+  color: ${({ theme }) => theme.colors.gray};
+
+  @media (max-width: 800px) {
+    font-weight: ${({ theme }) => theme.font.weight[400]};
+    font-size: ${({ theme }) => theme.font.size[12]};
+  }
   .mobile & {}
 `;
 export const ErrorMessage = styled.div`
   color: ${({ theme }) => theme.colors.red};
+  font-size: ${({ theme }) => theme.font.size[14]};
+  font-weight: ${({ theme }) => theme.font.weight[500]}; 
   text-align: left;
   .mobile & {}
 `;
@@ -22,6 +43,9 @@ interface InputProps {
     name?: string;
     setObj?: (obj: any) => void;
     styledContainer?: StyledComponent<any, any>;
+    hidden?: boolean;
+    defaultValue?: string;
+    infoText?: string;
 };
 export interface InputState {
     value: string;
@@ -32,10 +56,17 @@ export interface InputState {
     obj: any;
 };
 export class InputText extends Component<InputProps, InputState> {
-    defaultStyled = DefaultInputTextStyle;
+    defaultStyled = InputTextContainer;
     constructor(props: InputProps) {
         super(props);
-        this.state = {value: '', error: false, errorAnimation: false, active: false, obj: this, errorText: ''};
+        this.state = {
+            value: this.props.defaultValue || '', 
+            error: false, 
+            errorAnimation: false, 
+            active: false, 
+            obj: this, 
+            errorText: ''
+        };
         if (this.props.setObj) {
             this.props.setObj(this.state);
         }
@@ -57,10 +88,7 @@ export class InputText extends Component<InputProps, InputState> {
         this.setState({error: true, errorText: errorText ? errorText : this.state.errorText});
     }
     onInput = (event?: any) => {
-        const el = event.target;
-        let value = el.value;
-        value = value[0] === '8' ? '+7' + value.slice(1) : value;
-        this.setState({value: value});
+        this.setState({value: event.target.value});
     }
     onFocus = (active: boolean) => {
         this.setState({active: active});
@@ -73,7 +101,7 @@ export class InputText extends Component<InputProps, InputState> {
     render() {
         const Styled = this.props.styledContainer ? this.props.styledContainer : this.defaultStyled;
         return (
-            <Styled className={'input-text-wrapper'}>
+            <Styled className={'input-text-wrapper'} style={this.props.hidden ?  {display: 'none'} : {}}>
                 <INPUT_TEXT 
                     inputState={this.state}
                     inputProps={this.props}
@@ -82,13 +110,20 @@ export class InputText extends Component<InputProps, InputState> {
                     onInput={this.onInput}
                     type={this.getType()} 
                 />
+                {this.props.infoText ? <InfoText>{this.props.infoText}</InfoText> : null}
+                {this.state.error && this.state.errorText ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null }
             </Styled>
         );
     }
 }
 export class InputPhoneNumber extends InputText {
+    onInput = (event?: any) => {
+        const el = event.target;
+        let value = el.value;
+        this.setState({value: value.replace('+7', '7') });
+    }
     check = (value: string) => {
-        if (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(value) && value.length <= 12) {
+        if (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(value) && value.length <= 11) {
             return false
         }
         else { return true; }
@@ -177,9 +212,9 @@ export class OutputDetail extends InputText {
     check = (value: string) => { return false; }
     render() {
         return (
-            <DefaultInputTextStyle>
+            <InputTextContainer style={this.props.hidden ? {display: 'none'} : {}}>
                 { this.state.error ? <ErrorMessage>{this.state.errorText}</ErrorMessage> : null }
-            </DefaultInputTextStyle>
+            </InputTextContainer>
         );
     }
 }

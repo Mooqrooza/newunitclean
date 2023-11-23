@@ -2,14 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import {ProductType} from "src/utils/types";
 import styled from "styled-components";
-import ButtonBlue from "components/shared/forms/buttonBlue";
-import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import {BASE_URL, URLs} from "src/utils/constants";
 import {showMoneySum} from "src/utils/functions";
 
-const Price = styled.div`
-  .mobile & {}
-`;
 const ImageContainer = styled.div`
   width: 100%;
   height: 260px;
@@ -45,7 +40,7 @@ const ProductStyle = styled.a`
   flex-direction: column;
   gap: 10px 20px;
   width: 237px;
-  height: 280px;
+  min-height: 280px;
   text-decoration: none;
   cursor: pointer; 
   @media (max-width: 690px) {
@@ -56,6 +51,9 @@ const ProductStyle = styled.a`
   }
 `;
 const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   .mobile & {}
 `;
 const Title = styled.div`
@@ -68,6 +66,15 @@ const Title = styled.div`
   overflow: hidden;
   .mobile & {}
 `;
+const Price = styled.div` 
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-size: ${({ theme }) => theme.font.size[17]};
+  font-weight: ${({ theme }) => theme.font.weight[600]};
+  color: ${({ theme }) => theme.colors.blue};
+  .mobile .show-buttons & {}
+`;
 const Product = (props: {data: ProductType}) => {
     const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
     return (
@@ -77,7 +84,7 @@ const Product = (props: {data: ProductType}) => {
             </ImageContainer>
             <Info>
                 <Title>{props.data.title}</Title>
-                { hidePrice ?  null : props.data.price ? <Price>Цены от <span>{showMoneySum(props.data.price) + ' ₽'}</span></Price> : null }
+                { hidePrice ?  null : props.data.price ? <Price>Цены от {showMoneySum(props.data.price) + ' ₽'}</Price> : null }
             </Info>
         </ProductStyle>
     );

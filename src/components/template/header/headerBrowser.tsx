@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useState} from "react";
-import styled, {css} from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import * as constants from "src/utils/constants";
 import HeaderMenuButton from "src/components/template/header/headerMenuButton";
 import HeaderFeedbackButton from "components/template/header/headerFeedbackButton";
