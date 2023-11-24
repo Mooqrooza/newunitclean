@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Content from "components/template/content";
 import {SectionLabel} from 'components/shared/fonts/specialFonts';
 import privacyPolicyText from 'src/pages/privacyPolicy/privacyPolicyText';
 import styled from "styled-components";
+import Feedback from "components/main/feedback";
 
 const TextContainer = styled.section``;
 const Text = styled.div`
@@ -16,13 +17,11 @@ const Text = styled.div`
     font-weight: ${({ theme }) => theme.font.weight[500]}; 
 `;
 const PrivacyPolicy = () => {
-    useEffect(() => {
-
-    },[])
     return (
         <Content>
             <SectionLabel>Политика в отношении обработки<br/> персональных данных</SectionLabel> 
             <TextContainer><Text>{privacyPolicyText}</Text></TextContainer>
+            <Feedback />
         </Content>
     );
 };

@@ -11,15 +11,19 @@ const HeaderButton = (props: {styled: StyledComponent<any, any>; href?: string; 
     const {isAuthorized} = Auth as IStateAuth;
     const dispatch = useDispatch();
     const stableDispatch = useCallback(dispatch, []);
+    
     if (isAuthorized || !props.auth) {
-        return (<props.styled href={props.href} onClick={props.func}>
-            {props.children}
-        </props.styled>)
-    }
-    else {
-        return (<props.styled onClick={() => stableDispatch(WindowsManagerOpen(WINDOW_AUTHORIZATION, props.href))}>
-            {props.children}
-        </props.styled>)
+        return (
+            <props.styled href={props.href} onClick={props.func}>
+                {props.children}
+            </props.styled>
+        );
+    } else {
+        return (
+            <props.styled onClick={() => stableDispatch(WindowsManagerOpen(WINDOW_AUTHORIZATION, props.href))}>
+                {props.children}
+            </props.styled>
+        );
     }
 };
 

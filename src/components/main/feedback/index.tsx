@@ -43,7 +43,7 @@ const Text = styled.div`
   display: inline-block;
   text-align: left;
   color: ${({ theme }) => theme.colors.black};
-  font-size: ${({ theme }) => theme.font.size[16]};
+  font-size: ${({ theme }) => theme.font.size[18]};
   font-weight: ${({ theme }) => theme.font.weight[400]}; 
   .mobile & {}
 `;
@@ -51,7 +51,7 @@ const ButtonSend = styled(DIV_BUTTON_BLUE_STYLE)`
   self-align: start;
   min-width: 220px; 
   max-width: 100%;
-  margin: 0 auto 0 auto;
+  margin: 10px auto 0 auto;
   .mobile & {}
 `;
 const ButtonSendSuccess = styled(ButtonSend)``;
