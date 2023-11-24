@@ -17,7 +17,7 @@ export const InfoText =  styled.div`
   justify-self: start;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 4px;
   box-sizing: border-box;
   text-align: left;
   font-size: ${({ theme }) => theme.font.size[14]};

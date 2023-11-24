@@ -6,7 +6,7 @@ import {
     InputPhoneNumber, InputState, OutputDetail,
 } from "components/shared/forms/inputText";
 import ButtonBlue from "components/shared/forms/buttonBlue";
-import {FormContainer, FormList, FormListContainer} from "components/shared/forms/form";
+import {FormContainer, FormListContainer} from "components/shared/forms/form";
 import {useDispatch} from "react-redux";
 import {DIV_BUTTON_BLUE_STYLE, DIV_BUTTON_SOFT_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import styled from "styled-components";
@@ -20,6 +20,19 @@ const ButtonStyle = styled(DIV_BUTTON_BLUE_STYLE)`min-width: 220px;`;
 const ButtonSendSuccess = styled(ButtonStyle)`min-width: 220px;`;
 const ButtonSendError = styled(ButtonStyle)`min-width: 220px;`;
 const ButtonAuthStyle = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`min-width: 220px;`;
+export const FormList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  width: 100%;
+  max-width: 360px; 
+  min-height: 100px;
+  height: auto;
+  border-radius: 40px;
+  .mobile & {}
+`;
 export const Registration = () => {
     const WindowsManager = useTypedSelector((store) => store.WindowsManager);
     const {url} = WindowsManager as IStateWindows;
