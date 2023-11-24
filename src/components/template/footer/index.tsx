@@ -13,16 +13,19 @@ import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsMana
 const FooterContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 100px 30px; 
+  padding: 100px 30px 90px 30px; 
   box-view: border-box;
   background: ${({ theme }) => theme.colors.whiteGrayBlue};
+  @media (max-width: 600px) {
+    padding: 80px 30px 50px 30px; 
+  }
   .mobile & {}
 `;
 const Content = styled.div`
   position: relative;
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
   width: 100%;
   max-width: 1410px;

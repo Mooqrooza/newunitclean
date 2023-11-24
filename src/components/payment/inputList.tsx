@@ -44,7 +44,6 @@ const ButtonOrderStyle = styled(DIV_BUTTON_BLUE_STYLE)`
   align-self: flex-start;
   max-width: 100%;
   min-width: 220px;
-  margin: 10px 0 0 0;
   .mobile & {}
 `;
 const SuccessPromoContainer = styled.div`
@@ -77,6 +76,7 @@ const SuccessPromoDrop = styled.div`
 `;
 const UserAgreementCheckBoxContainer = styled.div`
   max-width: 420px;
+  margin: 0 0 20px 0;
  .mobile & {}
 `;
 const SuccessPromo = (props: {text: string; func: () => void}) => {
@@ -190,7 +190,9 @@ const InputList = () => {
             </UserAgreementCheckBoxContainer> 
             {buttonOrderShow ? <ButtonBlue styled={ButtonOrderStyle} func={order} setObj={setButton}>Заказать</ButtonBlue> : null}
             {buttonEmptyCardShow ? <ButtonBlue styled={ButtonOrderStyle} func={toCart}>Добавьте товары в корзину</ButtonBlue> : null}
-            {buttonUnAutorizedShow ? <ButtonBlue styled={ButtonOrderStyle} func={openAuth}>Заказать</ButtonBlue> : null}
+            {buttonUnAutorizedShow ? 
+                <ButtonBlue styled={ButtonOrderStyle} func={openAuth} info={{ text: 'Аавторизуйтесь что бы сделать заказ', pos: 'top' }}>Авторизация</ButtonBlue> : null
+            }
         </InputListContainer>
     );
 };

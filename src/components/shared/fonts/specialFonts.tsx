@@ -3,7 +3,7 @@ import styled, {css} from "styled-components";
 export const DefaultHStyle = css`
   padding: 0;
   margin: 0;
-  line-height: 1em;
+  line-height: 1.2em;
   text-align: left;
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.font.weight[500]};
@@ -35,6 +35,9 @@ export const SectionLabel = styled.div`
   margin: 0 0 60px 0;
   font-size: ${({ theme }) => theme.font.size[32]};
   text-transform: uppercase;
+  @media (max-width: 600px) {
+    margin: 0 0 40px 0;
+  }
 `;
 export const FormHeader = styled.div`
   ${DefaultHStyle};
@@ -44,9 +47,7 @@ export const FormHeader = styled.div`
   padding: 20px 0;
   box-sizing: border-box;
   max-width: 100%;
-  @media (max-width: 380px) {
-    
-  }
+  @media (max-width: 380px) {}
 `;
 export const FormText = styled.div`
   ${DefaultHStyle}

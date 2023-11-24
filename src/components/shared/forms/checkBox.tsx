@@ -28,8 +28,8 @@ const Checkbox =  styled.input`
     transition: all 0.14s 0s;
   }
   &:checked+label::before {
-      background-image: url("${icons.checkIco2}");
-      box-shadow: 0px 0px 0px 4px #AFCBEB;
+    background-image: url("${icons.checkIco2}");
+    box-shadow: 0px 0px 0px 4px #AFCBEB;
   }
   /* hover style */
   &:not(:disabled):not(:checked)+label:hover::before {}
@@ -50,15 +50,12 @@ const Label = styled.label`
   font-weight: ${({ theme }) => theme.font.weight[500]};
   color: ${({ theme }) => theme.colors.black};
   cursor: pointer;
-
-  a {
-    color: ${({ theme }) => theme.colors.blue};
-  }
+  a { color: ${({ theme }) => theme.colors.blue}; }
   &.error {
     &::before {
-        box-shadow: 0px 0px 0px 4px ${ ({theme}) => theme.colors.redTransparent(0.2) };
-        background-color: ${ ({theme}) => theme.colors.whiteRed };
-      }
+      box-shadow: 0px 0px 0px 4px ${ ({theme}) => theme.colors.redTransparent(0.2) };
+      background-color: ${ ({theme}) => theme.colors.whiteRed };
+    }
   }
 `;
 interface CheckBoxProps {
@@ -98,16 +95,11 @@ export class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
         this.setState({ error: val });
         return val;
     }
-    onBlur = () => {
-        this.checkError();
-    }
+    onBlur = () => { this.checkError(); }
     onClick = (e:any) => {
         const labelEl = e.target;
         const inputEl = labelEl.previousElementSibling;
-
-        this.setState({ value: !inputEl.checked }, () => {
-            this.checkError();
-        });  
+        this.setState({ value: !inputEl.checked }, () => { this.checkError(); });  
     }
     getType = () => { return 'text' }
     clear = () => { this.setState({ value: false })}

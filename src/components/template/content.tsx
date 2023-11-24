@@ -16,12 +16,7 @@ const Main = styled.div`
       margin: ${({ theme }) => theme.margins.sectionMarginMobile};
     }
   } 
-  .mobile & {
-    padding: ${({ theme }) => theme.paddings.contentPaddingMobile};
-    section {
-      margin: ${({ theme }) => theme.margins.sectionMarginMobile};
-    }
-  }
+  .mobile & {}
 `;
 const Content = (props: {children: any, className?: string}) => {
     return (

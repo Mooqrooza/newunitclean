@@ -90,6 +90,8 @@ import alertIcon from '../icons/alert-ico-1.svg';
 import mapIco from '../icons/map-ico-1.svg';
 import mapGreyIco from '../icons/map-grey-ico-1.svg';
 import mapIco2 from '../icons/map-ico-2.svg';
+import infoIco from '../icons/info-ico-1.svg';
+import infoBlueIco from '../icons/info-blue-ico-1.svg';
 
 export const icons = {
     header: {
@@ -122,7 +124,9 @@ export const icons = {
     mapIco: mapIco,
     mapGreyIco: mapGreyIco,
     mapIco2: mapIco2,
-
+    infoIco: infoIco,
+    infoBlueIco: infoBlueIco,
+    
     lk: lk,
     cart: cart,
     search: search,

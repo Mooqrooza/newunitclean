@@ -1,14 +1,40 @@
 import React, {Component} from 'react';
 import {StyledComponent} from "styled-components";
 import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
+import styled from "styled-components";
+import {icons} from "src/utils/icons";
 
+const ButtonContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+`;
+const InfoText =  styled.div`
+  display: inline-block;
+  justify-self: start;
+  width: 100%;
+  margin: 0;
+  padding: 0 4px 0 27px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: ${({ theme }) => theme.font.size[15]};
+  font-weight: ${({ theme }) => theme.font.weight[500]};
+  color: ${({ theme }) => theme.colors.black};
+  background-image: url(${icons.infoIco});
+  background-position: left center;
+  background-repeat: no-repeat;
+  .mobile & {}
+`;
 interface ButtonBlueProps {
     children: any;
     styled?: StyledComponent<any, any>;
     func?: () => void;
     setObj?: (obj: any) => void;
     className?: string,
-    icon?: any
+    icon?: any,
+    info?: { text: string, pos?: string }
 };
 interface ButtonBlueState {
     currentStyle: StyledComponent<any, any>;
@@ -50,10 +76,17 @@ export class ButtonBlue extends Component<ButtonBlueProps, ButtonBlueState> {
         }, props.timeOut);
     }
     render() {
+        const info = this.props.info;
+        const infoTop = info && info.text && info.pos === 'top';
+        const infoBottom = info && info.text && (!info.pos || info.pos === 'bottom');
         return (
-            <this.state.currentStyle icon={this.props.icon} className={this.props.className} onClick={ this.props.func }>
-                { this.state.currentChildren }
-            </this.state.currentStyle>
+            <ButtonContainer>
+                {infoTop ? <InfoText>{info.text}</InfoText> : null}
+                <this.state.currentStyle icon={this.props.icon} className={this.props.className} onClick={ this.props.func }>
+                    { this.state.currentChildren }
+                </this.state.currentStyle>
+                {infoBottom ? <InfoText>{info.text}</InfoText> : null}
+            </ButtonContainer>
         );
     }
 }

@@ -67,7 +67,6 @@ const Image = styled.div<{src: string}>`
   background-size: contain;
   background-repeat: no-repeat;
   transition: box-shadow 0.2s 0s;
-
   &:hover{
     box-shadow: ${({theme}) => theme.shadows.shadowA};
     opacity: 1;

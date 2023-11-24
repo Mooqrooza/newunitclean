@@ -42,6 +42,7 @@ const Text = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 80px;
+  max-width: 100%;
   padding: 0 10px;
   margin: 0;
   float: left;
@@ -56,9 +57,16 @@ const Text = styled.div`
 `;
 const LabelMin = styled(Text)<{ type?: string, css?: string }>`
   display: flex;
-  align-items: center;
-  ${({css}) => css}
+  justify-self: start;
+  width: 100%;
+  padding: 0 4px;
+  box-sizing: border-box;
+  text-align: left;
   font-size: ${({ theme }) => theme.font.size[14]};
+  font-weight: ${({ theme }) => theme.font.weight[400]};
+  color: ${({ theme }) => theme.colors.gray};
+
+  @media (max-width: 800px) {}
   .mobile & {}
 `;
 export interface Ilabelinfo {

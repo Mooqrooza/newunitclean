@@ -46,6 +46,8 @@ const Description = styled.div`
   user-select: text;
   .mobile & {}
 `;
+const ButtonContainer = styled.div`
+`;
 const ButtonAddToBasket = styled(ButtonBlue)`
   width: 240px;
   .mobile & {}
@@ -68,9 +70,6 @@ const Info = (props: {data: ProductType}) => {
     const stableDispatch = useCallback(dispatch, []);
     const hidePrice: boolean = useSelector((store: any) => store.Settings.hidePrice);
     const openAuth = () => { WindowsManagerOpen(WINDOW_AUTHORIZATION)(dispatch); }
-    useEffect(() => {
-        if (auth.isAuthorized) { stableDispatch(GetProduct(props.data.id, size)); }
-    }, [size]);
     const AddToCart = () => {
         button.Animate({Children: 'Добавляем...'});
         ApiMethod({
@@ -80,12 +79,15 @@ const Info = (props: {data: ProductType}) => {
             auth: true
         })
         .then(success => button.Animate({Styled: ButtonSendSuccess, Children: 'Добавлено в корзину', timeOut: 2000}))
-        .catch(error => button.Animate({Styled: ButtonSendError, Children: 'Ошибка', timeOut: 2000}))
+        .catch(error => button.Animate({Styled: ButtonSendError, Children: 'Ошибка', timeOut: 2000}));
     }
+    useEffect(() => {
+       if (auth.isAuthorized) { stableDispatch(GetProduct(props.data.id, size)); }
+    }, [size]);
     return (
         <ProductContainer>
             <Title>{props.data.title}</Title>
-            { hidePrice ?  null : <Price>{props.data.price ? (auth.isAuthorized ? '' : 'от ') + showMoneySum(props.data.price) + ' ₽' : null}</Price> }
+            {hidePrice ? null : <Price>{props.data.price ? (auth.isAuthorized ? '' : 'от ') + showMoneySum(props.data.price) + ' ₽' : null}</Price>}
             <Description>
                 { props.data.description ? <InfoRow title={'Описание'}>{props.data.description}</InfoRow> : null }
                 { props.data.sizes?.length ? 
@@ -94,7 +96,7 @@ const Info = (props: {data: ProductType}) => {
             </Description>
             { auth.isAuthorized
                 ? <ButtonAddToBasket func={AddToCart} setObj={setButton}>Добавить в корзину</ButtonAddToBasket>
-                : <ButtonAutorize func={openAuth}>Добавить в корзину</ButtonAutorize>
+                : <ButtonAutorize func={openAuth} info={{ text: 'Аавторизуйтесь что бы добавить товар в корзину', pos: 'top' }}>Авторизация</ButtonAutorize>  
             }
         </ProductContainer>
     );
