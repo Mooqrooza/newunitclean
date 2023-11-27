@@ -71,6 +71,7 @@ interface CheckBoxState {
     errorText: string;
     errorAnimation: boolean;
     obj: any;
+    checkBoxRef: any;
 };
 export class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
     constructor(props: CheckBoxProps) {
@@ -81,6 +82,7 @@ export class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
             error: false, 
             errorAnimation: false,  
             errorText: '',
+            checkBoxRef: React.createRef()
         };
         if (this.props.setObj) { this.props.setObj(this.state); }
     }
@@ -97,18 +99,25 @@ export class CheckBox extends Component<CheckBoxProps, CheckBoxState> {
     }
     onBlur = () => { this.checkError(); }
     onClick = (e:any) => {
+        e.persist()
         const labelEl = e.target;
         const inputEl = labelEl.previousElementSibling;
-        this.setState({ value: !inputEl.checked }, () => { this.checkError(); });  
+        if (inputEl) {
+            this.setState({ value: !inputEl.checked }, () => { this.checkError(); }); 
+        } 
     }
     getType = () => { return 'text' }
-    clear = () => { this.setState({ value: false })}
+    clear = () => { 
+      const checkBoxEl = this.state.checkBoxRef.current;
+      if (checkBoxEl) { checkBoxEl.checked = false; }
+      this.setState({ value: false }); 
+    }
     render() {
         const elementId = createUid();
         const className = this.state.error ? 'error' : '';
         return (
             <Container className={className}>
-                <Checkbox type={'checkbox'} id={elementId} />
+                <Checkbox type={'checkbox'} id={elementId} ref={this.state.checkBoxRef}/>
                 {<Label className={className} htmlFor={elementId} onClick={this.onClick} onBlur={this.onBlur}>
                     {this.props.label ? this.props.label : ''}
                 </Label>}

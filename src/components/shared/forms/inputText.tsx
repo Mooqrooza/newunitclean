@@ -120,7 +120,7 @@ export class InputPhoneNumber extends InputText {
     onInput = (event?: any) => {
         const el = event.target;
         let value = el.value;
-        this.setState({value: value.replace('+7', '7') });
+        this.setState({ value: value.replace('+7', '7') });
     }
     check = (value: string) => {
         if (/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(value) && value.length <= 11) {
@@ -187,6 +187,7 @@ export class InputPassword extends InputText {
     getType = () => { return 'password'; }
 }
 export class InputDate extends InputText {
+    clear = () => { this.setState({value: this.props.defaultValue ? this.props.defaultValue : ''})}
     check = (value: string) => {
         if (/^.+$/.test(value)) { return false; }
         else { return true; }

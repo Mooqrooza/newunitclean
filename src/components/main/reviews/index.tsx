@@ -4,7 +4,7 @@ import {icons} from 'src/utils/icons';
 import styled from 'styled-components';
 import {SectionLabel} from 'components/shared/fonts/specialFonts';
 import {getReviews} from 'api/getReviews';
-import RefDivComponent from 'components/shared/refcomponent';
+import {RefDivComponent} from 'components/shared/refcomponent';
 
 const Main = styled.section`
   .mobile & {}

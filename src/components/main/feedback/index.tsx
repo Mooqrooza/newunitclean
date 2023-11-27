@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import styled from "styled-components";
 import {ApiMethod} from "src/api/APIMethod";
 import ButtonBlue from "components/shared/forms/buttonBlue";
@@ -9,7 +9,6 @@ import {DIV_BUTTON_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTT
 import {SectionLabel} from "components/shared/fonts/specialFonts";
 import feedbackImage from "src/images/feedback-image-1.png";
 import {getFormatedData} from 'src/utils/functions';
-import * as constants from "src/utils/constants";
 
 const Main = styled.section`
   .mobile & {}
@@ -58,26 +57,36 @@ const ButtonSendSuccess = styled(ButtonSend)``;
 const ButtonSendError = styled(ButtonSend)``;
 const Feedback = () => {
     const form:any = {};
-    let setName, setPhone, setComment, setUserAgreemnet, setDetail, setDate = null;
+    let setName, setPhone, setComment, setUserAgreemnet, setDetail, setDate, setGetOffer = null;
     [form.full_name, setName] = useState<any>(null);
     [form.phone_number, setPhone] = useState<any>(null);
     [form.comment, setComment] = useState<any>(null);
     [form.userAgreemnet, setUserAgreemnet] = useState<any>(null);
     [form.date_to_answer, setDate] = useState<any>(null);
     [form.detail, setDetail] = useState<any>(null);
+    [form.getOffer, setGetOffer] = useState<any>(null);
     const [button, setButton] = useState<any>(null);
     const orderCall = () => {
-        const collectedValues = Object.values(form).map(value => !value || (value as InputState).obj.checkError());
-        const hasError = collectedValues.some(error => error);
-        console.log(form)
+        let requestData = {};
+        const hasError = Object.values(form).some((value:any) => {
+            return !value || (value as InputState).obj.checkError();
+        });
+        
         if (hasError) {
             button.Animate({Styled: ButtonSendError, Children: 'Данные некорректны', timeOut: 2000});
             return false;
         }
         button.Animate({Children: 'Выполняется...'});
+        requestData = Object.keys(form).reduce((target, key) => {
+            let value = form[key].value;
+            if (key === 'comment' && form.getOffer.value) {
+                value += value.length ? '\r\n(!) Запрос коммерческого предложения' : '(!) Запрос коммерческого предложения';
+            }
+            return ({ ...target, [key]: value })
+        }, {})
         ApiMethod({
             func: 'post', url: '/employee/api/v2/call_order/',
-            data: Object.keys(form).reduce((target, key) => ({...target, [key]: form[key].value}), {})
+            data: requestData
         })
         .then(success => {
             Object.values(form).map(value => (value as InputState).obj.clear())
@@ -92,16 +101,17 @@ const Feedback = () => {
     }
     return (
         <Main id='feedback'>
-            <SectionLabel>Заказать звонок</SectionLabel>
+            <SectionLabel>ЗАКАЗАТЬ КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ ИЛИ ЗВОНОК</SectionLabel>
             <Content>
                 <Form>
                     <Text>Оставьте Ваш телефон и наш менеджер свяжется с Вами в ближайшее время.</Text>
                     <InputFIO placeholder='Имя' setObj={setName}></InputFIO>
                     <InputPhoneNumber placeholder='Телефон' setObj={setPhone}></InputPhoneNumber>
+                    <CheckBox label={'Заказать коммерческое предложение'} defaultValue={false} setObj={setGetOffer} />
                     <InputTextField placeholder='Комментарий' setObj={setComment}></InputTextField>
                     <InputDate placeholder='Когда перезвонить' setObj={setDate} hidden={true} defaultValue={getFormatedData(new Date, 'yyyy-mm-dd')}></InputDate>
                     <OutputDetail setObj={setDetail} hidden={true}></OutputDetail>
-                    <CheckBox label={<div>Даю согласие на обработку персональных данных согласно с <a href={constants.URLs.PRIVACY_POLICY}>политикой конфиденциальности</a></div>} require={true} setObj={setUserAgreemnet} />
+                    <CheckBox label={'Я согласен(а) на обработку персональных данных'} require={true} setObj={setUserAgreemnet} />
                     <ButtonBlue styled={ButtonSend} func={orderCall} setObj={setButton}>Отправить</ButtonBlue>
                 </Form>
             </Content>
