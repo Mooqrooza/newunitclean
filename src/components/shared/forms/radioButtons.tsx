@@ -1,17 +1,35 @@
 import React, {useEffect, useState} from 'react';
-import styled from "styled-components";
-import {DIV_BUTTON_BLUE_STYLE, DIV_BUTTON_SOFT_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
+import styled, {keyframes} from "styled-components";
+import {DIV_BUTTON_SOFT_BLUE_STYLE} from "components/shared/forms/primitives/DIV_BUTTON";
 import {ProductSizeType} from "src/utils/types";
 import RadioButtonBlue from "components/shared/forms/radioButton";
+import {Main as theme} from 'src/themes/main';
 
-const ButtonSelected = styled(DIV_BUTTON_BLUE_STYLE)`
+const showSelectedAnimation = keyframes`
+  0% { 
+    background-color: ${theme.colors.blueTransparent(0.04)};
+  }
+  100% { 
+    background-color: ${theme.colors.blueTransparent(0.1)}; 
+  }
+`;
+const showUnselectedAnimation = keyframes`
+  0% { background-color: transparent}
+  100% { background-color: ${theme.colors.blueTransparent(0.04)}}
+`;
+const ButtonSelected = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   min-width: 100px;
+  background-color: ${({ theme }) => theme.colors.blueTransparent(0.1)};
+  animation ${showSelectedAnimation} 0.2s 1 linear forwards;
+  :hover{ box-shadow: ${({theme}) => theme.shadows.shadowD}; }
   .mobile & {}
 `;
 const ButtonUnSelected = styled(DIV_BUTTON_SOFT_BLUE_STYLE)`
   min-width: 100px; 
   font-weight: ${({ theme }) => theme.font.weight[600]};
-  &:hover {}
+  background-color: ${({ theme }) => theme.colors.blueTransparent(0.02)};
+  animation ${showUnselectedAnimation} 0.16s 1 linear forwards;
+  :hover{ box-shadow: ${({theme}) => theme.shadows.shadowD}; }
   .mobile & {}
 `;
 const RadioButton = (props: {id: number; title: string; pos: number; func: (i: number) => void;}) => {
@@ -24,6 +42,7 @@ const RadioButton = (props: {id: number; title: string; pos: number; func: (i: n
 const RadioButtonsContainer = styled.div`
   display: flex;
   justify-content: start;
+  flex-wrap: wrap;
   gap: 10px;
   .mobile & {}
 `;

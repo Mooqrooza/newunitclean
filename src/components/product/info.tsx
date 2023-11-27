@@ -11,7 +11,7 @@ import {getAuth} from "src/store/localStorage";
 import {WindowsManagerOpen} from "src/actions/WindowsManagerAction/WindowsManagerAction";
 import {WINDOW_AUTHORIZATION} from "src/actions/WindowsManagerAction/WindowsManagerAction.types";
 import {GetProduct} from "src/actions/ProductAction/ProductAction";
-import {showMoneySum} from "src/utils/functions";
+import {showMoneySum, scrollToFeedback} from "src/utils/functions";
 
 const ProductContainer = styled.div`
   position: relative;
@@ -45,8 +45,6 @@ const Description = styled.div`
   width: 100%;
   user-select: text;
   .mobile & {}
-`;
-const ButtonContainer = styled.div`
 `;
 const ButtonAddToBasket = styled(ButtonBlue)`
   width: 240px;
@@ -91,12 +89,12 @@ const Info = (props: {data: ProductType}) => {
             <Description>
                 { props.data.description ? <InfoRow title={'Описание'}>{props.data.description}</InfoRow> : null }
                 { props.data.sizes?.length ? 
-                    <InfoRow title={'Размеры'}><RadioButtons setSize={setSize} buttons={props.data.sizes} /></InfoRow> : null
+                    <InfoRow><RadioButtons setSize={setSize} buttons={props.data.sizes} /></InfoRow> : null
                 }
             </Description>
             { auth.isAuthorized
                 ? <ButtonAddToBasket func={AddToCart} setObj={setButton}>Добавить в корзину</ButtonAddToBasket>
-                : <ButtonAutorize func={openAuth} info={{ text: 'Аавторизуйтесь что бы добавить товар в корзину', pos: 'top' }}>Авторизация</ButtonAutorize>  
+                : <ButtonAutorize func={scrollToFeedback} info={{ text: '* КП - коммерческое предложение', pos: 'bottom', noIco: true }}>Запросить КП</ButtonAutorize>  
             }
         </ProductContainer>
     );

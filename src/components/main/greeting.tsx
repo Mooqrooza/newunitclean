@@ -23,6 +23,7 @@ const Main = styled.section`
     }
     @media (max-width: 600px) {
       border-radius: 40px;
+      padding: 25px;
     }
    .mobile & {}
 `;
@@ -33,7 +34,7 @@ const TextContainer = styled.div`
   align-items: start;
   justify-content: center;
   height: 100%;
-  max-width: 50%;
+  max-width: 40%;
   padding: 0 0 0 5%;
 
   @media (max-width: 1200px) {
@@ -43,17 +44,96 @@ const TextContainer = styled.div`
       max-width: 100%;
       width: auto;
   }
+  @media (max-width: 420px) {}
 `;
 const Maintext = styled(H1Main)`
+  display: inline-block;
   margin: 0 0 20px 0;
-  @media (max-width: 1200px) {
-    margin: 400px 0 20px 0;
-    font-size: ${({ theme }) => theme.font.size[62]};
+  font-size: 76px;
+  font-weight: ${({ theme }) => theme.font.weight[600]};
+  line-height: 1em;
+  text-align: left;
+  
+  > :nth-child(3) {
+    br { display: block; }
   }
-  @media (max-width: 480px) {
+  @media (max-width: 1600px) {
+    font-size: 80px;
+    line-height: 0.88em;
+    > :nth-child(3) {
+        font-size: 58px;
+     }
+  }
+  @media (max-width: 1500px) {
+    font-size: 80px;
+    > :nth-child(3) {
+        font-size: 56px;
+     }
+  }
+  @media (max-width: 1360px) {
+    font-size: 70px;
+    > :nth-child(3) {
+      font-size: 48px;
+    }
+  }
+  @media (max-width: 1200px) {
+    margin: 380px 0 20px 0;
+    font-size: 76px;
+    text-align: center;
+    > :nth-child(3) {
+      font-size: 64px;
+      br { display: none; }
+    }
+  }
+  @media (max-width: 890px) {
+    line-height: 0.8em;
+    > :nth-child(3) {
+      font-size: 54px;
+      br { display: none; }
+    }
+  }
+  @media (max-width: 720px) {
+    > :nth-child(3) {
+      font-size: 46px;
+    }
+  }
+  @media (max-width: 550px) {
+    line-height: 0.7em;
+    font-size: 66px;
+    > :nth-child(3) {
+      font-size: 34px;
+      br { display: none; }
+    }
+  }
+  @media (max-width: 490px) {
+    line-height: 0.83em;
+    margin: 310px 0 20px 0;
+    font-size: 48px;
+    text-align: left;
+  }
+  @media (max-width: 460px) {
+    font-size: 52px;
+    margin: 280px 0 20px 0;
+    line-height: 0.65em;
+    > :nth-child(3) {
+      font-size: 28px;
+      br { display: block; }
+    }
+  }
+  @media (max-width: 420px) {
     margin: 300px 0 20px 0;
-    width: 100%;
-    font-size: ${({ theme }) => theme.font.size[50]};
+    font-size: 52px;
+    text-align: left;
+    > :nth-child(3) {
+      font-size: 26px;
+      br { display: none; }
+    }
+  }
+  @media (max-width: 390px) {
+    font-size: 46px;
+    > :nth-child(3) {
+      font-size: 22px;
+    }
   }
 `;
 const Button = styled(DIV_BUTTON_BLUE_STYLE)` margin: 40px 0 0 0; min-width: 220px;`;
@@ -79,11 +159,39 @@ const Image = styled.img`
   width: 70%;
   top: 52%;
   @media (max-width: 1200px) {
-      width: 100%;
-      top: -20%;
+      width: 88%;
+      top: -19%;
       margin: 0;
       position: relative;
       right: -6%;
+  }
+  @media (max-width: 760px) {
+    width: 110%;
+    top: -18%;
+  }
+  @media (max-width: 640px) {
+    width: 110%;
+    top: -22%;
+  }
+  @media (max-width: 600px) {
+    width: 110%;
+    top: -22%;
+  }
+  @media (max-width: 550px) {
+    width: 110%;
+    top: -19%;
+  }
+  @media (max-width: 480px) {
+    width: 120%;
+    top: -22%;
+  }
+  @media (max-width: 450px) {
+    width: 120%;
+    top: -27%;
+  }
+  @media (max-width: 420px) {
+    width: 120%;
+    top: -21%;
   }
   .mobile & {}
 `;
@@ -97,8 +205,8 @@ const Greetings = () => {
       <Main>
           <ImageContainer><Image src={greetingImage} /></ImageContainer>
           <TextContainer>
-              <Maintext>Хороший короткий текст</Maintext>
-              <LabelInfoGroup labels={labelInfo}/>
+              <Maintext><span>Автохимия</span><br/><span>для детейлинга <br/>и МСО</span></Maintext>
+              <LabelInfoGroup labels={labelInfo} style={{justifyContent: 'center'}}/>
               <Button onClick={() => { window.open(URLs.CATALOG, '_self'); }}>Каталог</Button>
           </TextContainer>
       </Main>

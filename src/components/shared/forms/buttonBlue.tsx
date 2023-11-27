@@ -25,6 +25,10 @@ const InfoText =  styled.div`
   background-image: url(${icons.infoIco});
   background-position: left center;
   background-repeat: no-repeat;
+  &.no-ico {
+    background-image: none;
+    padding: 0 4px;
+  }
   .mobile & {}
 `;
 interface ButtonBlueProps {
@@ -34,7 +38,7 @@ interface ButtonBlueProps {
     setObj?: (obj: any) => void;
     className?: string,
     icon?: any,
-    info?: { text: string, pos?: string }
+    info?: { text: string, pos?: string, noIco?: boolean }
 };
 interface ButtonBlueState {
     currentStyle: StyledComponent<any, any>;
@@ -81,11 +85,11 @@ export class ButtonBlue extends Component<ButtonBlueProps, ButtonBlueState> {
         const infoBottom = info && info.text && (!info.pos || info.pos === 'bottom');
         return (
             <ButtonContainer>
-                {infoTop ? <InfoText>{info.text}</InfoText> : null}
+                {infoTop ? <InfoText className={info.noIco ? 'no-ico' : ''}>{info.text}</InfoText> : null}
                 <this.state.currentStyle icon={this.props.icon} className={this.props.className} onClick={ this.props.func }>
                     { this.state.currentChildren }
                 </this.state.currentStyle>
-                {infoBottom ? <InfoText>{info.text}</InfoText> : null}
+                {infoBottom ? <InfoText className={info.noIco ? 'no-ico' : ''}>{info.text}</InfoText> : null}
             </ButtonContainer>
         );
     }

@@ -20,7 +20,7 @@ const Content = styled.div`
   justify-content: center;
   width: 100%;
   min-height: 560px;
-  padding: 60px 30px;
+  padding: 60px 20px;
   box-sizing: border-box;
   border-radius: 60px;
   background-color: ${({ theme }) => theme.colors.grayC};

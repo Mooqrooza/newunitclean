@@ -23,10 +23,10 @@ const Info = styled.div`
   color: ${({ theme }) => theme.colors.black};
   .mobile & {}
 `;
-const InfoRow = (props: {children: any; title: string}) => {
+const InfoRow = (props: {children: any; title?: string}) => {
     return (
         <InfoRowContainer>
-            <Title>{props.title}:</Title>
+            {props.title ? <Title>{props.title}:</Title> : null}
             <Info>{props.children}</Info>
         </InfoRowContainer>
     );

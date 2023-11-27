@@ -158,10 +158,10 @@ const Footer = () => {
                         <LinkItem href={constants.URLs.ROOT}>Главная</LinkItem>
                         <LinkItem href={constants.URLs.CATALOG}>Каталог</LinkItem>
                         <LinkItem href={constants.URLs.PROMOTION}>Акции</LinkItem>
-                        <LinkItem href={constants.URLs.PAYMENT}>Доставка и оплата</LinkItem>
+                        {/* <LinkItem href={constants.URLs.PAYMENT}>Доставка и оплата</LinkItem> */}
                         <LinkItem href={constants.URLs.CONTACTS}>Контакты</LinkItem>
-                        <LinkItem onClick={() => onClickLinkItem(constants.URLs.LK)}>Личный кабинет</LinkItem>
-                        <LinkItem onClick={() => onClickLinkItem(constants.URLs.CART)}>Корзина</LinkItem>  
+                        {/* <LinkItem onClick={() => onClickLinkItem(constants.URLs.LK)}>Личный кабинет</LinkItem> */}
+                        {/* <LinkItem onClick={() => onClickLinkItem(constants.URLs.CART)}>Корзина</LinkItem> */}
                         <LinkItem href={constants.URLs.PRIVACY_POLICY}>Политика конфиденциальности</LinkItem>                        
                     </Menu>
                     <Contacts>

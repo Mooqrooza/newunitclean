@@ -107,3 +107,10 @@ export const DIV_BUTTON_SOFT_BLUE_STYLE = styled.div<{css?: any; cssMobile?: any
     ${props => props.cssMobile} 
   }
 `;
+export const DIV_BUTTON_SOFT_GRAY_STYLE = styled(DIV_BUTTON_SOFT_BLUE_STYLE)<{css?: any; cssMobile?: any, icon?: any}>`
+  ${defaultButtonStyle}
+  &:hover {
+    background-color: ${({theme}) => theme.colors.gray};
+    box-shadow: ${({theme}) => theme.shadows.shadowC};
+  }
+`;

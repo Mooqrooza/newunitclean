@@ -71,7 +71,8 @@ export const Main = {
         whiteRedA: '#FFF5F7',
         orangeTransparent: (opacity: number) => `rgba(228,110,40,${opacity})`,
         whiteTransparent: (opacity: number) => `rgba(255,255,255,${opacity})`,
-        redTransparent: (opacity: number) => `rgba(203,71,71,${opacity})`
+        redTransparent: (opacity: number) => `rgba(203,71,71,${opacity})`,
+        blueTransparent: (opacity: number) => `rgba(22,75,167,${opacity})`
     },
     backgrounds: {
         gradient: 'var(--Gradient-1, linear-gradient(90deg, #EFE3E3 0%, #F1F6F9 100%));',
@@ -90,7 +91,8 @@ export const Main = {
        shadow: '0px 9px 18px 7px rgba(0, 0, 0, 0.2)',
        shadowA: '0px 4px 18px 0px rgba(0, 0, 0, 0.16)',
        shadowB: '0px 4px 18px 4px rgba(0, 0, 0, 0.15)',
-       shadowC: '0px 0px 16px 2px rgba(0, 0, 0, 0.1)'
+       shadowC: '0px 0px 16px 2px rgba(0, 0, 0, 0.1)',
+       shadowD: '0px 0px 10px 2px rgba(0, 0, 0, 0.08)'
     },
     margins: {
         sectionMargin: '0 0 140px 0',
