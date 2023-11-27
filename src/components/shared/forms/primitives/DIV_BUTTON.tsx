@@ -42,6 +42,8 @@ const getDefaultIconStyle = (icon: any) => `
     right: 12px;
     width: 24px;
     height: 24px;
+    top: 50%;
+    margin-top: -12px;
   }
 `;
 export const DIV_BUTTON_BLUE_STYLE:any = styled.div<{css?: any; cssMobile?: any, icon?: any}>`
@@ -72,10 +74,10 @@ export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any;
   font-weight: ${({ theme }) => theme.font.weight[400]};
   white-space: break-spaces;
   color: ${ ({ theme }) => theme.colors.white };
-  background: ${ ({ theme }) => theme.colors.grayB };
+  background-color: ${ ({ theme }) => theme.colors.grayB };
   transition: all 0.12s 0s linear;
   &:hover {
-    background: ${({ theme }) => theme.colors.blue};
+    background-color: ${({ theme }) => theme.colors.blue};
   }
   &.unselected:not(:hover) {
     background: transparent;
@@ -83,7 +85,7 @@ export const DIV_BUTTON_SELECT_STYLE = styled(DIV_BUTTON_BLUE_STYLE)<{css?: any;
   }  
   &.selected {
     color: ${({ theme }) => theme.colors.white};
-    background: ${({ theme }) => theme.colors.blue};
+    background-color: ${({ theme }) => theme.colors.blue};
   }
   ${ props => (props.icon ? getDefaultIconStyle(props.icon) : '') }
   &.unselected::after {

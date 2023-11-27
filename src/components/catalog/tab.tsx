@@ -18,6 +18,10 @@ const Title = styled.h2`
 const TabContentContainer = styled.h2`
   margin: 0 0 60px 0;
 `;
+const Empty = styled(EmptyCard)`
+  align-self: start;
+  min-width: 300px;
+`;
 const Tab = (props: {title: string; products: ProductType[]}) => {
     return (
         props.products.length ?
@@ -31,7 +35,7 @@ const Tab = (props: {title: string; products: ProductType[]}) => {
             <TabContentContainer>
                 <TabContent>
                     <Title>{props.title}</Title>
-                    <EmptyCard />
+                    <Empty />
                 </TabContent>
             </TabContentContainer>
     );

@@ -35,7 +35,8 @@ const Categories = styled.div`
   display: flex;
   flex-direction: column;
   flex-basis: 320px;
-  align-items: center;
+  align-items: stretch;
+  justify-content: center;
   min-width: 320px;
   border-radius: 40px;
   height: 100%;
@@ -50,7 +51,9 @@ const Categories = styled.div`
   .mobile & {}
 `;
 const CategoryStyle = styled(DIV_BUTTON_SELECT_STYLE)`
+  display: block;
   padding: 15px 30px;
+  width: 100%;
   @media (max-width: 690px) {
     width: 80%;
   }
@@ -59,7 +62,7 @@ const CategoryStyle = styled(DIV_BUTTON_SELECT_STYLE)`
   }
   .mobile & {}
 `;
-const Category = (props: {children: any; selected: number; self: number; func: (i: number) => void}) => {
+const CategoryButton = (props: {children: any; selected: number; self: number; func: (i: number) => void}) => {
     function click() { props.func(props.self); }
     return (
         <ButtonBlue 
@@ -92,7 +95,7 @@ const Products = () => {
             <Content>
                 <Categories>
                     {categoriesState.categories.map((category) =>
-                        <Category key={category.id} selected={selected} self={category.id} func={select}>{category.title}</Category>)}
+                        <CategoryButton key={category.id} selected={selected} self={category.id} func={select}>{category.title}</CategoryButton>)}
                 </Categories>
                 <ProductsList>
                     { productListState.products
